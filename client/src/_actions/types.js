@@ -1,0 +1,24 @@
+export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
+export const REGISTER_FAIL = "REGISTER_FAIL";
+export const USER_LOADED = "USER_LOADED";
+export const GET_USERS = "GET_USERS";
+export const AUTH_ERROR = "AUTH_ERROR";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAIL = "LOGIN_FAIL";
+export const LOGOUT = "LOGOUT";
+export const CLEAR_USER = "CLEAR_USER";
+export const USER_UPDATED = "USER_UPDATED";
+export const CLEAR_FILTER = "CLEAR_FILTER";
+
+export const SET_ALERT = "SET_ALERT";
+export const REMOVE_ALERT = "REMOVE_ALERT";
+
+export const GET_CUSTOMER = "GET_CUSTOMER";
+export const GET_CUSTOMERS = "GET_CUSTOMERS";
+export const ADD_CUSTOMER = "ADD_CUSTOMER";
+export const UPDATE_CUSTOMER = "UPDATE_CUSTOMER";
+export const SET_CURRENT_CUSTOMER = "SET_CURRENT_CUSTOMER";
+export const CLEAR_CUSTOMER = "CLEAR_CUSTOMER";
+export const DELETE_CUSTOMER = "DELETE_CUSTOMER";
+export const CUSTOMER_ERROR = "CUSTOMER_ERROR";
+export const FILTER_CUSTOMER = "FILTER_CUSTOMER";

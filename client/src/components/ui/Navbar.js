@@ -1,0 +1,217 @@
+import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { logout } from "../../_actions/authAction";
+
+const Navbar = ({
+  auth: { username, isAuthenticated, loading, role, user },
+  logout,
+}) => {
+  const customerAuthLinks = (
+    <nav
+      className='navbar navbar-expand-lg fixed-top navbar-dark mb-5 py-2 px-5 '
+      style={{ backgroundColor: "#045E84" }}
+    >
+      <a className='navbar-brand' href='#'>
+        <img src='./logo.png' alt='owm' width='90px' />
+      </a>
+      <button
+        className='navbar-toggler'
+        type='button'
+        data-toggle='collapse'
+        data-target='#navbarSupportedContent'
+        aria-controls='navbarSupportedContent'
+        aria-expanded='false'
+        aria-label='Toggle navigation'
+      >
+        <span className='navbar-toggler-icon'></span>
+      </button>
+
+      <div className='collapse navbar-collapse' id='navbarSupportedContent'>
+        <ul className='navbar-nav mr-auto'>
+          <li className='nav-item active'>
+            <Link className='nav-link lead' to='/'>
+              <i className='fa fa-home'></i> Home{" "}
+            </Link>
+          </li>
+
+          <li className='nav-item lead'>
+            <Link className='nav-link' to='/inventory'>
+              <i class='fa fa-cube '></i> View Inventory
+            </Link>
+          </li>
+          <li className='nav-item lead '>
+            <Link className='nav-link' to='/order'>
+              <i class='fa fa-list'></i> Orders{" "}
+            </Link>
+          </li>
+          <li className='nav-item lead'>
+            <Link className='nav-link' to='/track'>
+              <i class='fa fa-map-marker '></i> Track{" "}
+            </Link>
+          </li>
+
+          <li className='nav-item dropdown lead'>
+            <a
+              className='nav-link dropdown-toggle'
+              href='#'
+              id='navbarDropdown'
+              role='button'
+              data-toggle='dropdown'
+              aria-haspopup='true'
+              aria-expanded='false'
+            >
+              <i class='fa fa-gear'></i> Settings
+            </a>
+            <div className='dropdown-menu' aria-labelledby='navbarDropdown'>
+              <Link className='dropdown-item' to='/sub-customer'>
+                Your Customers{" "}
+              </Link>
+
+              <div className='dropdown-divider'></div>
+              <Link className='dropdown-item' href='#'>
+                Profile
+              </Link>
+            </div>
+          </li>
+
+          <li className='nav-item lead'>
+            <Link className='nav-link' to='/report'>
+              <i class='fa fa-line-chart'></i> Reports{" "}
+            </Link>
+          </li>
+        </ul>
+        <ul className='navbar-nav '>
+          <li className='nav-item active lead'>
+            <Link to='/' onClick={logout} className='nav-link'>
+              <i className='fa fa-sign-out'> </i> Sign Out
+            </Link>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  );
+
+  const authLinks = (
+    <nav
+      className='navbar  navbar-expand-lg fixed-top navbar-dark py-2 px-5'
+      style={{ backgroundColor: "#045E84" }}
+    >
+      <a className='navbar-brand' href='#'>
+        <img src='./logo.png' alt='owm' width='90px' />
+      </a>
+      <button
+        className='navbar-toggler'
+        type='button'
+        data-toggle='collapse'
+        data-target='#navbarSupportedContent'
+        aria-controls='navbarSupportedContent'
+        aria-expanded='false'
+        aria-label='Toggle navigation'
+      >
+        <span className='navbar-toggler-icon'></span>
+      </button>
+
+      <div className='collapse navbar-collapse' id='navbarSupportedContent'>
+        <ul className='navbar-nav mr-auto'>
+          <li className='nav-item active lead'>
+            <Link className='nav-link' to='/'>
+              <i className='fa fa-home'> </i> Home{" "}
+              <span className='sr-only'>(current)</span>
+            </Link>
+          </li>
+          <li className='nav-item  lead'>
+            <Link className='nav-link' to='/customer'>
+              <i className='fa fa-users'> </i> Customers{" "}
+              <span className='sr-only'>(current)</span>
+            </Link>
+          </li>
+        </ul>
+        <ul className='navbar-nav lead  '>
+          <li className='nav-item active'>
+            <Link to='/' onClick={logout} className='nav-link'>
+              <i className='fa fa-sign-out'> </i> Sign Out
+            </Link>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  );
+
+  const guestLinks = (
+    <nav
+      className='navbar transparent navbar-expand-lg fixed-top navbar-dark py-2 px-5'
+      style={{ backgroundColor: "#045E84" }}
+    >
+      <Link className='navbar-brand' to='/'>
+        <img src='./logo.png' alt='owm' width='100px' />
+      </Link>
+      <button
+        className='navbar-toggler'
+        type='button'
+        data-toggle='collapse'
+        data-target='#navbarSupportedContent'
+        aria-controls='navbarSupportedContent'
+        aria-expanded='false'
+        aria-label='Toggle navigation'
+      >
+        <span className='navbar-toggler-icon'></span>
+      </button>
+
+      <div className='collapse navbar-collapse' id='navbarSupportedContent'>
+        <ul className='navbar-nav mr-auto'></ul>
+        <ul className='navbar-nav  lead  '>
+          <li className='nav-item active lead'>
+            <a
+              className='nav-link'
+              href='http://www.owmlogistics.com/'
+              target='_blank'
+            >
+              <i
+                className='fa 
+fa-info-circle'
+              ></i>{" "}
+              About <span className='sr-only'>(current)</span>
+            </a>
+          </li>
+          <li className='nav-item active'>
+            <Link to='/help' className='nav-link'>
+              <i
+                className='fa 
+fa-question-circle'
+              >
+                {" "}
+              </i>{" "}
+              Help
+            </Link>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  );
+  return (
+    <Fragment>
+      {!loading && (
+        <div>
+          {isAuthenticated && role === "admin"
+            ? authLinks
+            : isAuthenticated && role === "customer"
+            ? customerAuthLinks
+            : guestLinks}
+        </div>
+      )}
+    </Fragment>
+  );
+};
+
+Navbar.propTypes = {
+  logout: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, { logout })(Navbar);
