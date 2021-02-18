@@ -5,56 +5,61 @@ const Inventory = () => {
     <>
       <div className='container my-4'>
         <div className='row my-4'>
-          <div className='col-sm-5 animated fadeIn'>
-            <div className='card p-4' style={{ minHeight: "270px" }}>
-              <h5 className='font-weight-bold'>
+          <div className='col-sm-6 animated fadeIn'>
+            <div
+              className='border p-4'
+              style={{ minHeight: "280px", backgroundColor: "#fcffcf" }}
+            >
+              <h3 className='font-weight-bold'>
                 {" "}
                 <i class='fa fa-cube text-warning'></i>&nbsp; Material Details
-              </h5>
+              </h3>
               <hr />
-              <h6 className='font-weight-bold'>
+              <h4 className='font-weight-bold'>
                 <i class='fa fa-list-alt  text-primary'></i> &nbsp;Total Items:
-                1203
-              </h6>
+                <span className='text-primary'> 1203</span>
+              </h4>
               <br />
-              <h6 className='font-weight-bold'>
+              <h4 className='font-weight-bold'>
                 {" "}
                 <i class='fa fa-balance-scale text-success'></i> Total Weight:
-                1809 KG
-              </h6>
+                <span className='text-primary'> 1809 KG</span>
+              </h4>
               <br />
-              <h6 className='font-weight-bold'>
-                <i class='fa fa-flask text-danger'></i> &nbsp;Total Volume: 1234
-                CFT
-              </h6>
+              <h4 className='font-weight-bold'>
+                <i class='fa fa-flask text-danger'></i> &nbsp;Total Volume:{" "}
+                <span className='text-primary'> 1234 CFT</span>
+              </h4>
             </div>
           </div>
-          <div className='col-sm-2'></div>
+          {/* <div className='col-sm-2'></div> */}
           <br />
-          <div className='col-sm-5 animated fadeIn'>
-            <div className='card p-4' style={{ minHeight: "270px" }}>
-              <h5 className='font-weight-bold'>
+          <div className='col-sm-6 animated fadeIn'>
+            <div
+              className='card p-4'
+              style={{ minHeight: "280px", backgroundColor: "#ebfeff" }}
+            >
+              <h3 className='font-weight-bold'>
                 {" "}
                 <i className='fa fa-money text-warning'> </i> &nbsp;Total
-                Inventory Value
-              </h5>
+                Inventory Value <br />
+                <p className=' text-primary' style={{ fontSize: "25px" }}>
+                  &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;₹1221203.90
+                </p>
+              </h3>
               <hr />
 
-              <p className=' text-primary' style={{ fontSize: "25px" }}>
-                ₹1221203.90
-              </p>
-              <br />
-              <h6 className='font-weight-bold'>
+              <h4 className='font-weight-bold'>
                 {" "}
                 <i className='fa fa-calendar text-primary'></i> &nbsp;
-                Transaction In: 24/1/2021
-              </h6>
+                Transaction In: <span className='text-primary'>24/1/2021</span>
+              </h4>
               <br />
-              <h6 className='font-weight-bold'>
+              <h4 className='font-weight-bold'>
                 {" "}
                 <i className='fa fa-calendar text-danger'></i> &nbsp;
-                Transaction Out: 28/1/2021
-              </h6>
+                Transaction Out: <span className='text-primary'>28/1/2021</span>
+              </h4>
             </div>
           </div>
         </div>

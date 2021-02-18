@@ -70,7 +70,7 @@ const Navbar = ({
               </Link>
 
               <div className='dropdown-divider'></div>
-              <Link className='dropdown-item' href='#'>
+              <Link className='dropdown-item' to='/profile'>
                 Profile
               </Link>
             </div>
@@ -124,6 +124,12 @@ const Navbar = ({
           <li className='nav-item  lead'>
             <Link className='nav-link' to='/customer'>
               <i className='fa fa-users'> </i> Customers{" "}
+              <span className='sr-only'>(current)</span>
+            </Link>
+          </li>
+          <li className='nav-item  lead'>
+            <Link className='nav-link' to='/add-user'>
+              <i className='fa fa-user'> </i> Users{" "}
               <span className='sr-only'>(current)</span>
             </Link>
           </li>

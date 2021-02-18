@@ -35,11 +35,54 @@ export const getCustomers = () => async (dispatch) => {
   }
 };
 
+//Get all CCustomer
+export const getCCustomers = () => async (dispatch) => {
+  try {
+    const res = await axios.get("/api/ccustomer");
+    dispatch({
+      type: types.GET_CUSTOMERS,
+      payload: res.data.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: types.CUSTOMER_ERROR,
+      payload: { status: err.response },
+    });
+  }
+};
+
 // Add Customer
 export const addCustomer = (formData, history) => async (dispatch) => {
   console.log(formData);
   try {
     const res = await axios.post("/api/customer", formData);
+    dispatch({
+      type: types.ADD_CUSTOMER,
+      payload: res.data,
+    });
+
+    dispatch(setAlert("Customer Added", "success"));
+
+    // history.push("/Customer");
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+    }
+
+    dispatch({
+      type: types.CUSTOMER_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// Add CCustomer
+export const addCCustomer = (formData, history) => async (dispatch) => {
+  console.log(formData);
+  try {
+    const res = await axios.post("/api/ccustomer", formData);
     dispatch({
       type: types.ADD_CUSTOMER,
       payload: res.data,

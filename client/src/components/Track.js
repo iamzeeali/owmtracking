@@ -37,15 +37,15 @@ const Track = () => {
                 href='#collapseZero'
                 aria-expanded='false'
                 aria-controls='collapseZero'
-                style={{ color: "#045e84" }}
-                className='font-weight-bold'
+                style={{ color: "#000" }}
+                className='font-weight-bold lead'
               >
                 Out for Pickup
               </a>{" "}
               <i className='fa fa-sort-down'> </i>
             </h6>
-            <div class='collapsepl-5' id='collapseZero'>
-              <small className='pl-5'>2/11/2020- 09:34pm</small>
+            <div class='collapse' id='collapseZero'>
+              <small style={{ paddingLeft: "38px" }}>2/11/2020- 09:34pm</small>
             </div>
           </div>
 
@@ -58,15 +58,15 @@ const Track = () => {
                 href='#collapseOne'
                 aria-expanded='false'
                 aria-controls='collapseOne'
-                style={{ color: "#045e84" }}
-                className='font-weight-bold'
+                style={{ color: "#000" }}
+                className='font-weight-bold lead'
               >
                 Picked Up
               </a>{" "}
               <i className='fa fa-sort-down'> </i>
             </h6>
-            <div class='collapsepl-5' id='collapseOne'>
-              <small className='pl-5'>2/11/2020- 09:34pm</small>
+            <div class='collapse' id='collapseOne'>
+              <small style={{ paddingLeft: "38px" }}>2/11/2020- 09:34pm</small>
             </div>
           </div>
 
@@ -79,14 +79,14 @@ const Track = () => {
                 href='#collapseTwo'
                 aria-expanded='false'
                 aria-controls='collapseTwo'
-                style={{ color: "#045e84" }}
-                className='font-weight-bold'
+                style={{ color: "#000" }}
+                className='font-weight-bold lead'
               >
-                In-transit
+                In-Transit
               </a>{" "}
               <i className='fa fa-sort-down'> </i>
             </h6>
-            <div class='collapsepl-5' id='collapseTwo'>
+            <div class='collapse' id='collapseTwo'>
               <small className='pl-5 '>2/11/2020- 09:34pm</small>
             </div>
           </div>
@@ -94,21 +94,21 @@ const Track = () => {
           <div className='step step3 pb-5'>
             <h6>
               {" "}
-              <i class='fa fa-motorcycle mr-3 border p-1 '></i>
+              <i class='fa fa-motorcycle mr-3 border p-1'></i>
               <a
                 data-toggle='collapse'
                 href='#collapseThree'
                 aria-expanded='false'
                 aria-controls='collapseThree'
-                style={{ color: "#045e84" }}
-                className='font-weight-bold'
+                style={{ color: "#000" }}
+                className='font-weight-bold lead'
               >
-                Out for delivery
+                Out for Delivery
               </a>{" "}
               <i className='fa fa-sort-down'> </i>
             </h6>
-            <div class='collapsepl-5' id='collapseThree'>
-              <small className='pl-5'>2/11/2020- 09:34pm</small>
+            <div class='collapse' id='collapseThree'>
+              <small style={{ paddingLeft: "38px" }}>2/11/2020- 09:34pm</small>
             </div>
           </div>
 
@@ -122,14 +122,14 @@ const Track = () => {
                 aria-expanded='false'
                 aria-controls='collapseFour'
                 style={{ color: "#045e84" }}
-                className='font-weight-bold'
+                className='font-weight-bold lead '
               >
                 Delivered
               </a>{" "}
               <i className='fa fa-sort-down'> </i>
             </h6>
-            <div class='collapsepl-5' id='collapseFour'>
-              <small className='pl-5  '>2/11/2020- 09:34pm</small>
+            <div class='collapse' id='collapseFour'>
+              <small style={{ paddingLeft: "38px" }}>2/11/2020- 09:34pm</small>
             </div>
           </div>
         </div>

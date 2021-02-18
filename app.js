@@ -11,17 +11,14 @@ const compression = require("compression");
 
 const userRouter = require("./routes/userRoutes");
 const customerRouter = require("./routes/customerRoutes");
+const cCustomerRouter = require("./routes/cCustomerRoutes");
 
 var path = require("path");
 
 const app = express();
 
-const DB = process.env.DATABASE.replace(
-  "<PASSWORD>",
-  process.env.DATABASE_PASSWORD
-);
-
-// const DB = "mongodb://localhost:27017/owmInventory";
+// const DB = process.env.DATABASE;
+const DB = "mongodb://localhost:27017/owmInventory";
 // const DB = "mongodb://globushub_zee:XnVD88nh_@103.120.178.168:27017"
 // const DB = "mongodb://103.120.178.168:27017/globushub_support-gl";
 
@@ -66,6 +63,7 @@ app.use(compression());
 
 app.use("/api/user", userRouter);
 app.use("/api/customer", customerRouter);
+app.use("/api/ccustomer", cCustomerRouter);
 
 // Serve static assets in production
 if (process.env.NODE_ENV === "production") {

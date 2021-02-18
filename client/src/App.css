@@ -180,3 +180,12 @@ input.transparent-input::placeholder {
   background-color: rgba(0, 0, 0, 0.3) !important;
   color: #fff;
 }
+
+.text-primary {
+  color: #045e84 !important;
+}
+
+.btn-primary {
+  background-color: #045e84 !important;
+  border: none;
+}

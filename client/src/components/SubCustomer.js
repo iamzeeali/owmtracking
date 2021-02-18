@@ -3,20 +3,20 @@ import Input from "./ui/Input";
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { addCustomer, getCustomers } from "../_actions/customerAction";
+import { addCCustomer, getCCustomers } from "../_actions/customerAction";
 import Spinner from "./ui/Spinner";
 import FilterCustomer from "./FilterCustomer";
 
 const SubCustomer = ({
-  addCustomer,
-  getCustomers,
+  addCCustomer,
+  getCCustomers,
   history,
   loading,
   filtered,
   customers,
 }) => {
   useEffect(() => {
-    getCustomers();
+    getCCustomers();
   }, []);
 
   const [formData, setFormData] = useState({
@@ -38,8 +38,8 @@ const SubCustomer = ({
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    addCustomer(formData, history);
-    getCustomers();
+    addCCustomer(formData, history);
+    getCCustomers();
   };
 
   return (
@@ -169,8 +169,8 @@ const SubCustomer = ({
 };
 
 SubCustomer.propTypes = {
-  addCustomer: PropTypes.func.isRequired,
-  getCustomers: PropTypes.func.isRequired,
+  addCCustomer: PropTypes.func.isRequired,
+  getCCustomers: PropTypes.func.isRequired,
 };
 
 const mapStatetoProps = (state) => ({
@@ -180,7 +180,7 @@ const mapStatetoProps = (state) => ({
 });
 
 export default connect(mapStatetoProps, {
-  addCustomer,
-  getCustomers,
+  addCCustomer,
+  getCCustomers,
   FilterCustomer,
 })(withRouter(SubCustomer));

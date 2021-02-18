@@ -17,6 +17,7 @@ import Track from "./components/Track";
 import Inventory from "./components/Inventory";
 import SubCustomer from "./components/SubCustomer";
 import Reports from "./components/Reports";
+import Profile from "./components/Profile";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -42,6 +43,7 @@ const App = () => {
           <PrivateRoute exact path='/inventory' component={Inventory} />
           <PrivateRoute exact path='/sub-customer' component={SubCustomer} />
           <PrivateRoute exact path='/report' component={Reports} />
+          <PrivateRoute exact path='/profile' component={Profile} />
         </div>
       </Router>
     </Provider>
