@@ -4,68 +4,69 @@ const Inventory = () => {
   return (
     <>
       <div className='container my-4'>
-        <div className='row my-4'>
+        <div className='row mb-5'>
           <div className='col-sm-6 animated fadeIn'>
             <div
-              className='border p-4'
-              style={{ minHeight: "280px", backgroundColor: "#fcffcf" }}
+              className='card p-4 rounded shadow-lg'
+              style={{ minHeight: "270px" }}
             >
-              <h3 className='font-weight-bold'>
+              <h4 className='font-weight-bold'>
                 {" "}
                 <i class='fa fa-cube text-warning'></i>&nbsp; Material Details
-              </h3>
+              </h4>
               <hr />
-              <h4 className='font-weight-bold'>
+              <h5 className='font-weight-bold'>
                 <i class='fa fa-list-alt  text-primary'></i> &nbsp;Total Items:
                 <span className='text-primary'> 1203</span>
-              </h4>
-              <br />
-              <h4 className='font-weight-bold'>
+              </h5>
+              <hr />
+              <h5 className='font-weight-bold'>
                 {" "}
                 <i class='fa fa-balance-scale text-success'></i> Total Weight:
                 <span className='text-primary'> 1809 KG</span>
-              </h4>
-              <br />
-              <h4 className='font-weight-bold'>
+              </h5>
+              <hr />
+              <h5 className='font-weight-bold'>
                 <i class='fa fa-flask text-danger'></i> &nbsp;Total Volume:{" "}
                 <span className='text-primary'> 1234 CFT</span>
-              </h4>
+              </h5>
             </div>
           </div>
           {/* <div className='col-sm-2'></div> */}
           <br />
+          <br />
           <div className='col-sm-6 animated fadeIn'>
             <div
-              className='card p-4'
-              style={{ minHeight: "280px", backgroundColor: "#ebfeff" }}
+              className='card p-4 rounded shadow-lg'
+              style={{ minHeight: "270px" }}
             >
-              <h3 className='font-weight-bold'>
+              <h4 className='font-weight-bold'>
                 {" "}
                 <i className='fa fa-money text-warning'> </i> &nbsp;Total
-                Inventory Value <br />
-                <p className=' text-primary' style={{ fontSize: "25px" }}>
-                  &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;₹1221203.90
-                </p>
-              </h3>
+                Inventory Value:{" "}
+                <span className='text-primary'> &nbsp; ₹1221203.90</span>
+                <br />
+              </h4>
               <hr />
 
-              <h4 className='font-weight-bold'>
+              <h5 className='font-weight-bold'>
                 {" "}
-                <i className='fa fa-calendar text-primary'></i> &nbsp;
+                <i className='fa fa-calendar text-primary'></i> &nbsp; Last
                 Transaction In: <span className='text-primary'>24/1/2021</span>
-              </h4>
-              <br />
-              <h4 className='font-weight-bold'>
+              </h5>
+              <hr />
+              <h5 className='font-weight-bold'>
                 {" "}
-                <i className='fa fa-calendar text-danger'></i> &nbsp;
+                <i className='fa fa-calendar text-danger'></i> &nbsp; Last
                 Transaction Out: <span className='text-primary'>28/1/2021</span>
-              </h4>
+              </h5>
+              <hr />
             </div>
           </div>
         </div>
 
-        <div className='row'>
-          <div className='col-sm-5'>
+        <div className='row mt-5'>
+          <div className='col-sm-6'>
             <div className='input-group'>
               <input
                 type='text'
@@ -83,7 +84,7 @@ const Inventory = () => {
               </div>
             </div>
           </div>
-          <div className='col-sm-3'></div>
+          <div className='col-sm-2'></div>
 
           <div className='col-sm-4'>
             <div className='download-section'>
@@ -101,7 +102,7 @@ const Inventory = () => {
             </div>
           </div>
         </div>
-        <div className='inventory card p-3 border animated fadeIn'>
+        <div className='inventory animated fadeIn'>
           <table className='table table-hover table-striped table-responsive-md'>
             <thead style={{ backgroundColor: "#045E84", color: "#fff" }}>
               <tr>

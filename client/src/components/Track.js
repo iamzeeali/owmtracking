@@ -3,8 +3,11 @@ import React from "react";
 const Track = () => {
   return (
     <div className='container'>
-      <div className='row my-4'>
-        <div className='col-sm-6 animated fadeIn card p-5 border'>
+      <h1 className='lead border-left border-primary p-3 bg-white shadow-sm'>
+        Track Your Inventory
+      </h1>
+      <div className='row py-5'>
+        <div className='col-sm-5 animated fadeIn card shadow-sm rounded p-5 border'>
           <div className='row'>
             <div className='col-sm-8'>
               <h6>
@@ -17,7 +20,7 @@ const Track = () => {
               </small>
             </div>
 
-            <div className='col-sm-'>
+            <div className='col-sm-4 text-right'>
               <img
                 src='http://www.owmlogistics.com/img/OWM_Final.png'
                 alt='owm'
@@ -134,8 +137,13 @@ const Track = () => {
           </div>
         </div>
 
-        <div className='col-sm-6 py-5 animated fadeIn'>
-          <img src='./track.png' alt='' width='100%' />
+        <div className='col-sm-7 text-right py-5 ml-auto animated fadeIn'>
+          <img
+            src='./track.png'
+            alt=''
+            width='100%'
+            className='ml-auto pl-4 img-responsive'
+          />
         </div>
       </div>
 
