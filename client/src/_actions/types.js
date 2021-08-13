@@ -22,3 +22,26 @@ export const CLEAR_CUSTOMER = "CLEAR_CUSTOMER";
 export const DELETE_CUSTOMER = "DELETE_CUSTOMER";
 export const CUSTOMER_ERROR = "CUSTOMER_ERROR";
 export const FILTER_CUSTOMER = "FILTER_CUSTOMER";
+
+export const GET_GRN = "GET_GRN";
+export const GET_GRNS = "GET_GRNS";
+export const ADD_GRN = "ADD_GRN";
+export const UPDATE_GRN = "UPDATE_GRN";
+export const SET_CURRENT_GRN = "SET_CURRENT_GRN";
+export const CLEAR_GRN = "CLEAR_GRN";
+export const DELETE_GRN = "DELETE_GRN";
+export const GRN_ERROR = "GRN_ERROR";
+export const FILTER_GRN = "FILTER_GRN";
+
+export const GET_ASN = "GET_ASN";
+export const GET_ASNS = "GET_ASNS";
+export const GET_FOR_RECEIVE = "GET_FOR_RECEIVE";
+export const GET_FOR_MR_TRANSIT = "GET_FOR_MR_TRANSIT";
+export const GET_FOR_DD_TRANSIT = "GET_FOR_DD_TRANSIT";
+export const ADD_ASN = "ADD_ASN";
+export const UPDATE_ASN = "UPDATE_ASN";
+export const SET_CURRENT_ASN = "SET_CURRENT_ASN";
+export const CLEAR_ASN = "CLEAR_ASN";
+export const DELETE_ASN = "DELETE_ASN";
+export const ASN_ERROR = "ASN_ERROR";
+export const FILTER_ASN = "FILTER_ASN";

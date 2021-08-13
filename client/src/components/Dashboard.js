@@ -8,10 +8,7 @@ const Dashboard = ({ auth: { username, user } }) => {
       <div className='card p-5 border'>
         <div className='row'>
           <div className='col-sm-6'>
-            <h5>
-              Welcome! {username && username}.{" "}
-              {user.customer && user.customer.name}.
-            </h5>
+            <h5>Welcome! {username && username} </h5>
             <img src='./dash.png' alt='inventory' width='100%' />
           </div>
           <div className='col-sm-6'>

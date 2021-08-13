@@ -175,7 +175,8 @@ const Customer = ({
                       <td>{fl.type}</td>
                     </tr>
                   ))
-                : customers.map((customer) => (
+                : customers &&
+                  customers.map((customer) => (
                     <tr key={customer._id}>
                       <td>{customer.cCode}</td>
                       <td>{customer.name}</td>

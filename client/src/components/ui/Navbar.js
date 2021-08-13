@@ -31,28 +31,28 @@ const Navbar = ({
       <div className='collapse navbar-collapse' id='navbarSupportedContent'>
         <ul className='navbar-nav mr-auto'>
           <li className='nav-item active'>
-            <Link className='nav-link lead' to='/'>
+            <Link className='nav-link' to='/'>
               <i className='fa fa-home'></i> Home{" "}
             </Link>
           </li>
 
-          <li className='nav-item lead'>
+          <li className='nav-item'>
             <Link className='nav-link' to='/inventory'>
               <i class='fa fa-cube '></i> View Inventory
             </Link>
           </li>
-          <li className='nav-item lead '>
+          <li className='nav-item '>
             <Link className='nav-link' to='/order'>
               <i class='fa fa-list'></i> Orders{" "}
             </Link>
           </li>
-          <li className='nav-item lead'>
-            <Link className='nav-link' to='/track'>
+          <li className='nav-item'>
+            <Link className='nav-link' to='/'>
               <i class='fa fa-map-marker '></i> Track{" "}
             </Link>
           </li>
 
-          <li className='nav-item dropdown lead'>
+          <li className='nav-item dropdown'>
             <a
               className='nav-link dropdown-toggle'
               href='#'
@@ -76,14 +76,14 @@ const Navbar = ({
             </div>
           </li>
 
-          <li className='nav-item lead'>
+          <li className='nav-item'>
             <Link className='nav-link' to='/report'>
               <i class='fa fa-line-chart'></i> Reports{" "}
             </Link>
           </li>
         </ul>
         <ul className='navbar-nav '>
-          <li className='nav-item active lead'>
+          <li className='nav-item active'>
             <Link to='/' onClick={logout} className='nav-link'>
               <i className='fa fa-sign-out'> </i> Sign Out
             </Link>
@@ -115,26 +115,38 @@ const Navbar = ({
 
       <div className='collapse navbar-collapse' id='navbarSupportedContent'>
         <ul className='navbar-nav mr-auto'>
-          <li className='nav-item active lead'>
+          <li className='nav-item active'>
             <Link className='nav-link' to='/'>
               <i className='fa fa-home'> </i> Home{" "}
               <span className='sr-only'>(current)</span>
             </Link>
           </li>
-          <li className='nav-item  lead'>
+          {/* <li className='nav-item '>
             <Link className='nav-link' to='/customer'>
               <i className='fa fa-users'> </i> Customers{" "}
               <span className='sr-only'>(current)</span>
             </Link>
+          </li> */}
+          <li className='nav-item '>
+            <Link className='nav-link' to='/upload'>
+              <i className='fa fa-list'> </i> ECCI{" "}
+              <span className='sr-only'>(current)</span>
+            </Link>
           </li>
-          <li className='nav-item  lead'>
+          <li className='nav-item '>
+            <Link className='nav-link' to='/'>
+              <i className='fa fa-search'> </i> Track{" "}
+              <span className='sr-only'>(current)</span>
+            </Link>
+          </li>
+          <li className='nav-item '>
             <Link className='nav-link' to='/add-user'>
               <i className='fa fa-user'> </i> Users{" "}
               <span className='sr-only'>(current)</span>
             </Link>
           </li>
         </ul>
-        <ul className='navbar-nav lead  '>
+        <ul className='navbar-nav  '>
           <li className='nav-item active'>
             <Link to='/' onClick={logout} className='nav-link'>
               <i className='fa fa-sign-out'> </i> Sign Out
@@ -147,11 +159,14 @@ const Navbar = ({
 
   const guestLinks = (
     <nav
-      className='navbar transparent navbar-expand-lg fixed-top navbar-dark py-2 px-5'
+      className='navbar  navbar-expand-lg fixed-top navbar-dark py-2 px-5'
       style={{ backgroundColor: "#045E84" }}
     >
       <Link className='navbar-brand' to='/'>
-        <img src='./logo.png' alt='owm' width='100px' />
+        <img src='/logo.png' alt='owm' width='80px' style={{ float: "left" }} />
+        <h5 className='pt-4' style={{ fontWeight: "600" }}>
+          Shipment Tracker
+        </h5>
       </Link>
       <button
         className='navbar-toggler'
@@ -167,8 +182,14 @@ const Navbar = ({
 
       <div className='collapse navbar-collapse' id='navbarSupportedContent'>
         <ul className='navbar-nav mr-auto'></ul>
-        <ul className='navbar-nav  lead  '>
-          <li className='nav-item active lead'>
+        <ul className='navbar-nav   '>
+          <li className='nav-item active'>
+            <Link className='nav-link' to='/'>
+              <i className='fa fa-search'></i> Track{" "}
+              <span className='sr-only'>(current)</span>
+            </Link>
+          </li>
+          <li className='nav-item active'>
             <a
               className='nav-link'
               href='http://www.owmlogistics.com/'
@@ -182,14 +203,14 @@ fa-info-circle'
             </a>
           </li>
           <li className='nav-item active'>
-            <Link to='/help' className='nav-link'>
+            <Link to='/login' className='nav-link'>
               <i
                 className='fa 
-fa-question-circle'
+fa-sign-in'
               >
                 {" "}
               </i>{" "}
-              Help
+              Login
             </Link>
           </li>
         </ul>

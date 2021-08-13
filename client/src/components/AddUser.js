@@ -32,14 +32,8 @@ const Adduser = ({
       "Please use these login credentials to track and find details about your inventory.",
   });
 
-  const {
-    customer,
-    name,
-    email,
-    password,
-    passwordConfirm,
-    message,
-  } = formData;
+  const { customer, name, email, password, passwordConfirm, message } =
+    formData;
 
   const onChangeHandler = (e) => {
     e.preventDefault();
@@ -52,11 +46,13 @@ const Adduser = ({
     getUsers();
   };
 
-  let customersOptions = customers.map((customer) => (
-    <option key={customer._id} value={customer._id}>
-      {customer.name}
-    </option>
-  ));
+  let customersOptions =
+    customers.data &&
+    customers.data.map((customer) => (
+      <option key={customer._id} value={customer._id}>
+        {customer.name}
+      </option>
+    ));
 
   return (
     <div className='container'>
@@ -67,7 +63,7 @@ const Adduser = ({
             onSubmit={(e) => onSubmitHandler(e)}
           >
             <h6 className='mb-2'>Create User</h6>
-            <div className='form-group'>
+            {/* <div className='form-group'>
               {" "}
               <select
                 className='form-control'
@@ -82,7 +78,7 @@ const Adduser = ({
 
                 {customersOptions}
               </select>
-            </div>
+            </div> */}
             <div className='form-group'>
               {" "}
               <Input
@@ -199,7 +195,7 @@ Adduser.propTypes = {
 const mapStatetoProps = (state) => ({
   customers: state.customer.customers,
   loading: state.customer.loading,
-  users: state.auth.users,
+  users: state.auth.users.data,
 });
 
 export default connect(mapStatetoProps, {

@@ -14,10 +14,12 @@ import Dashboard from "./components/Dashboard";
 import Customer from "./components/Customer";
 import AddUser from "./components/AddUser";
 import Track from "./components/Track";
+import TrackStatus from "./components/TrackStatus";
 import Inventory from "./components/Inventory";
 import SubCustomer from "./components/SubCustomer";
 import Reports from "./components/Reports";
 import Profile from "./components/Profile";
+import UploadEcci from "./components/UploadEcci";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -35,15 +37,17 @@ const App = () => {
         <Alert />
 
         <div className='App'>
-          <Route exact path='/' component={Login} />
+          <Route exact path='/login' component={Login} />
           <Route exact path='/dashboard' component={Dashboard} />
           <PrivateRoute exact path='/customer' component={Customer} />
           <PrivateRoute exact path='/add-user' component={AddUser} />
-          <PrivateRoute exact path='/track' component={Track} />
+          <Route exact path='/' component={Track} />
+          <Route exact path={`/trackStatus/:id`} component={TrackStatus} />
           <PrivateRoute exact path='/inventory' component={Inventory} />
           <PrivateRoute exact path='/sub-customer' component={SubCustomer} />
           <PrivateRoute exact path='/report' component={Reports} />
           <PrivateRoute exact path='/profile' component={Profile} />
+          <PrivateRoute exact path='/upload' component={UploadEcci} />
         </div>
       </Router>
     </Provider>

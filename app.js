@@ -8,10 +8,14 @@ const helmet = require("helmet");
 const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
 const compression = require("compression");
+var cors = require("cors");
 
+// ROuter
 const userRouter = require("./routes/userRoutes");
 const customerRouter = require("./routes/customerRoutes");
 const cCustomerRouter = require("./routes/cCustomerRoutes");
+const asnRouter = require("./routes/asnRoutes");
+const grnRouter = require("./routes/grnRoutes");
 
 var path = require("path");
 
@@ -32,6 +36,8 @@ mongoose
   .then(() => console.log("MongoDB Connected"));
 
 // *********************GLOBAL MIDDLEWARES*******************************
+
+app.use(cors());
 //set security http headers
 app.use(helmet());
 
@@ -64,6 +70,8 @@ app.use(compression());
 app.use("/api/user", userRouter);
 app.use("/api/customer", customerRouter);
 app.use("/api/ccustomer", cCustomerRouter);
+app.use("/api/asn", asnRouter);
+app.use("/api/grn", grnRouter);
 
 // Serve static assets in production
 if (process.env.NODE_ENV === "production") {
