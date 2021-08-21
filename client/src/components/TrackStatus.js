@@ -66,7 +66,7 @@ const TrackStatus = ({
             </div>
 
             <div className='col-sm-4 text-right'>
-              <img src='/status.png' alt='owm' width='140px' />
+              <img src='/truck.gif' alt='owm' width='100px' />
             </div>
           </div>
 

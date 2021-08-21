@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
+import AddAsn from "./AddAsn";
+import AddGrn from "./AddGrn";
+import { Link } from "react-router-dom";
 
 const UploadEcci = () => {
   const [ecciFile, setEcciFile] = useState();
@@ -63,31 +66,31 @@ const UploadEcci = () => {
 
   return (
     <div className='container my-5'>
-      <div className='row'>
-        <div className='col-sm-5 p-3 card shadow-sm col-md-offset-6'>
+      <h4> *Upload/Create ASNS/Stock Movement Report</h4>
+      <div className='row pt-4'>
+        <div className='col-sm-4 p-3 card shadow-sm col-md-offset-6'>
           <form
             onSubmit={(e) => onSubmitHandlerOne(e)}
             encType='multipart/form-data'
             className='text-center'
           >
             <div className='form-group'>
-              <label htmlFor='ecci'>
-                <b>
-                  ASN REPORT - TO BE RECEIVED
-                  <p>REP22246</p>
-                </b>
-              </label>
+              <b>ASN REPORT - TO BE RECEIVED </b> <br />
+              <Link to='/asns' className='btn btn-warning'>
+                REP22246
+              </Link>
               <br />
-              <div class='input-group'>
-                <div class='input-group-prepend'>
-                  <span class='input-group-text' id='inputGroupFileAddon01'>
+              <br />
+              <div className='input-group'>
+                <div className='input-group-prepend'>
+                  <span className='input-group-text' id='inputGroupFileAddon01'>
                     ASN
                   </span>
                 </div>
-                <div class='custom-file'>
+                <div className='custom-file'>
                   <input
                     type='file'
-                    class='custom-file-input'
+                    className='custom-file-input'
                     id='ecci'
                     aria-describedby='inputGroupFileAddon01'
                     name='ecciFile'
@@ -95,62 +98,71 @@ const UploadEcci = () => {
                     accept='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
                     required
                   />
-                  <label class='custom-file-label' for='inputGroupFile01'>
+                  <label className='custom-file-label' for='inputGroupFile01'>
                     Choose file
                   </label>
                 </div>
               </div>
+              <small>*Upload xls/xlsx file</small>
               <button type='submit' className='btn btn-block btn-primary mt-4'>
                 UPLOAD
               </button>
             </div>
           </form>
+          <p className='text-center'>Or</p>
+          <AddAsn />
         </div>
-        <div className='col-sm-2 col-md-offset-6'></div>
+        <div className='col-sm-4 text-center'>
+          <img src='/track.png' alt=' ' width='70%' className='pt-5' />
+        </div>
 
-        <div className='col-sm-5 card shadow- col-md-offset-6'>
+        <div className='col-sm-4 p-3 card shadow-sm col-md-offset-6'>
           <form
             onSubmit={(e) => onSubmitHandlerTwo(e)}
             encType='multipart/form-data'
             className='text-center'
           >
-            <div className='form-group p-3'>
-              <label htmlFor='ecci'>
-                <b>
-                  STOCK MOVEMENT REPORT V3 <p>GRN-REP22248</p>
-                </b>
-              </label>
-
+            <div className='form-group'>
+              <b>Stock Movement Report </b> <br />
+              <Link to='/grns' className='btn btn-warning'>
+                GRN-REP22248
+              </Link>
               <br />
-              <div class='input-group'>
-                <div class='input-group-prepend'>
-                  <span class='input-group-text' id='inputGroupFileAddon01'>
+              <br />
+              <div className='input-group'>
+                <div className='input-group-prepend'>
+                  <span className='input-group-text' id='inputGroupFileAddon01'>
                     GRN
                   </span>
                 </div>
-                <div class='custom-file'>
+                <div className='custom-file'>
                   <input
                     type='file'
-                    class='custom-file-input'
-                    id='inputGroupFile01'
+                    className='custom-file-input'
+                    id='grnFile'
                     aria-describedby='inputGroupFileAddon01'
                     name='grnFile'
                     onChange={onFileChangeTwo}
                     accept='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
                     required
                   />
-                  <label class='custom-file-label' for='inputGroupFile01'>
+                  <label className='custom-file-label' for='inputGroupFile01'>
                     Choose file
                   </label>
                 </div>
               </div>
+              <small>*Upload xls/xlsx file</small>
               <button type='submit' className='btn btn-block btn-primary mt-4'>
                 UPLOAD
               </button>
             </div>
           </form>
+          <p className='text-center'>Or</p>
+
+          <AddGrn />
         </div>
       </div>
+      <div className='row text-center'></div>
     </div>
   );
 };

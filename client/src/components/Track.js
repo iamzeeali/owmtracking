@@ -55,17 +55,17 @@ const Track = () => {
           <div className='col-sm-6 col-md-offset-6'>
             <div className='row no-gutters align-items-center'>
               <img
-                src='/track.gif'
+                src='/sun.gif'
                 alt='track'
-                width='90%'
-                className='ml-auto mr-auto pr-3'
-                style={{ marginTop: "-90px" }}
+                width='80%'
+                className='ml-auto mr-auto '
+                style={{ marginTop: "-40px" }}
               />
 
               <input
-                className='form-control  rounded-pill p-4'
+                className='form-control mb-2 mt-4 rounded-pill p-4'
                 placeholder='ECCI Number'
-                style={{ marginTop: "-60px" }}
+                style={{}}
                 autoFocus
                 required
                 type='Number'
@@ -77,11 +77,13 @@ const Track = () => {
                 <button
                   onClick={(e) => onSubmitHandler(e)}
                   className='btn btn-outline-light bg-light text-dark border-0 rounded-pill ml-n5 mr-2'
-                  style={{ marginTop: "-65px" }}
+                  style={{ marginTop: "18px" }}
                 >
                   <i className='fa fa-search'></i>
                 </button>
               </div>
+              <br />
+              <br />
               <p
                 className='text-primary ml-auto mr-auto'
                 style={{ fontSize: "11px" }}
@@ -93,14 +95,17 @@ const Track = () => {
 
             {notFoundInAsn && notFoundInGrn ? (
               <div className='text-center animated bounceIn'>
-                <img
-                  src='/404.png'
-                  alt='404'
-                  width='10%'
+                <br />{" "}
+                <p
                   className='ml-auto mr-auto text-danger'
-                />{" "}
-                <br />
-                <h6 className='ml-auto mr-auto text-danger'>ECCI Not Found!</h6>
+                  style={{ fontSize: "18px" }}
+                >
+                  {" "}
+                  <i className='fa fa-frown-o text-danger font-weight-bold'>
+                    {" "}
+                    ECCI NOT FOUND
+                  </i>
+                </p>
               </div>
             ) : (
               ""
@@ -111,7 +116,10 @@ const Track = () => {
       </div>
 
       <div className='footer  mt-5 pt-5 pr-5'>
-        <p style={{ fontSize: "13px" }} className='text-secondary'>
+        <p
+          style={{ fontSize: "13px", marginTop: "25px" }}
+          className='text-secondary'
+        >
           &copy; 2021, OWM Logistics | Developed By{" "}
           <a
             href='http://globuslabs.com'
@@ -120,6 +128,7 @@ const Track = () => {
           >
             Globus Labs
           </a>{" "}
+          (Official IT Partner of OWM Logistics)
         </p>
       </div>
     </div>

@@ -35,6 +35,38 @@ export const getAsns = (ecciNumber) => async (dispatch) => {
   }
 };
 
+//Get all Asn
+export const getAllAsns = () => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/asn`);
+    dispatch({
+      type: types.GET_ASNS,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: types.ASN_ERROR,
+      payload: { status: err.response },
+    });
+  }
+};
+
+//Get all Asn
+export const getLimitedAsns = () => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/asn/limited`);
+    dispatch({
+      type: types.GET_ASNS,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: types.ASN_ERROR,
+      payload: { status: err.response },
+    });
+  }
+};
+
 //Get all CAsn
 export const getAsnsOnly = (ecciNumber) => async (dispatch) => {
   try {
@@ -81,16 +113,16 @@ export const addAsn = (formData, history) => async (dispatch) => {
 };
 
 // Add CAsn
-export const addCAsn = (formData, history) => async (dispatch) => {
+export const addManualAsn = (formData, history) => async (dispatch) => {
   console.log(formData);
   try {
-    const res = await axios.post("/api/cAsn", formData);
+    const res = await axios.post("/api/asn/create", formData);
     dispatch({
       type: types.ADD_ASN,
       payload: res.data,
     });
 
-    dispatch(setAlert("Asn Added", "success"));
+    dispatch(setAlert("ASN Added", "success"));
 
     // history.push("/Asn");
   } catch (err) {

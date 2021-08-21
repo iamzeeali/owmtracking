@@ -63,21 +63,22 @@ export default function (state = initialState, action) {
         loading: false,
       };
 
-    //     case types.FILTER_GRN:
-    //       return {
-    //         ...state,
-    //         filtered: state.grns.filter((grn) => {
-    //           const regex = new RegExp(`${action.payload}`, "gi");
-    //           return (
-    //             grn.cCode.match(regex) ||
-    //             grn.name.match(regex) ||
-    //             grn.email.match(regex) ||
-    //             grn.contactPerson.match(regex) ||
-    //             grn.address.match(regex) ||
-    //             grn.type.match(regex)
-    //           );
-    //         }),
-    //       };
+    case types.FILTER_GRN:
+      return {
+        ...state,
+        filtered: state.grns.data.data.filter((grn) => {
+          const regex = new RegExp(`${action.payload}`, "gi");
+          return (
+            grn.ecciNumber.match(regex) ||
+            grn.vendorCode.match(regex) ||
+            grn.vendorName.match(regex) ||
+            grn.transactionType.match(regex) ||
+            grn.modeOfDelivery.match(regex) ||
+            grn.inDate.match(regex) ||
+            grn.transDate.match(regex)
+          );
+        }),
+      };
     case types.CLEAR_FILTER:
       return {
         ...state,

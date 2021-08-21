@@ -35,6 +35,22 @@ export const getGrns = () => async (dispatch) => {
   }
 };
 
+//Get all Grn
+export const getLimitedGrns = () => async (dispatch) => {
+  try {
+    const res = await axios.get("/api/grn/limited");
+    dispatch({
+      type: types.GET_GRNS,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: types.GRN_ERROR,
+      payload: { status: err.response },
+    });
+  }
+};
+
 //Get all CGrn
 export const getForReceived = (ecciNumber) => async (dispatch) => {
   try {
@@ -115,16 +131,16 @@ export const addGrn = (formData, history) => async (dispatch) => {
 };
 
 // Add CGrn
-export const addCGrn = (formData, history) => async (dispatch) => {
+export const addManualGrn = (formData, history) => async (dispatch) => {
   console.log(formData);
   try {
-    const res = await axios.post("/api/cGrn", formData);
+    const res = await axios.post("/api/grn/create", formData);
     dispatch({
       type: types.ADD_GRN,
       payload: res.data,
     });
 
-    dispatch(setAlert("Grn Added", "success"));
+    dispatch(setAlert("Added Sucessfully", "success"));
 
     // history.push("/Grn");
   } catch (err) {

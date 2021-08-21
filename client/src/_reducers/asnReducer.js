@@ -42,21 +42,19 @@ export default function (state = initialState, action) {
         loading: false,
       };
 
-    //     case types.FILTER_ASN:
-    //       return {
-    //         ...state,
-    //         filtered: state.asns.filter((asn) => {
-    //           const regex = new RegExp(`${action.payload}`, "gi");
-    //           return (
-    //             asn.cCode.match(regex) ||
-    //             asn.name.match(regex) ||
-    //             asn.email.match(regex) ||
-    //             asn.contactPerson.match(regex) ||
-    //             asn.address.match(regex) ||
-    //             asn.type.match(regex)
-    //           );
-    //         }),
-    //       };
+    case types.FILTER_ASN:
+      return {
+        ...state,
+        filtered: state.asns.data.data.filter((asn) => {
+          const regex = new RegExp(`${action.payload}`, "gi");
+          return (
+            asn.ecciNumber.match(regex) ||
+            asn.vendorCode.match(regex) ||
+            asn.vendorName.match(regex) ||
+            asn.asnUploadDate.match(regex)
+          );
+        }),
+      };
     case types.CLEAR_FILTER:
       return {
         ...state,

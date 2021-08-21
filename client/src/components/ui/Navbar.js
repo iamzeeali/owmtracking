@@ -84,8 +84,8 @@ const Navbar = ({
         </ul>
         <ul className='navbar-nav '>
           <li className='nav-item active'>
-            <Link to='/' onClick={logout} className='nav-link'>
-              <i className='fa fa-sign-out'> </i> Sign Out
+            <Link to='/login' onClick={logout} className='nav-link'>
+              <i className='fa fa-sign-out'> </i> Logout
             </Link>
           </li>
         </ul>
@@ -148,8 +148,8 @@ const Navbar = ({
         </ul>
         <ul className='navbar-nav  '>
           <li className='nav-item active'>
-            <Link to='/' onClick={logout} className='nav-link'>
-              <i className='fa fa-sign-out'> </i> Sign Out
+            <Link to='/login' onClick={logout} className='nav-link'>
+              <i className='fa fa-sign-out'> </i> Logout
             </Link>
           </li>
         </ul>

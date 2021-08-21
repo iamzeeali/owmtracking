@@ -42,7 +42,7 @@ const Login = ({ login, isAuthenticated }) => {
                   <hr className='border-white' />
 
                   <h3 className='' style={{ color: "#fff" }}>
-                    OWM Tracker
+                    Login
                   </h3>
                   <form onSubmit={(e) => onSubmitHandler(e)}>
                     <Input

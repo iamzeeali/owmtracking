@@ -17,9 +17,10 @@ import Track from "./components/Track";
 import TrackStatus from "./components/TrackStatus";
 import Inventory from "./components/Inventory";
 import SubCustomer from "./components/SubCustomer";
-import Reports from "./components/Reports";
 import Profile from "./components/Profile";
 import UploadEcci from "./components/UploadEcci";
+import Asns from "./components/Asns";
+import Grns from "./components/Grns";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -45,9 +46,10 @@ const App = () => {
           <Route exact path={`/trackStatus/:id`} component={TrackStatus} />
           <PrivateRoute exact path='/inventory' component={Inventory} />
           <PrivateRoute exact path='/sub-customer' component={SubCustomer} />
-          <PrivateRoute exact path='/report' component={Reports} />
           <PrivateRoute exact path='/profile' component={Profile} />
           <PrivateRoute exact path='/upload' component={UploadEcci} />
+          <PrivateRoute exact path='/asns' component={Asns} />
+          <PrivateRoute exact path='/grns' component={Grns} />
         </div>
       </Router>
     </Provider>

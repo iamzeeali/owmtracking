@@ -3,17 +3,13 @@ import { setAlert } from "./alertAction";
 import setAuthToken from "../utils/setAuthToken";
 import * as types from "./types";
 
-// Load User
-export const loadUser = () => async (dispatch) => {
-  if (localStorage.token) {
-    setAuthToken(localStorage.token);
-  }
-
+// Get Users
+export const getUsers = () => async (dispatch) => {
   try {
-    const res = await axios.get("/api/user/me");
+    const res = await axios.get("/api/user/");
     dispatch({
-      type: types.USER_LOADED,
-      payload: res.data,
+      type: types.GET_USERS,
+      payload: res.data.data,
     });
   } catch (err) {
     dispatch({
@@ -22,13 +18,18 @@ export const loadUser = () => async (dispatch) => {
   }
 };
 
-// Get Users
-export const getUsers = () => async (dispatch) => {
+// Load User
+export const loadUser = () => async (dispatch) => {
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+  }
+  dispatch(getUsers());
+
   try {
-    const res = await axios.get("/api/user/");
+    const res = await axios.get("/api/user/me");
     dispatch({
-      type: types.GET_USERS,
-      payload: res.data.data,
+      type: types.USER_LOADED,
+      payload: res.data,
     });
   } catch (err) {
     dispatch({
@@ -63,6 +64,7 @@ export const addUser = (formData, history) => async (dispatch) => {
 // Add second User
 
 export const addSecondUser = (formData, history) => async (dispatch) => {
+  console.log(formData);
   try {
     const res = await axios.post("/api/user/signupUser", formData);
 
@@ -73,12 +75,7 @@ export const addSecondUser = (formData, history) => async (dispatch) => {
 
     dispatch(setAlert("User Created Successfully", "success"));
   } catch (err) {
-    const errors = err.response.data;
-    if (errors && errors.error.code === 11000) {
-      dispatch(setAlert("User Already Exists!", "danger"));
-    } else if (errors) {
-      dispatch(setAlert(errors.message, "danger"));
-    }
+    alert("something went wrong");
 
     dispatch({
       type: types.REGISTER_FAIL,
@@ -159,7 +156,7 @@ export const updateMyPassword = (formData, history) => async (dispatch) => {
 
 // Logout / Clear Profile
 export const logout = () => (dispatch) => {
-  if (window.confirm("Confirm Signout?")) {
+  if (window.confirm("Confirm Logout?")) {
     dispatch({ type: types.CLEAR_USER });
     dispatch({ type: types.LOGOUT });
   }

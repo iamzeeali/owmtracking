@@ -22,18 +22,16 @@ const Adduser = ({
   }, []);
 
   const [formData, setFormData] = useState({
-    customer: "",
     name: "",
     email: "",
     password: "",
     passwordConfirm: "",
-    role: "customer",
+    role: "",
     message:
       "Please use these login credentials to track and find details about your inventory.",
   });
 
-  const { customer, name, email, password, passwordConfirm, message } =
-    formData;
+  const { role, name, email, password, passwordConfirm, message } = formData;
 
   const onChangeHandler = (e) => {
     e.preventDefault();
@@ -46,14 +44,6 @@ const Adduser = ({
     getUsers();
   };
 
-  let customersOptions =
-    customers.data &&
-    customers.data.map((customer) => (
-      <option key={customer._id} value={customer._id}>
-        {customer.name}
-      </option>
-    ));
-
   return (
     <div className='container'>
       <div className='row'>
@@ -63,22 +53,22 @@ const Adduser = ({
             onSubmit={(e) => onSubmitHandler(e)}
           >
             <h6 className='mb-2'>Create User</h6>
-            {/* <div className='form-group'>
+            <div className='form-group'>
               {" "}
               <select
                 className='form-control'
-                name='customer'
-                value={customer}
+                name='role'
+                value={role}
                 onChange={(e) => onChangeHandler(e)}
                 required
               >
                 <option value='' disabled selected hidden>
-                  Select customer
+                  Select Role
                 </option>
-
-                {customersOptions}
+                <option value='admin'>Admin</option>
+                <option value='user'>User</option>
               </select>
-            </div> */}
+            </div>
             <div className='form-group'>
               {" "}
               <Input
