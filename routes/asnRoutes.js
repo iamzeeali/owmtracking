@@ -81,5 +81,7 @@ function convertEcciExcelToJson(filePath) {
   //   });
 }
 router.route("/").get(asnController.getAllAsns);
+router.route("/create").post(asnController.createAsn);
+router.route("/limited").get(asnController.getLimitedAsns);
 
 module.exports = router;

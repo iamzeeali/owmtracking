@@ -7,15 +7,7 @@ const AppError = require("../utils/appError");
 const jwt = require("jsonwebtoken");
 
 exports.signupUser = catchAsync(async (req, res, next) => {
-  const {
-    name,
-    role,
-    customer,
-    message,
-    email,
-    password,
-    passwordConfirm,
-  } = req.body;
+  const { name, role, message, email, password, passwordConfirm } = req.body;
   const output = `
  <h5>${message}</h5>
  <p>URL: localhost:3000</p>
@@ -30,8 +22,6 @@ exports.signupUser = catchAsync(async (req, res, next) => {
  <p>OWM Logistics, </p>`;
 
   try {
-    // const doc = await ActivityLog.create(req.body);
-
     // await sendEmail({
     //   to: email,
     //   subject: `OWM Iventory Login`,
@@ -43,9 +33,8 @@ exports.signupUser = catchAsync(async (req, res, next) => {
       password,
       passwordConfirm,
       role,
-      customer,
     });
-
+    console.log(user);
     res.status(200).json({
       status: "success",
       message: "Email sent successfully!",

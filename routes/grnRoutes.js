@@ -69,5 +69,7 @@ function convertGrnExcelToJson(filePath) {
 }
 
 router.route("/").get(grnController.getAllGrns);
+router.route("/limited").get(grnController.getLimitedGrns);
+router.route("/create").post(grnController.createGrn);
 
 module.exports = router;

@@ -6,3 +6,4 @@ dev-data
 config.env
 .prettierrc
 github-command.txt
+routes/upload
