@@ -11,8 +11,10 @@ const Grns = ({ getLimitedGrns, grns, filtered }) => {
     console.log(grns.data);
   }, []);
   return (
-    <div className='container'>
-      <h4>Stock Movement Report V3 (Uploaded in Last 3 days)</h4>
+    <div className='container' style={{ paddingTop: "130px" }}>
+      <h5 className='bg-light p-2 border-left border-primary'>
+        Stock Movement Report V3 (Uploaded in Last 3 days)
+      </h5>
       <FilterGrns />
 
       <table className='table table-hover table-striped table-responsive-md my-2'>

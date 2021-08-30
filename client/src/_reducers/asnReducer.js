@@ -3,6 +3,7 @@ import * as types from "../_actions/types";
 const initialState = {
   asn: null,
   asns: [],
+  asnUploadDate: "",
   error: {},
   filtered: null,
   loading: true,
@@ -22,6 +23,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         asns: payload,
+        asnUploadDate: payload.data.data[0].asnUploadDate.toString(),
         loading: false,
       };
     case types.ADD_ASN:

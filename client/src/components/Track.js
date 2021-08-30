@@ -17,7 +17,7 @@ const Track = () => {
         if (response.data.results <= 0) {
           setNotFoundInAsn(true);
         } else {
-          history.push(`/trackStatus/${ecci}`);
+          history.push(`/trackStatus2/${ecci}`);
         }
       })
       .catch((error) => {
@@ -31,7 +31,7 @@ const Track = () => {
         if (response.data.results <= 0) {
           setNotFoundInGrn(true);
         } else {
-          history.push(`/trackStatus/${ecci}`);
+          history.push(`/trackStatus2/${ecci}`);
         }
       })
       .catch((error) => {
@@ -48,22 +48,22 @@ const Track = () => {
   };
 
   return (
-    <div className='tack-main text-right'>
-      <div className='container p-5'>
+    <div className='track-main'>
+      <div className='container'>
         <div className='row'>
           <div className='col-sm-3 col-md-offset-6'></div>
           <div className='col-sm-6 col-md-offset-6'>
-            <div className='row no-gutters align-items-center'>
+            <div className='row no-gutters mt-5 pt-5 align-items-center'>
               <img
                 src='/sun.gif'
                 alt='track'
                 width='80%'
-                className='ml-auto mr-auto '
+                className='ml-auto mr-auto  '
                 style={{ marginTop: "-40px" }}
               />
 
               <input
-                className='form-control mb-2 mt-4 rounded-pill p-4'
+                className='form-control mb-2 mt-4 rounded-pill p-4 shadow-lg border-dark'
                 placeholder='ECCI Number'
                 style={{}}
                 autoFocus
@@ -85,7 +85,7 @@ const Track = () => {
               <br />
               <br />
               <p
-                className='text-primary ml-auto mr-auto'
+                className='text-white ml-auto mr-auto'
                 style={{ fontSize: "11px" }}
               >
                 Enter the ECCI number & press Enter to start tracking your
@@ -95,15 +95,12 @@ const Track = () => {
 
             {notFoundInAsn && notFoundInGrn ? (
               <div className='text-center animated bounceIn'>
-                <br />{" "}
-                <p
-                  className='ml-auto mr-auto text-danger'
-                  style={{ fontSize: "18px" }}
-                >
+                {" "}
+                <p className='ml-auto mr-auto'>
                   {" "}
-                  <i className='fa fa-frown-o text-danger font-weight-bold'>
+                  <i className='fa fa-frown-o text-dark lead font-weight-bold'>
                     {" "}
-                    ECCI NOT FOUND
+                    ECCI not found!
                   </i>
                 </p>
               </div>
@@ -115,17 +112,10 @@ const Track = () => {
         </div>
       </div>
 
-      <div className='footer  mt-5 pt-5 pr-5'>
-        <p
-          style={{ fontSize: "13px", marginTop: "25px" }}
-          className='text-secondary'
-        >
+      <div className='footer'>
+        <p style={{ fontSize: "13px" }} className='text-black'>
           &copy; 2021, OWM Logistics | Developed By{" "}
-          <a
-            href='http://globuslabs.com'
-            className='text-danger'
-            target='_blank'
-          >
+          <a href='http://globuslabs.com' className='text-dark' target='_blank'>
             Globus Labs
           </a>{" "}
           (Official IT Partner of OWM Logistics)

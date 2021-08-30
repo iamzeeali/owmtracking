@@ -14,7 +14,7 @@ const Navbar = ({
       style={{ backgroundColor: "#045E84" }}
     >
       <a className='navbar-brand' href='#'>
-        <img src='./logo.png' alt='owm' width='90px' />
+        <img src='./logo.png' alt='owm' width='80px' />
       </a>
       <button
         className='navbar-toggler'
@@ -82,24 +82,18 @@ const Navbar = ({
             </Link>
           </li>
         </ul>
-        <ul className='navbar-nav '>
-          <li className='nav-item active'>
-            <Link to='/login' onClick={logout} className='nav-link'>
-              <i className='fa fa-sign-out'> </i> Logout
-            </Link>
-          </li>
-        </ul>
+        <ul className='navbar-nav '></ul>
       </div>
     </nav>
   );
 
   const authLinks = (
     <nav
-      className='navbar  navbar-expand-lg fixed-top navbar-dark py-2 px-5'
+      className='navbar navbar-expand-lg fixed-top navbar-dark'
       style={{ backgroundColor: "#045E84" }}
     >
       <a className='navbar-brand' href='#'>
-        <img src='./logo.png' alt='owm' width='90px' />
+        <img src='./logo.png' alt='owm' width='70px' />
       </a>
       <button
         className='navbar-toggler'
@@ -115,12 +109,12 @@ const Navbar = ({
 
       <div className='collapse navbar-collapse' id='navbarSupportedContent'>
         <ul className='navbar-nav mr-auto'>
-          <li className='nav-item active'>
+          {/* <li className='nav-item active'>
             <Link className='nav-link' to='/'>
               <i className='fa fa-home'> </i> Home{" "}
               <span className='sr-only'>(current)</span>
             </Link>
-          </li>
+          </li> */}
           {/* <li className='nav-item '>
             <Link className='nav-link' to='/customer'>
               <i className='fa fa-users'> </i> Customers{" "}
@@ -128,25 +122,25 @@ const Navbar = ({
             </Link>
           </li> */}
           <li className='nav-item '>
-            <Link className='nav-link' to='/upload'>
+            <Link className='nav-link active' to='/upload'>
               <i className='fa fa-list'> </i> ECCI{" "}
               <span className='sr-only'>(current)</span>
             </Link>
           </li>
           <li className='nav-item '>
-            <Link className='nav-link' to='/'>
+            <Link className='nav-link active' to='/'>
               <i className='fa fa-search'> </i> Track{" "}
               <span className='sr-only'>(current)</span>
             </Link>
           </li>
-          <li className='nav-item '>
+          {/* <li className='nav-item '>
             <Link className='nav-link' to='/add-user'>
               <i className='fa fa-user'> </i> Users{" "}
               <span className='sr-only'>(current)</span>
             </Link>
-          </li>
+          </li> */}
         </ul>
-        <ul className='navbar-nav  '>
+        <ul className='navbar-nav   '>
           <li className='nav-item active'>
             <Link to='/login' onClick={logout} className='nav-link'>
               <i className='fa fa-sign-out'> </i> Logout
@@ -160,13 +154,15 @@ const Navbar = ({
   const guestLinks = (
     <nav
       className='navbar  navbar-expand-lg fixed-top navbar-dark py-2 px-5'
-      style={{ backgroundColor: "#045E84" }}
+      style={{}}
     >
       <Link className='navbar-brand' to='/'>
-        <img src='/logo.png' alt='owm' width='80px' style={{ float: "left" }} />
-        <h5 className='pt-4' style={{ fontWeight: "600" }}>
-          Shipment Tracker
-        </h5>
+        <img
+          src='/logo.png'
+          alt='owm'
+          width='100px'
+          style={{ float: "left" }}
+        />
       </Link>
       <button
         className='navbar-toggler'
@@ -183,35 +179,19 @@ const Navbar = ({
       <div className='collapse navbar-collapse' id='navbarSupportedContent'>
         <ul className='navbar-nav mr-auto'></ul>
         <ul className='navbar-nav   '>
-          <li className='nav-item active'>
-            <Link className='nav-link' to='/'>
-              <i className='fa fa-search'></i> Track{" "}
-              <span className='sr-only'>(current)</span>
+          <li className='nav-item'>
+            <Link className='nav-link active' to='/'>
+              Track <span className='sr-only'>(current)</span>
             </Link>
           </li>
-          <li className='nav-item active'>
+          <li className='nav-item'>
             <a
-              className='nav-link'
+              className='nav-link active'
               href='http://www.owmlogistics.com/'
               target='_blank'
             >
-              <i
-                className='fa 
-fa-info-circle'
-              ></i>{" "}
               About <span className='sr-only'>(current)</span>
             </a>
-          </li>
-          <li className='nav-item active'>
-            <Link to='/login' className='nav-link'>
-              <i
-                className='fa 
-fa-sign-in'
-              >
-                {" "}
-              </i>{" "}
-              Login
-            </Link>
           </li>
         </ul>
       </div>

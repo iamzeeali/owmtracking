@@ -10,8 +10,10 @@ const Asns = ({ getLimitedAsns, asns, filtered }) => {
     //eslint-diable-next-line
   }, []);
   return (
-    <div className='container'>
-      <h4>ASN Report (Uploaded in last 3 days)</h4>
+    <div className='container' style={{ paddingTop: "130px" }}>
+      <h5 className='bg-light p-2 border-left border-primary'>
+        ASN Report (Uploaded in last 3 days)
+      </h5>
 
       <FilterAsn />
       <table className='table table-hover table-striped table-responsive-md my-2'>

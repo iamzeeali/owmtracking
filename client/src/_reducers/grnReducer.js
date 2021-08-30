@@ -6,6 +6,8 @@ const initialState = {
   received: [],
   mrTransit: [],
   ddTransit: [],
+  transDate: "",
+  transDateForDirect: "",
   error: {},
   filtered: null,
   loading: true,
@@ -37,12 +39,15 @@ export default function (state = initialState, action) {
       return {
         ...state,
         mrTransit: payload,
+        transDate: payload.data.data[0].transDate.toString(),
         loading: false,
       };
     case types.GET_FOR_DD_TRANSIT:
       return {
         ...state,
         ddTransit: payload,
+        transDateForDirect: payload.data.data[0].transDate.toString(),
+
         loading: false,
       };
     case types.ADD_GRN:

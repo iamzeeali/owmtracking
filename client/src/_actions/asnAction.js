@@ -23,6 +23,7 @@ export const getAsn = (id) => async (dispatch) => {
 export const getAsns = (ecciNumber) => async (dispatch) => {
   try {
     const res = await axios.get(`/api/asn?ecciNumber=${ecciNumber}`);
+
     dispatch({
       type: types.GET_ASNS,
       payload: res.data,

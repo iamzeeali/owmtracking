@@ -24,26 +24,24 @@ const Login = ({ login, isAuthenticated }) => {
   };
 
   if (isAuthenticated) {
-    return <Redirect to='/dashboard' />;
+    return <Redirect to='/upload' />;
   }
 
   return (
-    <div className='' style={{ marginTop: "-119px" }}>
+    <div className=''>
       <section className='landing'>
         <div className='dark-overlay'>
-          <div className='landing-inner'>
-            <div className='animated fadeInDown'>
+          <div className='container landing-inner'>
+            <div className=' ml-auto m-5 animated fadeInDown'>
               <div className='row login'>
-                <div
-                  className='col-sm-12 py-5 border '
-                  style={{ width: "270px" }}
-                >
-                  <i className='fa fa-cube fa-3x '></i>
+                <div className='col-sm-12 py-5  ' style={{ width: "270px" }}>
+                  {/* <i className='fa fa-cube fa-3x '></i> */}
+                  <img src='/logo.png' alt='OWM' width='40%' />
                   <hr className='border-white' />
 
-                  <h3 className='' style={{ color: "#fff" }}>
-                    Login
-                  </h3>
+                  <h4 className='' style={{ color: "#fff" }}>
+                    OWM Tracker
+                  </h4>
                   <form onSubmit={(e) => onSubmitHandler(e)}>
                     <Input
                       type='email'
@@ -66,7 +64,7 @@ const Login = ({ login, isAuthenticated }) => {
                     />
                     <Input
                       type='submit'
-                      value='Sign In'
+                      value='Login'
                       className='transparent-btn btn-block form-control my-3'
                     />
                   </form>
