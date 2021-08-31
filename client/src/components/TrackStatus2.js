@@ -130,7 +130,7 @@ const TrackStatus2 = ({
                   <small style={{ paddingLeft: "43px" }}>
                     {/* {asns.results > 0 && asns.data.data[0].asnUploadDate} */}
 
-                    {state.planDate && state.planDate}
+                    {asnUploadDate}
                   </small>
                 </div>
 
