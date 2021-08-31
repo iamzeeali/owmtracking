@@ -96,7 +96,7 @@ export const addAsn = (formData, history) => async (dispatch) => {
       payload: res.data,
     });
 
-    dispatch(setAlert("Asn Added", "success"));
+    dispatch(setAlert("ASN Added", "success"));
 
     // history.push("/Asn");
   } catch (err) {

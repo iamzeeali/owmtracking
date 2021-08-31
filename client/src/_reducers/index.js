@@ -4,6 +4,7 @@ import alert from "./alertReducer";
 import customer from "./customerReducer";
 import grn from "./grnReducer";
 import asn from "./asnReducer";
+import feedback from "./feedbackReducer";
 
 export default combineReducers({
   auth,
@@ -11,4 +12,5 @@ export default combineReducers({
   customer,
   asn,
   grn,
+  feedback,
 });

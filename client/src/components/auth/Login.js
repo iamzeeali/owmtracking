@@ -36,7 +36,7 @@ const Login = ({ login, isAuthenticated }) => {
               <div className='row login'>
                 <div className='col-sm-12 py-5  ' style={{ width: "270px" }}>
                   {/* <i className='fa fa-cube fa-3x '></i> */}
-                  <img src='/logo.png' alt='OWM' width='40%' />
+                  <img src='/logow.png' alt='OWM' width='40%' />
                   <hr className='border-white' />
 
                   <h4 className='' style={{ color: "#fff" }}>

@@ -7,7 +7,7 @@ exports.getAllGrns = factory.getAll(Grn);
 exports.createGrn = factory.createOne(Grn);
 
 exports.getLimitedGrns = catchAsync(async (req, res, next) => {
-  const numberOfDaysToLookBack = 3;
+  const numberOfDaysToLookBack = 7;
 
   const features = await new APIFeatures(
     Grn.find({

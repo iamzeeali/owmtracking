@@ -12,7 +12,7 @@ const Asns = ({ getLimitedAsns, asns, filtered }) => {
   return (
     <div className='container' style={{ paddingTop: "130px" }}>
       <h5 className='bg-light p-2 border-left border-primary'>
-        ASN Report (Uploaded in last 3 days)
+        ASN Report (Uploaded in last 7 days)
       </h5>
 
       <FilterAsn />

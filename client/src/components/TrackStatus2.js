@@ -24,32 +24,34 @@ const TrackStatus2 = ({
   transDateForDirect,
 }) => {
   const [state, setState] = useState({
-    planDate: "",
     deliveryDate: "",
   });
-
+  const { planDate, deliveryDate } = state;
   useEffect(() => {
+    setState({ planDate: "" });
+    setState({ deliveryDate: "" });
     getAsns(match.params.id);
     getForReceived(match.params.id);
     getForDdTransit(match.params.id);
     getForMrTransit(match.params.id);
 
-    let asnUploadDateFromReport = asnUploadDate;
-    let planDDinString = asnUploadDateFromReport.slice(0, 2);
+    console.log(asnUploadDate);
+    // let asnUploadDateFromReport = asnUploadDate;
+    // let planDDinString = asnUploadDateFromReport.slice(0, 2);
 
-    let planDDinNumber = parseInt(planDDinString) + 1;
-    if (planDDinNumber.toString().length > 1) {
-      let asnUploadDatewithoutDD = asnUploadDateFromReport.substring(2);
-      let planForPickDate = planDDinNumber + asnUploadDatewithoutDD;
-      setState({ ...state, planDate: planForPickDate });
-    } else {
-      let asnUploadDatewithoutDD = asnUploadDateFromReport.substring(2);
-      let planForPickDate = "0" + planDDinNumber + asnUploadDatewithoutDD;
-      setState({ ...state, planDate: planForPickDate });
-    }
+    // let planDDinNumber = parseInt(planDDinString) + 1;
+    // if (planDDinNumber.toString().length > 1) {
+    //   let asnUploadDatewithoutDD = asnUploadDateFromReport.substring(2);
+    //   let planForPickDate = planDDinNumber.toString() + asnUploadDatewithoutDD;
 
-    console.log(transDate);
-    console.log(transDateForDirect);
+    //   setState({ ...state, planDate: planForPickDate });
+    // } else {
+    //   let asnUploadDatewithoutDD = asnUploadDateFromReport.substring(2);
+    //   let planForPickDate = "0" + planDDinNumber + asnUploadDatewithoutDD;
+    //   setState({ ...state, planDate: planForPickDate && planForPickDate });
+    // }
+
+    // TRANS DATE ++
     let transDateFromReport = transDate !== "" ? transDate : transDateForDirect;
     let transDDinString = transDateFromReport.slice(0, 2);
 
@@ -77,6 +79,11 @@ const TrackStatus2 = ({
     } else {
       return null;
     }
+  };
+
+  const planningDate = () => {
+    var mydate = new Date(asnUploadDate);
+    return mydate.toDateString();
   };
 
   return (
@@ -122,7 +129,8 @@ const TrackStatus2 = ({
                   Planned for Picking <br />
                   <small style={{ paddingLeft: "43px" }}>
                     {/* {asns.results > 0 && asns.data.data[0].asnUploadDate} */}
-                    {state.planDate ? state.planDate : ""}
+
+                    {state.planDate && state.planDate}
                   </small>
                 </div>
 
@@ -173,9 +181,7 @@ const TrackStatus2 = ({
                   <i className='fa fa-archive mr-3 text-danger border p-1 '></i>
                   Delivered
                   <br />
-                  <small style={{ paddingLeft: "43px" }}>
-                    {state.deliveryDate}
-                  </small>
+                  <small style={{ paddingLeft: "43px" }}>{deliveryDate}</small>
                 </div>
               </div>
             </div>

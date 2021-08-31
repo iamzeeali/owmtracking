@@ -13,7 +13,7 @@ const Grns = ({ getLimitedGrns, grns, filtered }) => {
   return (
     <div className='container' style={{ paddingTop: "130px" }}>
       <h5 className='bg-light p-2 border-left border-primary'>
-        Stock Movement Report V3 (Uploaded in Last 3 days)
+        Stock Movement Report V3 (Uploaded in Last 7 days)
       </h5>
       <FilterGrns />
 

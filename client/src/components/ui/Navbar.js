@@ -14,7 +14,7 @@ const Navbar = ({
       style={{ backgroundColor: "#045E84" }}
     >
       <a className='navbar-brand' href='#'>
-        <img src='./logo.png' alt='owm' width='80px' />
+        <img src='./logow.png' alt='owm' width='80px' />
       </a>
       <button
         className='navbar-toggler'
@@ -93,7 +93,7 @@ const Navbar = ({
       style={{ backgroundColor: "#045E84" }}
     >
       <a className='navbar-brand' href='#'>
-        <img src='./logo.png' alt='owm' width='70px' />
+        <img src='./logow.png' alt='owm' width='70px' />
       </a>
       <button
         className='navbar-toggler'
@@ -152,13 +152,10 @@ const Navbar = ({
   );
 
   const guestLinks = (
-    <nav
-      className='navbar  navbar-expand-lg fixed-top navbar-dark py-2 px-5'
-      style={{}}
-    >
+    <nav className='navbar  navbar-expand-lg fixed-top navbar-dark'>
       <Link className='navbar-brand' to='/'>
         <img
-          src='/logo.png'
+          src='/logow.png'
           alt='owm'
           width='100px'
           style={{ float: "left" }}
@@ -177,8 +174,8 @@ const Navbar = ({
       </button>
 
       <div className='collapse navbar-collapse' id='navbarSupportedContent'>
-        <ul className='navbar-nav mr-auto'></ul>
-        <ul className='navbar-nav   '>
+        <ul className='navbar-nav'></ul>
+        <ul className='navbar-nav ml-auto' style={{ textAlign: "right" }}>
           <li className='nav-item'>
             <Link className='nav-link active' to='/'>
               Track <span className='sr-only'>(current)</span>
@@ -192,6 +189,11 @@ const Navbar = ({
             >
               About <span className='sr-only'>(current)</span>
             </a>
+          </li>
+          <li className='nav-item'>
+            <Link className='nav-link active' to='/feedback'>
+              Feedback <span className='sr-only'>(current)</span>
+            </Link>
           </li>
         </ul>
       </div>

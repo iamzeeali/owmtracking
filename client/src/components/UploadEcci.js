@@ -35,7 +35,7 @@ const UploadEcci = () => {
         alert("Uploaded Sucessfully");
       })
       .catch((error) => {
-        console.error("Something went wrong!", error);
+        alert("Incorrect Document!");
       });
 
     setEcciFile();
@@ -59,6 +59,7 @@ const UploadEcci = () => {
       })
       .catch((error) => {
         console.error("Something went wrong!", error);
+        alert("Incorrect Document!");
       });
 
     setGrnFile();

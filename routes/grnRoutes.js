@@ -21,12 +21,18 @@ const upload = multer({ storage: storage });
 
 // -> Express Upload RestAPIs
 router.route("/").post(upload.single("grnFile"), (req, res) => {
-  console.log(req.file.filename);
-  convertGrnExcelToJson(__basedir + "/uploads/" + req.file.filename);
-  res.json({
-    msg: "File uploaded/import successfully!",
-    file: req.file,
-  });
+  if (
+    req.file.originalname === "grn_rep22248.xlsx" ||
+    req.file.originalname === "grn_rep22248.xls"
+  ) {
+    convertGrnExcelToJson(__basedir + "/uploads/" + req.file.filename);
+    res.json({
+      msg: "File uploaded/import successfully!",
+      file: req.file,
+    });
+  } else {
+    res.status(500).send("Incorrect Document");
+  }
 });
 
 // -> Import Excel File to MongoDB database
@@ -62,8 +68,7 @@ function convertGrnExcelToJson(filePath) {
     if (err) {
       return console.error(err);
     } else {
-      console.log("Stock Movement Report Insertest");
-      console.log(docs);
+      console.log("Stock Movement Report Inserted");
     }
   });
 }

@@ -45,3 +45,7 @@ export const CLEAR_ASN = "CLEAR_ASN";
 export const DELETE_ASN = "DELETE_ASN";
 export const ASN_ERROR = "ASN_ERROR";
 export const FILTER_ASN = "FILTER_ASN";
+
+export const GET_FEEDBACKS = "GET_FEEDBACKS";
+export const ADD_FEEDBACK = "ADD_FEEDBACK";
+export const FEEDBACK_ERROR = "FEEDBACK_ERROR";

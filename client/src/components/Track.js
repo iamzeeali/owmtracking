@@ -88,8 +88,7 @@ const Track = () => {
                 className='text-white ml-auto mr-auto'
                 style={{ fontSize: "11px" }}
               >
-                Enter the ECCI number & press Enter to start tracking your
-                shipment.
+                Enter the ECCI number & press Enter.
               </p>
             </div>
 
@@ -118,7 +117,7 @@ const Track = () => {
           <a href='http://globuslabs.com' className='text-dark' target='_blank'>
             Globus Labs
           </a>{" "}
-          (Official IT Partner of OWM Logistics)
+          (Official IT Partner)
         </p>
       </div>
     </div>

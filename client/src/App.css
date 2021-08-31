@@ -221,7 +221,7 @@ input.transparent-input::placeholder {
 }
 
 .transparent {
-  background-color: rgba(0, 0, 0, 0.3) !important;
+  background-color: rgba(0, 0, 0, 0.4) !important;
   color: #fff;
 }
 
@@ -241,9 +241,17 @@ input.transparent-input::placeholder {
 .track-main {
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
-  animation: gradient 30s ease infinite;
+  animation: gradient 20s ease infinite;
   height: 100vh;
   padding-top: 60px;
+}
+
+.feedback {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  /* animation: gradient 20s ease infinite; */
+  height: 100vh;
+  padding-top: 100px;
 }
 
 @keyframes gradient {
@@ -265,8 +273,8 @@ input.transparent-input::placeholder {
   color: #fff;
   padding-top: 20px;
   padding-right: 20px;
-  text-align: right;
-  bottom: 0px;
+  text-align: center;
+  bottom: 10px;
   left: 0px;
   right: 0px;
   margin-bottom: 0px;

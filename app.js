@@ -16,6 +16,7 @@ const customerRouter = require("./routes/customerRoutes");
 const cCustomerRouter = require("./routes/cCustomerRoutes");
 const asnRouter = require("./routes/asnRoutes");
 const grnRouter = require("./routes/grnRoutes");
+const feedbackRouter = require("./routes/feedbackRoutes");
 
 var path = require("path");
 
@@ -72,6 +73,7 @@ app.use("/api/customer", customerRouter);
 app.use("/api/ccustomer", cCustomerRouter);
 app.use("/api/asn", asnRouter);
 app.use("/api/grn", grnRouter);
+app.use("/api/feedback", feedbackRouter);
 
 // Serve static assets in production
 // Set static folder

@@ -21,6 +21,7 @@ import Profile from "./components/Profile";
 import UploadEcci from "./components/UploadEcci";
 import Asns from "./components/Asns";
 import Grns from "./components/Grns";
+import Feedback from "./components/Feedback";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -39,6 +40,7 @@ const App = () => {
 
         <div className='App'>
           <Route exact path='/login' component={Login} />
+          <Route exact path='/feedback' component={Feedback} />
           <Route exact path='/dashboard' component={Dashboard} />
           <PrivateRoute exact path='/customer' component={Customer} />
           <PrivateRoute exact path='/add-user' component={AddUser} />

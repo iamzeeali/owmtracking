@@ -6,7 +6,7 @@ const APIFeatures = require("../utils/apiFeatures");
 exports.getAllAsns = factory.getAll(Asn);
 exports.createAsn = factory.createOne(Asn);
 exports.getLimitedAsns = catchAsync(async (req, res, next) => {
-  const numberOfDaysToLookBack = 3;
+  const numberOfDaysToLookBack = 7;
 
   const features = await new APIFeatures(
     Asn.find({

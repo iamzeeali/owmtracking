@@ -22,12 +22,19 @@ const upload = multer({ storage: storage });
 
 // -> Express Upload RestAPIs
 router.route("/").post(upload.single("ecciFile"), (req, res) => {
-  console.log(req.file.filename);
-  convertEcciExcelToJson(__basedir + "/uploads/" + req.file.filename);
-  res.json({
-    msg: "File uploaded/import successfully!",
-    file: req.file,
-  });
+  console.log(req.file.originalname);
+  if (
+    req.file.originalname === "asn_rep22246.xlsx" ||
+    req.file.originalname === "asn_rep22246.xls"
+  ) {
+    convertEcciExcelToJson(__basedir + "/uploads/" + req.file.filename);
+    res.json({
+      msg: "File uploaded/import successfully!",
+      file: req.file,
+    });
+  } else {
+    res.status(500).send("Incorrect Document");
+  }
 });
 
 // -> Import Excel File to MongoDB database
@@ -57,7 +64,6 @@ function convertEcciExcelToJson(filePath) {
   });
 
   // -> Log Excel Data to Console
-  console.log(excelData.Sheet1);
 
   ASN.insertMany(excelData.Sheet1, function (err, docs) {
     if (err) {
@@ -66,19 +72,6 @@ function convertEcciExcelToJson(filePath) {
       console.log("Multiple documents inserted to Collection");
     }
   });
-
-  //   const eccisToInsert = excelData.eccis.map((ecci) => ({
-  //     insertOne: { ecci },
-  //   }));
-
-  //   ECCI.bulkWrite(eccisToInsert, { ordered: false }, (error, response) => {
-  //     if (error) {
-  //       console.warn(error);
-  //       rejects(error);
-  //     } else {
-  //       // console.log(response);
-  //     }
-  //   });
 }
 router.route("/").get(asnController.getAllAsns);
 router.route("/create").post(asnController.createAsn);
