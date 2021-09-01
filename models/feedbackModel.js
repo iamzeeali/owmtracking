@@ -10,7 +10,7 @@ const feedbackSchema = new mongoose.Schema({
   subject: {
     type: String,
   },
-  Message: {
+  message: {
     type: String,
   },
   active: {

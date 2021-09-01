@@ -23,10 +23,7 @@ const upload = multer({ storage: storage });
 // -> Express Upload RestAPIs
 router.route("/").post(upload.single("ecciFile"), (req, res) => {
   console.log(req.file.originalname);
-  if (
-    req.file.originalname === "asn_rep22246.xlsx" ||
-    req.file.originalname === "asn_rep22246.xls"
-  ) {
+  if (req.file && req.file.originalname === "asn_rep22246.xlsx") {
     convertEcciExcelToJson(__basedir + "/uploads/" + req.file.filename);
     res.json({
       msg: "File uploaded/import successfully!",
