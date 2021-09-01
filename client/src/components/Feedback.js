@@ -1,97 +1,60 @@
-import React, { useState } from "react";
-import { addFeedback } from "../_actions/feedbackAction";
+import React, { useEffect } from "react";
+import { getFeedbacks } from "../_actions/feedbackAction";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import Spinner from "./ui/Spinner";
+import Moment from "react-moment";
+const Feedback = ({ getFeedbacks, feedbacks, loading }) => {
+  useEffect(() => {
+    getFeedbacks();
+    //eslint-diable-next-line
+  }, []);
 
-const Feedback = ({ addFeedback, history }) => {
-  const [formData, setFormData] = useState({
-    vendorCode: "",
-    vendorName: "",
-    subject: "",
-    message: "",
-  });
-
-  const onChangeHandler = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const onSubmitHandler = (e) => {
-    e.preventDefault();
-    addFeedback(formData, history);
-  };
+  if (loading) {
+    return <Spinner />;
+  }
   return (
-    <div className='feedback'>
-      <div className='container'>
-        <div className='col-sm-6 ml-auto mr-auto'>
-          <form
-            onSubmit={(e) => onSubmitHandler(e)}
-            className='transparent p-4'
-          >
-            <h4 className='text-light'>Feedback</h4>
-            <br />
-            <input
-              type='text'
-              placeholder='*Vendor Code'
-              className='form-control'
-              onChange={(e) => onChangeHandler(e)}
-              name='vendorCode'
-              value={formData.vendorCode}
-              required
-            />
-            <br />
-            <input
-              type='text'
-              placeholder='*Vendor Name'
-              className='form-control'
-              onChange={(e) => onChangeHandler(e)}
-              name='vendorName'
-              value={formData.vendorName}
-              required
-            />
-            <br />
-            <input
-              type='text'
-              placeholder='*Subject'
-              className='form-control'
-              onChange={(e) => onChangeHandler(e)}
-              name='subject'
-              value={formData.subject}
-              required
-            />
-            <br />
-            <textarea
-              type='text'
-              placeholder='*Message'
-              className='form-control'
-              rows='6'
-              onChange={(e) => onChangeHandler(e)}
-              name='message'
-              value={formData.message}
-              required
-            ></textarea>
-            <br />
-            <button className='btn btn-dark btn-block'>Submit</button>
-          </form>
-        </div>
-      </div>
+    <div className='container' style={{ paddingTop: "130px" }}>
+      <h5 className='bg-light p-2 border-left border-primary'>Feedbacks</h5>
 
-      <div className='footer'>
-        <p style={{ fontSize: "13px" }} className='text-black'>
-          &copy; 2021, OWM Logistics | Developed By{" "}
-          <a href='http://globuslabs.com' className='text-dark' target='_blank'>
-            Globus Labs
-          </a>{" "}
-          (Official IT Partner)
-        </p>
-      </div>
+      <table className='table table-hover table-striped table-responsive-md my-5'>
+        <thead style={{ backgroundColor: "#045E84", color: "#fff" }}>
+          <tr>
+            <th scope='col'>Vendor Code</th>
+            <th scope='col'>Vendor Name</th>
+            <th scope='col'>Subject</th>
+            <th scope='col'>Message</th>
+            <th scope='col'>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {feedbacks.data &&
+            feedbacks.data.map((feedback) => (
+              <tr key={feedback._id}>
+                <td>{feedback.vendorCode && feedback.vendorCode}</td>
+                <td>{feedback.vendorName && feedback.vendorName}</td>
+                <td>{feedback.subject && feedback.subject}</td>
+                <td>{feedback.message && feedback.message}</td>
+                <td>
+                  <Moment format='DD-MM-YYYY'>{feedback.date}</Moment>
+                </td>
+              </tr>
+            ))}
+        </tbody>
+      </table>
     </div>
   );
 };
 
 Feedback.propTypes = {
-  addFeedback: PropTypes.func.isRequired,
+  getLimitedAsns: PropTypes.func.isRequired,
 };
 
-export default connect(null, {
-  addFeedback,
+const mapStatetoProps = (state) => ({
+  feedbacks: state.feedback.feedbacks,
+  loading: state.feedback.loading,
+});
+
+export default connect(mapStatetoProps, {
+  getFeedbacks,
 })(Feedback);

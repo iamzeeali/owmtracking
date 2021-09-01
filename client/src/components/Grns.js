@@ -3,13 +3,18 @@ import { getLimitedGrns } from "../_actions/grnAction";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import FilterGrns from "./FilterGrns";
+import Spinner from "./ui/Spinner";
 
-const Grns = ({ getLimitedGrns, grns, filtered }) => {
+const Grns = ({ getLimitedGrns, grns, filtered, loading }) => {
   useEffect(() => {
     getLimitedGrns();
     //eslint-diable-next-line
-    console.log(grns.data);
   }, []);
+
+  if (loading) {
+    return <Spinner />;
+  }
+
   return (
     <div className='container' style={{ paddingTop: "130px" }}>
       <h5 className='bg-light p-2 border-left border-primary'>

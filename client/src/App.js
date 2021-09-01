@@ -21,6 +21,7 @@ import Profile from "./components/Profile";
 import UploadEcci from "./components/UploadEcci";
 import Asns from "./components/Asns";
 import Grns from "./components/Grns";
+import AddFeedback from "./components/AddFeedback";
 import Feedback from "./components/Feedback";
 
 if (localStorage.token) {
@@ -40,7 +41,7 @@ const App = () => {
 
         <div className='App'>
           <Route exact path='/login' component={Login} />
-          <Route exact path='/feedback' component={Feedback} />
+          <Route exact path='/add-feedback' component={AddFeedback} />
           <Route exact path='/dashboard' component={Dashboard} />
           <PrivateRoute exact path='/customer' component={Customer} />
           <PrivateRoute exact path='/add-user' component={AddUser} />
@@ -52,6 +53,7 @@ const App = () => {
           <PrivateRoute exact path='/upload' component={UploadEcci} />
           <PrivateRoute exact path='/asns' component={Asns} />
           <PrivateRoute exact path='/grns' component={Grns} />
+          <PrivateRoute exact path='/feedback' component={Feedback} />
         </div>
       </Router>
     </Provider>

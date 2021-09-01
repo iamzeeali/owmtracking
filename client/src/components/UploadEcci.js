@@ -33,6 +33,7 @@ const UploadEcci = () => {
       .then((response) => {
         console.log("Status: ", response.status);
         alert("Uploaded Sucessfully");
+        window.location.reload();
       })
       .catch((error) => {
         alert("Incorrect Document!");
@@ -56,6 +57,7 @@ const UploadEcci = () => {
       .then((response) => {
         console.log("Status: ", response.status);
         alert("Uploaded Sucessfully");
+        window.location.reload();
       })
       .catch((error) => {
         console.error("Something went wrong!", error);

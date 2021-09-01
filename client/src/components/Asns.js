@@ -3,12 +3,17 @@ import { getLimitedAsns } from "../_actions/asnAction";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import FilterAsn from "./FilterAsns";
+import Spinner from "./ui/Spinner";
 
-const Asns = ({ getLimitedAsns, asns, filtered }) => {
+const Asns = ({ getLimitedAsns, asns, filtered, loading }) => {
   useEffect(() => {
     getLimitedAsns();
     //eslint-diable-next-line
   }, []);
+
+  if (loading) {
+    return <Spinner />;
+  }
   return (
     <div className='container' style={{ paddingTop: "130px" }}>
       <h5 className='bg-light p-2 border-left border-primary'>

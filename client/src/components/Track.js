@@ -17,7 +17,7 @@ const Track = () => {
         if (response.data.results <= 0) {
           setNotFoundInAsn(true);
         } else {
-          history.push(`/trackStatus2/${ecci}`);
+          window.location.assign(`/trackStatus2/${ecci}`);
         }
       })
       .catch((error) => {
@@ -31,7 +31,7 @@ const Track = () => {
         if (response.data.results <= 0) {
           setNotFoundInGrn(true);
         } else {
-          history.push(`/trackStatus2/${ecci}`);
+          window.location.assign(`/trackStatus2/${ecci}`);
         }
       })
       .catch((error) => {

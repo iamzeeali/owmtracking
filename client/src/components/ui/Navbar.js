@@ -133,6 +133,12 @@ const Navbar = ({
               <span className='sr-only'>(current)</span>
             </Link>
           </li>
+          <li className='nav-item '>
+            <Link className='nav-link active' to='/feedback'>
+              <i className='fa fa-user'> </i> Feedbacks{" "}
+              <span className='sr-only'>(current)</span>
+            </Link>
+          </li>
           {/* <li className='nav-item '>
             <Link className='nav-link' to='/add-user'>
               <i className='fa fa-user'> </i> Users{" "}
@@ -191,7 +197,7 @@ const Navbar = ({
             </a>
           </li>
           <li className='nav-item'>
-            <Link className='nav-link active' to='/feedback'>
+            <Link className='nav-link active' to='/add-feedback'>
               Feedback <span className='sr-only'>(current)</span>
             </Link>
           </li>
