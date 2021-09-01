@@ -14,7 +14,7 @@ const Navbar = ({
       style={{ backgroundColor: "#045E84" }}
     >
       <a className='navbar-brand' href='#'>
-        <img src='./logow.png' alt='owm' width='80px' />
+        <img src='/logow.png' alt='owm' width='80px' />
       </a>
       <button
         className='navbar-toggler'
@@ -93,7 +93,7 @@ const Navbar = ({
       style={{ backgroundColor: "#045E84" }}
     >
       <a className='navbar-brand' href='#'>
-        <img src='./logow.png' alt='owm' width='70px' />
+        <img src='/logow.png' alt='owm' width='70px' />
       </a>
       <button
         className='navbar-toggler'
