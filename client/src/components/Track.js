@@ -12,7 +12,7 @@ const Track = () => {
     e.preventDefault();
 
     axios
-      .get(`http://localhost:5000/api/asn?ecciNumber=${ecci}`)
+      .get(`/api/asn?ecciNumber=${ecci}`)
       .then((response) => {
         if (response.data.results <= 0) {
           setNotFoundInAsn(true);
@@ -26,7 +26,7 @@ const Track = () => {
       });
 
     axios
-      .get(`http://localhost:5000/api/grn/?ecciNumber=${ecci}`)
+      .get(`/api/grn/?ecciNumber=${ecci}`)
       .then((response) => {
         if (response.data.results <= 0) {
           setNotFoundInGrn(true);
