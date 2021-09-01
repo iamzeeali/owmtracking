@@ -24,7 +24,7 @@ const UploadEcci = () => {
     let formData = new FormData();
     formData.append("ecciFile", ecciFile);
     axios
-      .post("http://localhost:5000/api/asn", formData, {
+      .post("/api/asn", formData, {
         header: {
           "Content-Type": "multipart/form-data",
         },
@@ -48,7 +48,7 @@ const UploadEcci = () => {
     let formData = new FormData();
     formData.append("grnFile", grnFile);
     axios
-      .post("http://localhost:5000/api/grn", formData, {
+      .post("/api/grn", formData, {
         header: {
           "Content-Type": "multipart/form-data",
         },
