@@ -5,6 +5,7 @@
   /* text-align: center; */
   /* padding-top: 90px; */
   font-family: "Montserrat", sans-serif;
+  zoom: 90%;
 }
 .nav-item {
   font-family: "Montserrat", sans-serif;
@@ -150,7 +151,7 @@ body.modal-open {
 .landing {
   position: relative;
   background: url("./img/login-bg.jpeg") no-repeat center center/cover;
-  height: 100vh;
+  height: 112vh;
 }
 .dark-overlay {
   background-color: rgba(0, 0, 0, 0);
@@ -177,9 +178,7 @@ body.modal-open {
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
   animation: gradient 30s ease infinite;
-  height: 110vh;
-
-  /* margin-top: 90px; */
+  height: 120vh;
 }
 .status-overlay {
   background-color: rgba(0, 0, 0, 0);
@@ -190,16 +189,9 @@ body.modal-open {
   height: 100%;
 }
 .status-inner {
-  margin-top: 100px;
-  /* color: #fff; */
+  margin-top: 120px;
   height: 100%;
   width: 100%;
-  /* margin: auto; */
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* align-items: center; */
-  /* justify-content: center; */
-  /* text-align: center; */
 }
 .login {
   background-color: rgba(0, 0, 0, 0.8);
@@ -242,7 +234,7 @@ input.transparent-input::placeholder {
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
   animation: gradient 20s ease infinite;
-  height: 100vh;
+  height: 120vh;
   padding-top: 60px;
 }
 
@@ -250,7 +242,7 @@ input.transparent-input::placeholder {
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
   /* animation: gradient 20s ease infinite; */
-  height: 100vh;
+  height: 120vh;
   padding-top: 100px;
 }
 
@@ -278,4 +270,30 @@ input.transparent-input::placeholder {
   left: 0px;
   right: 0px;
   margin-bottom: 0px;
+}
+
+.fab {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 60px;
+  right: 100px;
+  background: linear-gradient(-45deg, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 2s ease infinite;
+  color: #fff;
+  border-radius: 50px;
+  text-align: center;
+  box-shadow: 2px 2px 3px #000;
+}
+
+.fab:hover {
+  background-color: #045e84;
+  color: #fff;
+  width: 61px;
+  height: 61px;
+}
+
+.my-fab {
+  margin-top: 22px;
 }

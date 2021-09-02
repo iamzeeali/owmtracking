@@ -14,7 +14,7 @@ import Dashboard from "./components/Dashboard";
 import Customer from "./components/Customer";
 import AddUser from "./components/AddUser";
 import Track from "./components/Track";
-import TrackStatus2 from "./components/TrackStatus2";
+import TrackStatus from "./components/TrackStatus";
 import Inventory from "./components/Inventory";
 import SubCustomer from "./components/SubCustomer";
 import Profile from "./components/Profile";
@@ -46,7 +46,7 @@ const App = () => {
           <PrivateRoute exact path='/customer' component={Customer} />
           <PrivateRoute exact path='/add-user' component={AddUser} />
           <Route exact path='/' component={Track} />
-          <Route exact path={`/trackStatus2/:id`} component={TrackStatus2} />
+          <Route exact path={`/trackStatus/:id`} component={TrackStatus} />
           <PrivateRoute exact path='/inventory' component={Inventory} />
           <PrivateRoute exact path='/sub-customer' component={SubCustomer} />
           <PrivateRoute exact path='/profile' component={Profile} />

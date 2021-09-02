@@ -28,6 +28,8 @@ const AddFeedback = ({ addFeedback, history }) => {
             className='transparent p-4'
           >
             <h4 className='text-light'>Feedback</h4>
+            <small>Your feedback is important in improving our services.</small>
+            <br />
             <br />
             <input
               type='text'

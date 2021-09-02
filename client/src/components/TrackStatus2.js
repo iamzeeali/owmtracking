@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import {
   getForReceived,
@@ -217,6 +218,9 @@ const TrackStatus2 = ({
           </div>
         </div>
       </div>
+      <Link to='/' class='fab'>
+        <i class='fa fa-search my-fab'></i>
+      </Link>
     </div>
   );
 };
