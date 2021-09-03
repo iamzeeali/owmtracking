@@ -203,7 +203,7 @@ const TrackStatus2 = ({
 
                 <div className='step step1 pb-4 pt-1'>
                   <i
-                    className={`fa fa-truck ${
+                    className={`fa fa-shipping-fast ${
                       deliveryDate !== "NaN" ? "text-primary" : "text-danger"
                     } mr-3 border p-1 `}
                   ></i>

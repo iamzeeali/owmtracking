@@ -8,6 +8,7 @@ import {
   getForMrTransit,
 } from "../_actions/grnAction";
 import { getAsns } from "../_actions/asnAction";
+import Moment from "react-moment";
 
 const TrackStatus = ({
   match,
@@ -108,7 +109,7 @@ const TrackStatus = ({
                 <div className='step step0 pb-4 pt-1'>
                   {" "}
                   <i
-                    className={`fa fa-tasks ${
+                    className={`fa fa-map ${
                       asnUploadDate ? "text-primary" : "text-danger"
                     } mr-3 border p-1 `}
                   ></i>
@@ -181,7 +182,7 @@ const TrackStatus = ({
 
                 <div className='step step1 pb-4 pt-1'>
                   <i
-                    className={`fa fa-truck ${
+                    className={`fa fa-dropbox ${
                       deliveryDate !== "NaN" ? "text-primary" : "text-danger"
                     } mr-3 border p-1 `}
                   ></i>
