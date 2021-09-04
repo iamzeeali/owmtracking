@@ -15,7 +15,9 @@ const Feedback = ({ getFeedbacks, feedbacks, loading }) => {
   }
   return (
     <div className='container' style={{ paddingTop: "130px" }}>
-      <h5 className='bg-light p-2 border-left border-primary'>Feedbacks</h5>
+      <h5 className='bg-light p-2 border-left border-primary'>
+        Complaints & Feedbacks
+      </h5>
 
       <table className='table table-hover table-striped table-responsive-md my-5'>
         <thead style={{ backgroundColor: "#045E84", color: "#fff" }}>

@@ -27,7 +27,7 @@ const AddFeedback = ({ addFeedback, history }) => {
             onSubmit={(e) => onSubmitHandler(e)}
             className='transparent p-4'
           >
-            <h4 className='text-light'>Feedback</h4>
+            <h4 className='text-light'> Complaints & Feedback</h4>
             <small>Your feedback is important in improving our services.</small>
             <br />
             <br />

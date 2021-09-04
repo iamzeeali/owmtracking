@@ -136,8 +136,8 @@ const TrackStatus = ({
                   <small style={{ paddingLeft: "43px" }}>
                     {mrTransit.results > 0
                       ? mrTransit.data.data[0].inDate
-                      : ddTransit.results > 0
-                      ? ddTransit.data.data[0].inDate
+                      : received.results > 0
+                      ? received.data.data[0].inDate
                       : ""}
                     {/* {received.results > 0 && received.data.data[0].inDate} */}
                   </small>
@@ -197,6 +197,7 @@ const TrackStatus = ({
           </div>
         </div>
       </div>
+
       <Link to='/' class='fab'>
         <i class='fa fa-search my-fab'></i>
       </Link>
