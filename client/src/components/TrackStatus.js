@@ -126,7 +126,7 @@ const TrackStatus = ({
                     className={`fa fa-shopping-basket ${
                       mrTransit.results > 0
                         ? "text-primary"
-                        : ddTransit.results > 0
+                        : received.results > 0
                         ? "text-primary"
                         : "text-danger"
                     } mr-3 border p-1 `}
