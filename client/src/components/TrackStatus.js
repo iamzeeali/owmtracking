@@ -153,7 +153,11 @@ const TrackStatus = ({
                     Received
                     <br />
                     <small style={{ paddingLeft: "43px" }}>
-                      {received.results > 0 && received.data.data[0].inDate}
+                      {mrTransit.results > 0
+                        ? mrTransit.data.data[0].inDate
+                        : received.results > 0
+                        ? received.data.data[0].inDate
+                        : ""}
                     </small>
                   </div>
                 )}
@@ -175,6 +179,8 @@ const TrackStatus = ({
                     <small style={{ paddingLeft: "43px" }}>
                       {mrTransit.results > 0
                         ? mrTransit.data.data[0].transDate
+                        : received.results > 0
+                        ? received.data.data[0].transDate
                         : ""}
                     </small>
                   </div>
