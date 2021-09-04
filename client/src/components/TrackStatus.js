@@ -147,7 +147,11 @@ const TrackStatus = ({
                   <div className='step step1 pb-4 pt-1'>
                     <i
                       className={`fa fa-cube ${
-                        received.results > 0 ? "text-primary" : "text-danger"
+                        mrTransit.results > 0
+                          ? "text-primary"
+                          : received.results > 0
+                          ? "text-primary"
+                          : "text-danger"
                       } mr-3 border p-1 `}
                     ></i>
                     Received
@@ -166,7 +170,11 @@ const TrackStatus = ({
                   <div className='step step2 pb-4 pt-1'>
                     <i
                       className={`fa fa-truck ${
-                        mrTransit.results > 0 ? "text-primary" : "text-danger"
+                        mrTransit.results > 0
+                          ? "text-primary"
+                          : received.results > 0
+                          ? "text-primary"
+                          : "text-danger"
                       } mr-3 border p-1 `}
                     ></i>
                     Dispatched{" "}
