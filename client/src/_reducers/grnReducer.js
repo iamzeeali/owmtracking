@@ -8,6 +8,7 @@ const initialState = {
   ddTransit: [],
   transDate: "",
   transDateForDirect: "",
+  transDateForReceive: "",
   error: {},
   filtered: null,
   loading: true,
@@ -34,6 +35,7 @@ export default function (state = initialState, action) {
         ...state,
         received: payload,
         loading: false,
+        transDateForReceive: payload.data.data[0].transDate.toString(),
       };
     case types.GET_FOR_MR_TRANSIT:
       return {

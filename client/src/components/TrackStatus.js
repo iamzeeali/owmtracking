@@ -23,6 +23,7 @@ const TrackStatus = ({
   asnUploadDate,
   transDate,
   transDateForDirect,
+  transDateForReceive,
 }) => {
   const [state, setState] = useState({
     deliveryDate: "",
@@ -36,7 +37,15 @@ const TrackStatus = ({
     getForMrTransit(match.params.id);
 
     // TRANS DATE ++
-    let transDateFromReport = transDate !== "" ? transDate : transDateForDirect;
+    // let transDateFromReport = transDate !== "" ? transDate : transDateForDirect;
+
+    var transDateFromReport =
+      transDate !== ""
+        ? transDate // if
+        : transDateForReceive !== ""
+        ? transDateForReceive
+        : transDateForDirect;
+
     let transDDinString = transDateFromReport.slice(0, 2);
 
     let transDDinNumber = parseInt(transDDinString) + 1;
@@ -231,6 +240,7 @@ const mapStateToProps = (state) => ({
   loading: state.asn.loading,
   asnUploadDate: state.asn.asnUploadDate,
   transDate: state.grn.transDate,
+  transDateForReceive: state.grn.transDateForReceive,
   transDateForDirect: state.grn.transDateForDirect,
   mrTransit: state.grn.mrTransit,
   ddTransit: state.grn.ddTransit,
