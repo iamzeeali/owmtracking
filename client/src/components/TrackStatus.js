@@ -137,6 +137,8 @@ const TrackStatus = ({
                         ? "text-primary"
                         : received.results > 0
                         ? "text-primary"
+                        : ddTransit.results > 0
+                        ? "text-primary"
                         : "text-danger"
                     } mr-3 border p-1 `}
                   ></i>
@@ -147,7 +149,7 @@ const TrackStatus = ({
                       ? mrTransit.data.data[0].inDate
                       : received.results > 0
                       ? received.data.data[0].inDate
-                      : ""}
+                      : ddTransit.data.data[0].inDate}
                     {/* {received.results > 0 && received.data.data[0].inDate} */}
                   </small>
                 </div>
