@@ -64,6 +64,7 @@ const TrackStatus = ({
     } else {
       transDateFromReport = transDateForDirect;
     }
+    console.log(transDateFromReport);
     var transDateIntoJSDate = operateDeliveryDate(transDateFromReport);
     var transDay = transDateIntoJSDate.getDay();
 
@@ -269,13 +270,15 @@ const TrackStatus = ({
                 <div className='step step1 pb-4 pt-1'>
                   <i
                     className={`fa fa-dropbox ${
-                      deliveryDate !== "NaN" ? "text-primary" : "text-danger"
+                      deliveryDate !== "NaN-undefined-NaN"
+                        ? "text-primary"
+                        : "text-danger"
                     } mr-3 border p-1 `}
                   ></i>
                   Delivered
                   <br />
                   <small style={{ paddingLeft: "43px" }}>
-                    {deliveryDate !== "NaN" ? deliveryDate : ""}
+                    {deliveryDate !== "NaN-undefined-NaN" ? deliveryDate : ""}
                   </small>
                 </div>
               </div>
