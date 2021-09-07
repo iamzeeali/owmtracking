@@ -29,6 +29,26 @@ const TrackStatus = ({
     deliveryDate: "",
   });
   const { deliveryDate } = state;
+
+  const operateDeliveryDate = (tDate) => {
+    var months = {
+      jan: 0,
+      feb: 1,
+      mar: 2,
+      apr: 3,
+      may: 4,
+      jun: 5,
+      jul: 6,
+      aug: 7,
+      sep: 8,
+      oct: 9,
+      nov: 10,
+      dec: 11,
+    };
+    var p = tDate.split("-");
+    return new Date(p[2], months[(p[1] || "").toLowerCase()], p[0]);
+  };
+
   useEffect(() => {
     setState({ deliveryDate: "" });
     getAsns(match.params.id);
@@ -36,15 +56,6 @@ const TrackStatus = ({
     getForDdTransit(match.params.id);
     getForMrTransit(match.params.id);
 
-    // TRANS DATE ++
-    // let transDateFromReport = transDate !== "" ? transDate : transDateForDirect;
-
-    // var transDateFromReport =
-    //   transDate !== ""
-    //     ? transDate // if
-    //     : transDateForReceive !== ""
-    //     ? transDateForReceive
-    //     : transDateForDirect;
     var transDateFromReport;
     if (transDate) {
       transDateFromReport = transDate;
@@ -53,22 +64,62 @@ const TrackStatus = ({
     } else {
       transDateFromReport = transDateForDirect;
     }
-    console.log(transDateFromReport);
+    var transDateIntoJSDate = operateDeliveryDate(transDateFromReport);
+    var transDay = transDateIntoJSDate.getDay();
 
-    let transDDinString = transDateFromReport.slice(0, 2);
+    Date.prototype.toShortFormat = function () {
+      let monthNames = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+      ];
 
-    let transDDinNumber = parseInt(transDDinString) + 1;
+      let day = this.getDate();
 
-    if (transDDinNumber.toString().length > 1) {
-      let transDatewithoutDD = transDateFromReport.substring(2);
-      let ddDate = transDDinNumber + "" + transDatewithoutDD;
+      let monthIndex = this.getMonth();
+      let monthName = monthNames[monthIndex];
 
-      setState({ ...state, deliveryDate: ddDate.toString() });
+      let year = this.getFullYear();
+
+      return `${day}-${monthName}-${year}`;
+    };
+
+    if (transDay === 6) {
+      var increasedDateBy1 = new Date(
+        transDateIntoJSDate.setDate(transDateIntoJSDate.getDate() + 2)
+      );
+
+      var finalDeliveryDate = increasedDateBy1.toShortFormat();
+
+      const firstPart = finalDeliveryDate.split("-")[0];
+
+      if (firstPart.length > 1) {
+        setState({ ...state, deliveryDate: finalDeliveryDate });
+      } else {
+        setState({ ...state, deliveryDate: "0" + finalDeliveryDate });
+      }
     } else {
-      let transDatewithoutDD = transDateFromReport.substring(2);
-      let ddDate = "0" + transDDinNumber + transDatewithoutDD;
+      var increasedDateBy2 = new Date(
+        transDateIntoJSDate.setDate(transDateIntoJSDate.getDate() + 1)
+      );
 
-      setState({ ...state, deliveryDate: ddDate.toString() });
+      var finalDeliveryDate2 = increasedDateBy2.toShortFormat();
+      const firstPart2 = finalDeliveryDate2.split("-")[0];
+
+      if (firstPart2.length > 1) {
+        setState({ ...state, deliveryDate: finalDeliveryDate2 });
+      } else {
+        setState({ ...state, deliveryDate: "0" + finalDeliveryDate2 });
+      }
     }
   }, [asnUploadDate, transDate, transDateForDirect, transDateForReceive]);
 

@@ -16,51 +16,53 @@ const Grns = ({ getLimitedGrns, grns, filtered, loading }) => {
   }
 
   return (
-    <div className='container' style={{ paddingTop: "130px" }}>
+    <div className='container-fluid' style={{ paddingTop: "130px" }}>
       <h5 className='bg-light p-2 border-left border-primary'>
         Stock Movement Report V3 (Uploaded in Last 7 days)
       </h5>
       <FilterGrns />
 
-      <table className='table table-hover table-striped table-responsive-md my-2'>
-        <thead style={{ backgroundColor: "#045E84", color: "#fff" }}>
-          <tr>
-            <th scope='col'>ECCI</th>
-            <th scope='col'>Transaction Type</th>
-            <th scope='col'>Mode Of Delivery</th>
-            <th scope='col'>In Date</th>
-            <th scope='col'>Trans Date</th>
-            <th scope='col'>Vendor Code</th>
-            <th scope='col'>Vendor Name</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filtered !== null
-            ? filtered.map((grn) => (
-                <tr key={grn._id}>
-                  <td>{grn.ecciNumber && grn.ecciNumber}</td>
-                  <td>{grn.transactionType && grn.transactionType}</td>
-                  <td>{grn.modeOfDelivery && grn.modeOfDelivery}</td>
-                  <td>{grn.inDate && grn.inDate}</td>
-                  <td>{grn.transDate && grn.transDate}</td>
-                  <td>{grn.vendorCode && grn.vendorCode}</td>
-                  <td>{grn.vendorName && grn.vendorName}</td>
-                </tr>
-              ))
-            : grns.data &&
-              grns.data.data.map((grn) => (
-                <tr key={grn._id}>
-                  <td>{grn.ecciNumber && grn.ecciNumber}</td>
-                  <td>{grn.transactionType && grn.transactionType}</td>
-                  <td>{grn.modeOfDelivery && grn.modeOfDelivery}</td>
-                  <td>{grn.inDate && grn.inDate}</td>
-                  <td>{grn.transDate && grn.transDate}</td>
-                  <td>{grn.vendorCode && grn.vendorCode}</td>
-                  <td>{grn.vendorName && grn.vendorName}</td>
-                </tr>
-              ))}
-        </tbody>
-      </table>
+      <div className='tableFixHead'>
+        <table className='table table-hover table-responsive-md table-striped my-2'>
+          <thead style={{ backgroundColor: "#045E84", color: "#fff" }}>
+            <tr>
+              <th scope='col'>ECCI</th>
+              <th scope='col'>Transaction Type</th>
+              <th scope='col'>Mode Of Delivery</th>
+              <th scope='col'>In Date</th>
+              <th scope='col'>Trans Date</th>
+              <th scope='col'>Vendor Code</th>
+              <th scope='col'>Vendor Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filtered !== null
+              ? filtered.map((grn) => (
+                  <tr key={grn._id}>
+                    <td>{grn.ecciNumber && grn.ecciNumber}</td>
+                    <td>{grn.transactionType && grn.transactionType}</td>
+                    <td>{grn.modeOfDelivery && grn.modeOfDelivery}</td>
+                    <td>{grn.inDate && grn.inDate}</td>
+                    <td>{grn.transDate && grn.transDate}</td>
+                    <td>{grn.vendorCode && grn.vendorCode}</td>
+                    <td>{grn.vendorName && grn.vendorName}</td>
+                  </tr>
+                ))
+              : grns.data &&
+                grns.data.data.map((grn) => (
+                  <tr key={grn._id}>
+                    <td>{grn.ecciNumber && grn.ecciNumber}</td>
+                    <td>{grn.transactionType && grn.transactionType}</td>
+                    <td>{grn.modeOfDelivery && grn.modeOfDelivery}</td>
+                    <td>{grn.inDate && grn.inDate}</td>
+                    <td>{grn.transDate && grn.transDate}</td>
+                    <td>{grn.vendorCode && grn.vendorCode}</td>
+                    <td>{grn.vendorName && grn.vendorName}</td>
+                  </tr>
+                ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
