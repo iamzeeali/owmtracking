@@ -39,30 +39,38 @@ const TrackStatus = ({
     // TRANS DATE ++
     // let transDateFromReport = transDate !== "" ? transDate : transDateForDirect;
 
-    var transDateFromReport =
-      transDate !== ""
-        ? transDate // if
-        : transDateForReceive !== ""
-        ? transDateForReceive
-        : transDateForDirect;
+    // var transDateFromReport =
+    //   transDate !== ""
+    //     ? transDate // if
+    //     : transDateForReceive !== ""
+    //     ? transDateForReceive
+    //     : transDateForDirect;
+    var transDateFromReport;
+    if (transDate) {
+      transDateFromReport = transDate;
+    } else if (transDateForReceive) {
+      transDateFromReport = transDateForReceive;
+    } else {
+      transDateFromReport = transDateForDirect;
+    }
+    console.log(transDateFromReport);
 
     let transDDinString = transDateFromReport.slice(0, 2);
 
     let transDDinNumber = parseInt(transDDinString) + 1;
+
     if (transDDinNumber.toString().length > 1) {
       let transDatewithoutDD = transDateFromReport.substring(2);
       let ddDate = transDDinNumber + "" + transDatewithoutDD;
-      console.log(typeof ddDate);
 
       setState({ ...state, deliveryDate: ddDate.toString() });
     } else {
       let transDatewithoutDD = transDateFromReport.substring(2);
       let ddDate = "0" + transDDinNumber + transDatewithoutDD;
-      console.log(typeof ddDate);
 
       setState({ ...state, deliveryDate: ddDate.toString() });
     }
-  }, [asnUploadDate, transDate, transDateForDirect]);
+  }, [asnUploadDate, transDate, transDateForDirect, transDateForReceive]);
 
   const vendor = () => {
     if (asns.results > 0) {

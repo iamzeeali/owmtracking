@@ -35,13 +35,13 @@ export default function (state = initialState, action) {
         ...state,
         received: payload,
         loading: false,
-        transDateForReceive: payload.data.data[0].transDate.toString(),
+        transDateForReceive: payload.data.data[0].transDate,
       };
     case types.GET_FOR_MR_TRANSIT:
       return {
         ...state,
         mrTransit: payload,
-        transDate: payload.data.data[0].transDate.toString(),
+        transDate: payload.data.data[0].transDate,
         loading: false,
       };
     case types.GET_FOR_DD_TRANSIT:
