@@ -4,12 +4,21 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import FilterAsn from "./FilterAsns";
 import Spinner from "./ui/Spinner";
+import Moment from "react-moment";
 
 const Asns = ({ getLimitedAsns, asns, filtered, loading }) => {
   useEffect(() => {
     getLimitedAsns();
     //eslint-diable-next-line
   }, []);
+
+  // const convertUploadDate = (str) => {
+  //   console.log(typeof str);
+  //   var date = new Date(str),
+  //     mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+  //     day = ("0" + date.getDate()).slice(-2);
+  //   return [day, mnth, date.getFullYear()].join("-");
+  // };
 
   if (loading) {
     return <Spinner />;
@@ -37,7 +46,7 @@ const Asns = ({ getLimitedAsns, asns, filtered, loading }) => {
               ? filtered.map((asn) => (
                   <tr key={asn._id}>
                     <td>{asn.ecciNumber && asn.ecciNumber}</td>
-                    <td>{asn.asnUploadDate && asn.asnUploadDate}</td>
+                    <td> {asn.asnUploadDate && asn.asnUploadDate}</td>
                     <td>{asn.vendorCode && asn.vendorCode}</td>
                     <td>{asn.vendorName && asn.vendorName}</td>
                   </tr>

@@ -25,8 +25,39 @@ const TrackStatus = ({
   transDateForDirect,
   transDateForReceive,
 }) => {
+  var newDate = new Date();
+
+  Date.prototype.toShortFormat = function () {
+    let monthNames = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+
+    let day = this.getDate();
+
+    let monthIndex = this.getMonth();
+    let monthName = monthNames[monthIndex];
+
+    let year = this.getFullYear();
+
+    return `${day}-${monthName}-${year}`;
+  };
+
   const [state, setState] = useState({
     deliveryDate: "",
+    currentDate: newDate.toShortFormat(),
+    dispatchDate: "",
+    dispatchGreaterCurrent: false,
   });
   const { deliveryDate } = state;
 
@@ -49,6 +80,68 @@ const TrackStatus = ({
     return new Date(p[2], months[(p[1] || "").toLowerCase()], p[0]);
   };
 
+  Date.prototype.toShortFormat = function () {
+    let monthNames = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+
+    let day = this.getDate();
+
+    let monthIndex = this.getMonth();
+    let monthName = monthNames[monthIndex];
+
+    let year = this.getFullYear();
+
+    return `${day}-${monthName}-${year}`;
+  };
+
+  useEffect(() => {
+    const date1 = new Date("11-Sep-2021");
+    console.log(date1);
+
+    if (mrTransit.results > 0) {
+      if (mrTransit.data.data[0].transDate) {
+        let dispatchDate = mrTransit.data.data[0].transDate;
+
+        setState({
+          ...state,
+          dispatchDate: dispatchDate,
+        });
+      }
+    } else if (received.results > 0) {
+      if (received.data.data[0].transDate) {
+        let dispatchDate = received.data.data[0].transDate;
+
+        setState({
+          ...state,
+          dispatchDate: dispatchDate,
+        });
+      }
+    }
+
+    if (state.dispatchDate >= state.currentDate) {
+      // let dispatchDateGreaterThanOrEqualCurrentDate =
+      //   parseInt(state.dispatchDate) === parseInt(state.currentDate);
+
+      // setState({
+      //   ...state,
+      //   dispatchGreaterCurrent: dispatchDateGreaterThanOrEqualCurrentDate,
+      // });
+      console.log(true);
+    }
+  }, [mrTransit, received]);
+
   useEffect(() => {
     setState({ deliveryDate: "" });
     getAsns(match.params.id);
@@ -64,40 +157,18 @@ const TrackStatus = ({
     } else {
       transDateFromReport = transDateForDirect;
     }
-    console.log(transDateFromReport);
     var transDateIntoJSDate = operateDeliveryDate(transDateFromReport);
     var transDay = transDateIntoJSDate.getDay();
-
-    Date.prototype.toShortFormat = function () {
-      let monthNames = [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-      ];
-
-      let day = this.getDate();
-
-      let monthIndex = this.getMonth();
-      let monthName = monthNames[monthIndex];
-
-      let year = this.getFullYear();
-
-      return `${day}-${monthName}-${year}`;
-    };
 
     if (transDay === 6) {
       var increasedDateBy1 = new Date(
         transDateIntoJSDate.setDate(transDateIntoJSDate.getDate() + 2)
       );
+
+      if (increasedDateBy1 < state.currentDate) {
+        console.log(increasedDateBy1 < state.currentDate);
+        setState({ delDateGreaterThanCurrentDate: true });
+      }
 
       var finalDeliveryDate = increasedDateBy1.toShortFormat();
 
@@ -122,7 +193,14 @@ const TrackStatus = ({
         setState({ ...state, deliveryDate: "0" + finalDeliveryDate2 });
       }
     }
-  }, [asnUploadDate, transDate, transDateForDirect, transDateForReceive]);
+  }, [
+    asnUploadDate,
+    transDate,
+    transDateForDirect,
+    transDateForReceive,
+    state.delDateInJs,
+    state.delDateGreaterThanCurrentDate,
+  ]);
 
   const vendor = () => {
     if (asns.results > 0) {
@@ -138,6 +216,8 @@ const TrackStatus = ({
     }
   };
 
+  // console.log(state.delDateInJs);
+
   return (
     <div className='status'>
       <div className='status-overlay'>
@@ -147,7 +227,7 @@ const TrackStatus = ({
               <div className='col-sm-6 animated shadow-lg fadeIn bg-white mb-5 p-4 ml-auto mr-auto'>
                 <div className='row'>
                   <div className='col-sm-8'>
-                    <h4 style={{ color: "#045E84" }}>Tracking Status</h4>
+                    <h4 style={{ color: "#045E84" }}>Tracking Status </h4>
 
                     <h6 style={{ color: "#045E84" }}>
                       {" "}
@@ -270,12 +350,14 @@ const TrackStatus = ({
                 <div className='step step1 pb-4 pt-1'>
                   <i
                     className={`fa fa-dropbox ${
-                      deliveryDate !== "NaN-undefined-NaN"
-                        ? "text-primary"
-                        : "text-danger"
+                      state.dispatchDate >= state.currentDate
+                        ? "text-danger"
+                        : "text-primary"
                     } mr-3 border p-1 `}
                   ></i>
-                  Delivered
+                  {state.dispatchDate >= state.currentDate
+                    ? "Expected Delivery"
+                    : "Delivered"}
                   <br />
                   <small style={{ paddingLeft: "43px" }}>
                     {deliveryDate !== "NaN-undefined-NaN" ? deliveryDate : ""}

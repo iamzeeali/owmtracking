@@ -8,10 +8,10 @@ import {
   getForMrTransit,
 } from "../_actions/grnAction";
 import { getAsns } from "../_actions/asnAction";
+import Moment from "react-moment";
 
-const TrackStatus2 = ({
+const TrackStatus = ({
   match,
-  loading,
   getForReceived,
   getForDdTransit,
   getForMrTransit,
@@ -23,11 +23,76 @@ const TrackStatus2 = ({
   asnUploadDate,
   transDate,
   transDateForDirect,
+  transDateForReceive,
 }) => {
+  var newDate = new Date();
   const [state, setState] = useState({
     deliveryDate: "",
+    currentDate: newDate,
+    dispatchDate: "",
   });
-  const { planDate, deliveryDate } = state;
+  const { deliveryDate } = state;
+
+  const operateDeliveryDate = (tDate) => {
+    var months = {
+      jan: 0,
+      feb: 1,
+      mar: 2,
+      apr: 3,
+      may: 4,
+      jun: 5,
+      jul: 6,
+      aug: 7,
+      sep: 8,
+      oct: 9,
+      nov: 10,
+      dec: 11,
+    };
+    var p = tDate.split("-");
+    return new Date(p[2], months[(p[1] || "").toLowerCase()], p[0]);
+  };
+
+  function parseDate(s) {
+    var months = {
+      jan: 0,
+      feb: 1,
+      mar: 2,
+      apr: 3,
+      may: 4,
+      jun: 5,
+      jul: 6,
+      aug: 7,
+      sep: 8,
+      oct: 9,
+      nov: 10,
+      dec: 11,
+    };
+    var p = s.split("-");
+    return new Date(p[2], months[p[1].toLowerCase()], p[0]);
+  }
+
+  useEffect(() => {
+    if (mrTransit.results > 0) {
+      if (mrTransit.data.data[0].transDate) {
+        let dispatchDate = parseDate(mrTransit.data.data[0].transDate);
+
+        setState({
+          ...state,
+          dispatchDate: dispatchDate,
+        });
+      }
+    } else if (received.results > 0) {
+      if (received.data.data[0].transDate) {
+        let dispatchDate = parseDate(received.data.data[0].transDate);
+
+        setState({
+          ...state,
+          dispatchDate: dispatchDate,
+        });
+      }
+    }
+  }, [mrTransit]);
+
   useEffect(() => {
     setState({ deliveryDate: "" });
     getAsns(match.params.id);
@@ -35,41 +100,84 @@ const TrackStatus2 = ({
     getForDdTransit(match.params.id);
     getForMrTransit(match.params.id);
 
-    console.log(asnUploadDate);
-    // let asnUploadDateFromReport = asnUploadDate;
-    // let planDDinString = asnUploadDateFromReport.slice(0, 2);
-
-    // let planDDinNumber = parseInt(planDDinString) + 1;
-    // if (planDDinNumber.toString().length > 1) {
-    //   let asnUploadDatewithoutDD = asnUploadDateFromReport.substring(2);
-    //   let planForPickDate = planDDinNumber.toString() + asnUploadDatewithoutDD;
-
-    //   setState({ ...state, planDate: planForPickDate });
-    // } else {
-    //   let asnUploadDatewithoutDD = asnUploadDateFromReport.substring(2);
-    //   let planForPickDate = "0" + planDDinNumber + asnUploadDatewithoutDD;
-    //   setState({ ...state, planDate: planForPickDate && planForPickDate });
-    // }
-
-    // TRANS DATE ++
-    let transDateFromReport = transDate !== "" ? transDate : transDateForDirect;
-    let transDDinString = transDateFromReport.slice(0, 2);
-
-    let transDDinNumber = parseInt(transDDinString) + 1;
-    if (transDDinNumber.toString().length > 1) {
-      let transDatewithoutDD = transDateFromReport.substring(2);
-      let ddDate = transDDinNumber + "" + transDatewithoutDD;
-      console.log(typeof ddDate);
-
-      setState({ ...state, deliveryDate: ddDate.toString() });
+    var transDateFromReport;
+    if (transDate) {
+      transDateFromReport = transDate;
+    } else if (transDateForReceive) {
+      transDateFromReport = transDateForReceive;
     } else {
-      let transDatewithoutDD = transDateFromReport.substring(2);
-      let ddDate = "0" + transDDinNumber + transDatewithoutDD;
-      console.log(typeof ddDate);
-
-      setState({ ...state, deliveryDate: ddDate.toString() });
+      transDateFromReport = transDateForDirect;
     }
-  }, [asnUploadDate, transDate, transDateForDirect]);
+    var transDateIntoJSDate = operateDeliveryDate(transDateFromReport);
+    var transDay = transDateIntoJSDate.getDay();
+
+    Date.prototype.toShortFormat = function () {
+      let monthNames = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+      ];
+
+      let day = this.getDate();
+
+      let monthIndex = this.getMonth();
+      let monthName = monthNames[monthIndex];
+
+      let year = this.getFullYear();
+
+      return `${day}-${monthName}-${year}`;
+    };
+
+    if (transDay === 6) {
+      var increasedDateBy1 = new Date(
+        transDateIntoJSDate.setDate(transDateIntoJSDate.getDate() + 2)
+      );
+
+      if (increasedDateBy1 < state.currentDate) {
+        console.log(increasedDateBy1 < state.currentDate);
+        setState({ delDateGreaterThanCurrentDate: true });
+      }
+
+      var finalDeliveryDate = increasedDateBy1.toShortFormat();
+
+      const firstPart = finalDeliveryDate.split("-")[0];
+
+      if (firstPart.length > 1) {
+        setState({ ...state, deliveryDate: finalDeliveryDate });
+      } else {
+        setState({ ...state, deliveryDate: "0" + finalDeliveryDate });
+      }
+    } else {
+      var increasedDateBy2 = new Date(
+        transDateIntoJSDate.setDate(transDateIntoJSDate.getDate() + 1)
+      );
+
+      var finalDeliveryDate2 = increasedDateBy2.toShortFormat();
+      const firstPart2 = finalDeliveryDate2.split("-")[0];
+
+      if (firstPart2.length > 1) {
+        setState({ ...state, deliveryDate: finalDeliveryDate2 });
+      } else {
+        setState({ ...state, deliveryDate: "0" + finalDeliveryDate2 });
+      }
+    }
+  }, [
+    asnUploadDate,
+    transDate,
+    transDateForDirect,
+    transDateForReceive,
+    state.delDateInJs,
+    state.delDateGreaterThanCurrentDate,
+  ]);
 
   const vendor = () => {
     if (asns.results > 0) {
@@ -85,21 +193,18 @@ const TrackStatus2 = ({
     }
   };
 
-  const planningDate = () => {
-    var mydate = new Date(asnUploadDate);
-    return mydate.toDateString();
-  };
+  // console.log(state.delDateInJs);
 
   return (
     <div className='status'>
       <div className='status-overlay'>
         <div className='status-inner'>
           <div className='container'>
-            <div className='row pb-5'>
+            <div className='row  pb-5'>
               <div className='col-sm-6 animated shadow-lg fadeIn bg-white mb-5 p-4 ml-auto mr-auto'>
                 <div className='row'>
                   <div className='col-sm-8'>
-                    <h4 style={{ color: "#045E84" }}>Tracking Status</h4>
+                    <h4 style={{ color: "#045E84" }}>Tracking Status </h4>
 
                     <h6 style={{ color: "#045E84" }}>
                       {" "}
@@ -130,7 +235,7 @@ const TrackStatus2 = ({
                 <div className='step step0 pb-4 pt-1'>
                   {" "}
                   <i
-                    className={`fa fa-tasks ${
+                    className={`fa fa-map ${
                       asnUploadDate ? "text-primary" : "text-danger"
                     } mr-3 border p-1 `}
                   ></i>
@@ -147,6 +252,8 @@ const TrackStatus2 = ({
                     className={`fa fa-shopping-basket ${
                       mrTransit.results > 0
                         ? "text-primary"
+                        : received.results > 0
+                        ? "text-primary"
                         : ddTransit.results > 0
                         ? "text-primary"
                         : "text-danger"
@@ -157,6 +264,8 @@ const TrackStatus2 = ({
                   <small style={{ paddingLeft: "43px" }}>
                     {mrTransit.results > 0
                       ? mrTransit.data.data[0].inDate
+                      : received.results > 0
+                      ? received.data.data[0].inDate
                       : ddTransit.results > 0
                       ? ddTransit.data.data[0].inDate
                       : ""}
@@ -168,13 +277,21 @@ const TrackStatus2 = ({
                   <div className='step step1 pb-4 pt-1'>
                     <i
                       className={`fa fa-cube ${
-                        received.results > 0 ? "text-primary" : "text-danger"
+                        mrTransit.results > 0
+                          ? "text-primary"
+                          : received.results > 0
+                          ? "text-primary"
+                          : "text-danger"
                       } mr-3 border p-1 `}
                     ></i>
                     Received
                     <br />
                     <small style={{ paddingLeft: "43px" }}>
-                      {received.results > 0 && received.data.data[0].inDate}
+                      {mrTransit.results > 0
+                        ? mrTransit.data.data[0].inDate
+                        : received.results > 0
+                        ? received.data.data[0].inDate
+                        : ""}
                     </small>
                   </div>
                 )}
@@ -183,7 +300,11 @@ const TrackStatus2 = ({
                   <div className='step step2 pb-4 pt-1'>
                     <i
                       className={`fa fa-truck ${
-                        mrTransit.results > 0 ? "text-primary" : "text-danger"
+                        mrTransit.results > 0
+                          ? "text-primary"
+                          : received.results > 0
+                          ? "text-primary"
+                          : "text-danger"
                       } mr-3 border p-1 `}
                     ></i>
                     Dispatched{" "}
@@ -196,6 +317,8 @@ const TrackStatus2 = ({
                     <small style={{ paddingLeft: "43px" }}>
                       {mrTransit.results > 0
                         ? mrTransit.data.data[0].transDate
+                        : received.results > 0
+                        ? received.data.data[0].transDate
                         : ""}
                     </small>
                   </div>
@@ -203,14 +326,18 @@ const TrackStatus2 = ({
 
                 <div className='step step1 pb-4 pt-1'>
                   <i
-                    className={`fa fa-shipping-fast ${
-                      deliveryDate !== "NaN" ? "text-primary" : "text-danger"
+                    className={`fa fa-dropbox ${
+                      deliveryDate !== "NaN-undefined-NaN"
+                        ? "text-primary"
+                        : "text-danger"
                     } mr-3 border p-1 `}
                   ></i>
-                  Delivered
+                  {state.dispatchDate >= state.currentDate
+                    ? "Expected Delivery"
+                    : "Delivered"}
                   <br />
                   <small style={{ paddingLeft: "43px" }}>
-                    {deliveryDate !== "NaN" ? deliveryDate : ""}
+                    {deliveryDate !== "NaN-undefined-NaN" ? deliveryDate : ""}
                   </small>
                 </div>
               </div>
@@ -218,6 +345,7 @@ const TrackStatus2 = ({
           </div>
         </div>
       </div>
+
       <Link to='/' class='fab'>
         <i class='fa fa-search my-fab'></i>
       </Link>
@@ -225,7 +353,7 @@ const TrackStatus2 = ({
   );
 };
 
-TrackStatus2.propTypes = {
+TrackStatus.propTypes = {
   getForReceived: PropTypes.func.isRequired,
   getAsns: PropTypes.func.isRequired,
   getForDdTransit: PropTypes.func.isRequired,
@@ -237,6 +365,7 @@ const mapStateToProps = (state) => ({
   loading: state.asn.loading,
   asnUploadDate: state.asn.asnUploadDate,
   transDate: state.grn.transDate,
+  transDateForReceive: state.grn.transDateForReceive,
   transDateForDirect: state.grn.transDateForDirect,
   mrTransit: state.grn.mrTransit,
   ddTransit: state.grn.ddTransit,
@@ -246,4 +375,4 @@ export default connect(mapStateToProps, {
   getAsns,
   getForDdTransit,
   getForMrTransit,
-})(TrackStatus2);
+})(TrackStatus);

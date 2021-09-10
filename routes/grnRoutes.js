@@ -61,6 +61,7 @@ function convertGrnExcelToJson(filePath) {
     ],
   });
 
+  console.log(excelData);
   GRN.insertMany(excelData.Sheet1, function (err, docs) {
     if (err) {
       return console.error(err);
