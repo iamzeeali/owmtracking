@@ -9,6 +9,7 @@ import {
 } from "../_actions/grnAction";
 import { getAsns } from "../_actions/asnAction";
 import Moment from "react-moment";
+import moment from "moment";
 
 const TrackStatus = ({
   match,
@@ -129,19 +130,6 @@ const TrackStatus = ({
   };
 
   useEffect(() => {
-    // let planningDate = parseDate(asnUploadDate);
-    // setState({ ...state, asnUploadDate: planningDate });
-    console.log(asnUploadDate);
-    var asnUplaodDateIntoJSDate = operateDeliveryDate(asnUploadDate);
-    console.log(asnUplaodDateIntoJSDate);
-
-    var increasePlanDate = new Date(
-      asnUplaodDateIntoJSDate.setDate(asnUplaodDateIntoJSDate.getDate() + 1)
-    );
-
-    console.log("dfd");
-    setPlanDate(increasePlanDate);
-
     if (mrTransit.results > 0) {
       if (mrTransit.data.data[0].transDate) {
         let dispatchDate = mrTransit.data.data[0].transDate;
@@ -184,7 +172,6 @@ const TrackStatus = ({
       );
 
       if (increasedDateBy1 < state.currentDate) {
-        console.log(increasedDateBy1 < state.currentDate);
         setState({ delDateGreaterThanCurrentDate: true });
       }
 
@@ -229,9 +216,16 @@ const TrackStatus = ({
     }
   };
 
-  // console.log(state.delDateInJs);
+  function increasePlanDateBy1(s) {
+    var d = moment(s).toDate();
+    var increasePlanDate = new Date(d.setDate(d.getDate() + 1));
 
-  function planFn(asnUploadDate) {}
+    return (
+      <Moment format='DD-MMM-YYYY'>
+        {increasePlanDate && increasePlanDate}
+      </Moment>
+    );
+  }
 
   return (
     <div className='status'>
@@ -279,9 +273,7 @@ const TrackStatus = ({
                   ></i>
                   Planned for Picking <br />
                   <small style={{ paddingLeft: "43px" }}>
-                    {/* {asns.results > 0 && asns.data.data[0].asnUploadDate} */}
-
-                    <Moment format='DD-MMM-YYYY'>{planDate && planDate}</Moment>
+                    {increasePlanDateBy1(asnUploadDate)}
                   </small>
                 </div>
 

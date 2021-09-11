@@ -51,7 +51,7 @@ const App = () => {
           <PrivateRoute exact path='/sub-customer' component={SubCustomer} />
           <PrivateRoute exact path='/profile' component={Profile} />
           <PrivateRoute exact path='/upload' component={UploadEcci} />
-          <PrivateRoute exact path='/asns' component={Asns} />
+          <Route exact path='/asns' component={Asns} />
           <PrivateRoute exact path='/grns' component={Grns} />
           <PrivateRoute exact path='/feedback' component={Feedback} />
         </div>
