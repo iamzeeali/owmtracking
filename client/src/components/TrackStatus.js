@@ -53,14 +53,6 @@ const TrackStatus = ({
     return `${day}-${monthName}-${year}`;
   };
 
-  const [state, setState] = useState({
-    deliveryDate: "",
-    currentDate: newDate.toShortFormat(),
-    dispatchDate: "",
-    dispatchGreaterCurrent: false,
-  });
-  const { deliveryDate } = state;
-
   const operateDeliveryDate = (tDate) => {
     var months = {
       jan: 0,
@@ -79,6 +71,36 @@ const TrackStatus = ({
     var p = tDate.split("-");
     return new Date(p[2], months[(p[1] || "").toLowerCase()], p[0]);
   };
+
+  const [state, setState] = useState({
+    deliveryDate: "",
+    currentDate: newDate.toShortFormat(),
+    dispatchDate: "07-Sep-2021",
+    dispatchGreaterCurrent: false,
+  });
+
+  const [planDate, setPlanDate] = useState();
+
+  const { deliveryDate } = state;
+
+  function parseDate(s) {
+    var months = {
+      jan: 0,
+      feb: 1,
+      mar: 2,
+      apr: 3,
+      may: 4,
+      jun: 5,
+      jul: 6,
+      aug: 7,
+      sep: 8,
+      oct: 9,
+      nov: 10,
+      dec: 11,
+    };
+    var p = s.split("-");
+    return new Date(p[2], months[(p[1] || "").toLowerCase()], p[0]);
+  }
 
   Date.prototype.toShortFormat = function () {
     let monthNames = [
@@ -107,13 +129,22 @@ const TrackStatus = ({
   };
 
   useEffect(() => {
-    const date1 = new Date("11-Sep-2021");
-    console.log(date1);
+    // let planningDate = parseDate(asnUploadDate);
+    // setState({ ...state, asnUploadDate: planningDate });
+    console.log(asnUploadDate);
+    var asnUplaodDateIntoJSDate = operateDeliveryDate(asnUploadDate);
+    console.log(asnUplaodDateIntoJSDate);
+
+    var increasePlanDate = new Date(
+      asnUplaodDateIntoJSDate.setDate(asnUplaodDateIntoJSDate.getDate() + 1)
+    );
+
+    console.log("dfd");
+    setPlanDate(increasePlanDate);
 
     if (mrTransit.results > 0) {
       if (mrTransit.data.data[0].transDate) {
         let dispatchDate = mrTransit.data.data[0].transDate;
-
         setState({
           ...state,
           dispatchDate: dispatchDate,
@@ -122,28 +153,15 @@ const TrackStatus = ({
     } else if (received.results > 0) {
       if (received.data.data[0].transDate) {
         let dispatchDate = received.data.data[0].transDate;
-
         setState({
           ...state,
           dispatchDate: dispatchDate,
         });
       }
     }
-
-    if (state.dispatchDate >= state.currentDate) {
-      // let dispatchDateGreaterThanOrEqualCurrentDate =
-      //   parseInt(state.dispatchDate) === parseInt(state.currentDate);
-
-      // setState({
-      //   ...state,
-      //   dispatchGreaterCurrent: dispatchDateGreaterThanOrEqualCurrentDate,
-      // });
-      console.log(true);
-    }
-  }, [mrTransit, received]);
+  }, []);
 
   useEffect(() => {
-    setState({ deliveryDate: "" });
     getAsns(match.params.id);
     getForReceived(match.params.id);
     getForDdTransit(match.params.id);
@@ -193,14 +211,9 @@ const TrackStatus = ({
         setState({ ...state, deliveryDate: "0" + finalDeliveryDate2 });
       }
     }
-  }, [
-    asnUploadDate,
-    transDate,
-    transDateForDirect,
-    transDateForReceive,
-    state.delDateInJs,
-    state.delDateGreaterThanCurrentDate,
-  ]);
+
+    //
+  }, [asnUploadDate, transDate, transDateForDirect, transDateForReceive]);
 
   const vendor = () => {
     if (asns.results > 0) {
@@ -217,6 +230,8 @@ const TrackStatus = ({
   };
 
   // console.log(state.delDateInJs);
+
+  function planFn(asnUploadDate) {}
 
   return (
     <div className='status'>
@@ -266,7 +281,7 @@ const TrackStatus = ({
                   <small style={{ paddingLeft: "43px" }}>
                     {/* {asns.results > 0 && asns.data.data[0].asnUploadDate} */}
 
-                    {asnUploadDate}
+                    <Moment format='DD-MMM-YYYY'>{planDate && planDate}</Moment>
                   </small>
                 </div>
 
@@ -350,7 +365,7 @@ const TrackStatus = ({
                 <div className='step step1 pb-4 pt-1'>
                   <i
                     className={`fa fa-dropbox ${
-                      state.dispatchDate >= state.currentDate
+                      asnUploadDate || state.dispatchDate >= state.currentDate
                         ? "text-danger"
                         : "text-primary"
                     } mr-3 border p-1 `}
@@ -359,9 +374,13 @@ const TrackStatus = ({
                     ? "Expected Delivery"
                     : "Delivered"}
                   <br />
-                  <small style={{ paddingLeft: "43px" }}>
-                    {deliveryDate !== "NaN-undefined-NaN" ? deliveryDate : ""}
-                  </small>
+                  {asnUploadDate ? (
+                    <small style={{ paddingLeft: "43px" }}>
+                      {deliveryDate !== "NaN-undefined-NaN" ? deliveryDate : ""}
+                    </small>
+                  ) : (
+                    ""
+                  )}
                 </div>
               </div>
             </div>
@@ -369,8 +388,8 @@ const TrackStatus = ({
         </div>
       </div>
 
-      <Link to='/' class='fab'>
-        <i class='fa fa-search my-fab'></i>
+      <Link to='/' className='fab'>
+        <i className='fa fa-search my-fab'></i>
       </Link>
     </div>
   );
