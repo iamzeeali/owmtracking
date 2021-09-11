@@ -273,7 +273,7 @@ const TrackStatus = ({
                   ></i>
                   Planned for Picking <br />
                   <small style={{ paddingLeft: "43px" }}>
-                    {increasePlanDateBy1(asnUploadDate)}
+                    {asnUploadDate && increasePlanDateBy1(asnUploadDate)}
                   </small>
                 </div>
 
