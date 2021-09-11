@@ -366,7 +366,7 @@ const TrackStatus = ({
                     ? "Expected Delivery"
                     : "Delivered"}
                   <br />
-                  {asnUploadDate ? (
+                  {!asnUploadDate ? (
                     <small style={{ paddingLeft: "43px" }}>
                       {deliveryDate !== "NaN-undefined-NaN" ? deliveryDate : ""}
                     </small>
