@@ -17,10 +17,10 @@ const grnSchema = new mongoose.Schema({
     type: String,
   },
   inDate: {
-    type: String,
+    type: Date,
   },
   transDate: {
-    type: String,
+    type: Date,
   },
   active: {
     type: Boolean,

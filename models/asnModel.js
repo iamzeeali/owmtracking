@@ -5,7 +5,7 @@ const asnSchema = new mongoose.Schema({
     type: String,
   },
   asnUploadDate: {
-    type: String,
+    type: Date,
   },
   vendorCode: {
     type: String,

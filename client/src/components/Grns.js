@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import FilterGrns from "./FilterGrns";
 import Spinner from "./ui/Spinner";
+import Moment from "react-moment";
 
 const Grns = ({ getLimitedGrns, grns, filtered, loading }) => {
   useEffect(() => {
@@ -42,8 +43,18 @@ const Grns = ({ getLimitedGrns, grns, filtered, loading }) => {
                     <td>{grn.ecciNumber && grn.ecciNumber}</td>
                     <td>{grn.transactionType && grn.transactionType}</td>
                     <td>{grn.modeOfDelivery && grn.modeOfDelivery}</td>
-                    <td>{grn.inDate && grn.inDate}</td>
-                    <td>{grn.transDate && grn.transDate}</td>
+                    <td>
+                      {" "}
+                      <Moment format='DD-MMM-YYYY'>
+                        {grn.inDate && grn.inDate}
+                      </Moment>{" "}
+                    </td>
+                    <td>
+                      {" "}
+                      <Moment format='DD-MMM-YYYY'>
+                        {grn.transDate && grn.transDate}
+                      </Moment>{" "}
+                    </td>
                     <td>{grn.vendorCode && grn.vendorCode}</td>
                     <td>{grn.vendorName && grn.vendorName}</td>
                   </tr>
@@ -54,8 +65,18 @@ const Grns = ({ getLimitedGrns, grns, filtered, loading }) => {
                     <td>{grn.ecciNumber && grn.ecciNumber}</td>
                     <td>{grn.transactionType && grn.transactionType}</td>
                     <td>{grn.modeOfDelivery && grn.modeOfDelivery}</td>
-                    <td>{grn.inDate && grn.inDate}</td>
-                    <td>{grn.transDate && grn.transDate}</td>
+                    <td>
+                      {" "}
+                      <Moment format='DD-MMM-YYYY'>
+                        {grn.inDate && grn.inDate}
+                      </Moment>{" "}
+                    </td>
+                    <td>
+                      {" "}
+                      <Moment format='DD-MMM-YYYY'>
+                        {grn.transDate && grn.transDate}
+                      </Moment>{" "}
+                    </td>
                     <td>{grn.vendorCode && grn.vendorCode}</td>
                     <td>{grn.vendorName && grn.vendorName}</td>
                   </tr>

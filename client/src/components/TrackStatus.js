@@ -163,17 +163,14 @@ const TrackStatus = ({
     } else {
       transDateFromReport = transDateForDirect;
     }
-    var transDateIntoJSDate = operateDeliveryDate(transDateFromReport);
+    console.log(transDateFromReport);
+    var transDateIntoJSDate = new Date(transDateFromReport);
     var transDay = transDateIntoJSDate.getDay();
 
     if (transDay === 6) {
       var increasedDateBy1 = new Date(
         transDateIntoJSDate.setDate(transDateIntoJSDate.getDate() + 2)
       );
-
-      if (increasedDateBy1 < state.currentDate) {
-        setState({ delDateGreaterThanCurrentDate: true });
-      }
 
       var finalDeliveryDate = increasedDateBy1.toShortFormat();
 
@@ -217,6 +214,7 @@ const TrackStatus = ({
   };
 
   function increasePlanDateBy1(s) {
+    console.log(s);
     var d = moment(s).toDate();
     var increasePlanDate = new Date(d.setDate(d.getDate() + 1));
 
@@ -291,16 +289,24 @@ const TrackStatus = ({
                   ></i>
                   Picked
                   <br />
-                  <small style={{ paddingLeft: "43px" }}>
-                    {mrTransit.results > 0
-                      ? mrTransit.data.data[0].inDate
-                      : received.results > 0
-                      ? received.data.data[0].inDate
-                      : ddTransit.results > 0
-                      ? ddTransit.data.data[0].inDate
-                      : ""}
-                    {/* {received.results > 0 && received.data.data[0].inDate} */}
-                  </small>
+                  {mrTransit.results > 0 ||
+                  received.results > 0 ||
+                  ddTransit.results > 0 ? (
+                    <small style={{ paddingLeft: "43px" }}>
+                      <Moment format='DD-MMM-YYYY'>
+                        {mrTransit.results > 0
+                          ? mrTransit.data.data[0].inDate
+                          : received.results > 0
+                          ? received.data.data[0].inDate
+                          : ddTransit.results > 0
+                          ? ddTransit.data.data[0].inDate
+                          : ""}
+                      </Moment>
+                      {/* {received.results > 0 && received.data.data[0].inDate} */}
+                    </small>
+                  ) : (
+                    ""
+                  )}
                 </div>
 
                 {ddTransit.results > 0 ? null : (
@@ -316,13 +322,19 @@ const TrackStatus = ({
                     ></i>
                     Received
                     <br />
-                    <small style={{ paddingLeft: "43px" }}>
-                      {mrTransit.results > 0
-                        ? mrTransit.data.data[0].inDate
-                        : received.results > 0
-                        ? received.data.data[0].inDate
-                        : ""}
-                    </small>
+                    {mrTransit.results > 0 || received.results > 0 ? (
+                      <small style={{ paddingLeft: "43px" }}>
+                        <Moment format='DD-MMM-YYYY'>
+                          {mrTransit.results > 0
+                            ? mrTransit.data.data[0].inDate
+                            : received.results > 0
+                            ? received.data.data[0].inDate
+                            : ""}
+                        </Moment>
+                      </small>
+                    ) : (
+                      ""
+                    )}
                   </div>
                 )}
 
@@ -344,35 +356,38 @@ const TrackStatus = ({
                     ? ddTransit.data.data[0].modeOfDelivery
                     : ""} */}
                     <br />
-                    <small style={{ paddingLeft: "43px" }}>
-                      {mrTransit.results > 0
-                        ? mrTransit.data.data[0].transDate
-                        : received.results > 0
-                        ? received.data.data[0].transDate
-                        : ""}
-                    </small>
+                    {mrTransit.results > 0 || received.results > 0 ? (
+                      <small style={{ paddingLeft: "43px" }}>
+                        <Moment format='DD-MMM-YYYY'>
+                          {mrTransit.results > 0
+                            ? mrTransit.data.data[0].transDate
+                            : received.results > 0
+                            ? received.data.data[0].transDate
+                            : ""}
+                        </Moment>
+                      </small>
+                    ) : (
+                      ""
+                    )}
                   </div>
                 )}
 
                 <div className='step step1 pb-4 pt-1'>
                   <i
                     className={`fa fa-dropbox ${
-                      asnUploadDate || state.dispatchDate >= state.currentDate
+                      deliveryDate >= state.currentDate
                         ? "text-danger"
                         : "text-primary"
                     } mr-3 border p-1 `}
                   ></i>
-                  {state.dispatchDate >= state.currentDate
+                  {deliveryDate >= state.currentDate
                     ? "Expected Delivery"
                     : "Delivered"}
                   <br />
-                  {!asnUploadDate ? (
-                    <small style={{ paddingLeft: "43px" }}>
-                      {deliveryDate !== "NaN-undefined-NaN" ? deliveryDate : ""}
-                    </small>
-                  ) : (
-                    ""
-                  )}
+
+                  <small style={{ paddingLeft: "43px" }}>
+                    {deliveryDate !== "NaN-undefined-NaN" ? deliveryDate : ""}
+                  </small>
                 </div>
               </div>
             </div>
