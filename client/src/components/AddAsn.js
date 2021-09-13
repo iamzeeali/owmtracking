@@ -10,6 +10,7 @@ const AddAsn = ({ addManualAsn }) => {
     asnUploadDate: "",
     vendorCode: "",
     vendorName: "",
+    manual: true,
   });
 
   const { ecciNumber, asnUploadDate, vendorCode, vendorName } = formData;

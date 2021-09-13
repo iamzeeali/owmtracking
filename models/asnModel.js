@@ -13,6 +13,7 @@ const asnSchema = new mongoose.Schema({
   vendorName: {
     type: String,
   },
+  manual: Boolean,
   active: {
     type: Boolean,
     default: true,

@@ -25,6 +25,7 @@ const TrackStatus = ({
   transDate,
   transDateForDirect,
   transDateForReceive,
+  manual,
 }) => {
   var newDate = new Date();
 
@@ -76,7 +77,7 @@ const TrackStatus = ({
   const [state, setState] = useState({
     deliveryDate: "",
     currentDate: newDate.toShortFormat(),
-    dispatchDate: "07-Sep-2021",
+    dispatchDate: "",
     dispatchGreaterCurrent: false,
   });
 
@@ -163,7 +164,6 @@ const TrackStatus = ({
     } else {
       transDateFromReport = transDateForDirect;
     }
-    console.log(transDateFromReport);
     var transDateIntoJSDate = new Date(transDateFromReport);
     var transDay = transDateIntoJSDate.getDay();
 
@@ -215,14 +215,16 @@ const TrackStatus = ({
 
   function increasePlanDateBy1(s) {
     console.log(s);
-    var d = moment(s).toDate();
-    var increasePlanDate = new Date(d.setDate(d.getDate() + 1));
+    if (!manual) {
+      var d = moment(s).toDate();
+      var increasePlanDate = new Date(d.setDate(d.getDate() + 1));
 
-    return (
-      <Moment format='DD-MMM-YYYY'>
-        {increasePlanDate && increasePlanDate}
-      </Moment>
-    );
+      return (
+        <Moment format='DD-MMM-YYYY'>
+          {increasePlanDate && increasePlanDate}
+        </Moment>
+      );
+    }
   }
 
   return (
@@ -375,12 +377,12 @@ const TrackStatus = ({
                 <div className='step step1 pb-4 pt-1'>
                   <i
                     className={`fa fa-dropbox ${
-                      deliveryDate >= state.currentDate
+                      deliveryDate > state.currentDate
                         ? "text-danger"
                         : "text-primary"
                     } mr-3 border p-1 `}
                   ></i>
-                  {deliveryDate >= state.currentDate
+                  {deliveryDate > state.currentDate
                     ? "Expected Delivery"
                     : "Delivered"}
                   <br />
@@ -413,6 +415,7 @@ const mapStateToProps = (state) => ({
   asns: state.asn.asns,
   loading: state.asn.loading,
   asnUploadDate: state.asn.asnUploadDate,
+  manual: state.asn.manual,
   transDate: state.grn.transDate,
   transDateForReceive: state.grn.transDateForReceive,
   transDateForDirect: state.grn.transDateForDirect,

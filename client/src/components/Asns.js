@@ -42,11 +42,17 @@ const Asns = ({ getLimitedAsns, asns, filtered, loading, asnUploadDate }) => {
   //   return [day, mnth, date.getFullYear()].join("-");
   // };
 
-  function increasePlanDateBy1(s) {
-    var d = moment(s).toDate();
-    var increasePlanDate = new Date(d.setDate(d.getDate() + 1));
+  function increasePlanDateBy1(s, manual) {
+    if (!manual) {
+      var d = moment(s).toDate();
+      var increasePlanDate = new Date(d.setDate(d.getDate() + 1));
 
-    return <Moment format='DD-MMM-YYYY'>{increasePlanDate}</Moment>;
+      return (
+        <Moment format='DD-MMM-YYYY'>
+          {increasePlanDate && increasePlanDate}
+        </Moment>
+      );
+    }
   }
 
   if (loading) {
@@ -84,7 +90,9 @@ const Asns = ({ getLimitedAsns, asns, filtered, loading, asnUploadDate }) => {
                 asns.data.data.map((asn) => (
                   <tr key={asn._id}>
                     <td>{asn.ecciNumber && asn.ecciNumber}</td>
-                    <td>{increasePlanDateBy1(asn.asnUploadDate)}</td>
+                    <td>
+                      {increasePlanDateBy1(asn.asnUploadDate, asn.manual)}
+                    </td>
                     <td>{asn.vendorCode && asn.vendorCode}</td>
                     <td>{asn.vendorName && asn.vendorName}</td>
                   </tr>

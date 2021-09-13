@@ -4,6 +4,7 @@ const initialState = {
   asn: null,
   asns: [],
   asnUploadDate: "",
+  manual: "",
   error: {},
   filtered: null,
   loading: true,
@@ -24,6 +25,7 @@ export default function (state = initialState, action) {
         ...state,
         asns: payload,
         asnUploadDate: payload.data.data[0].asnUploadDate.toString(),
+        asnUploadDate: payload.data.data[0].manual,
         loading: false,
       };
     case types.ADD_ASN:
