@@ -25,7 +25,7 @@ export default function (state = initialState, action) {
         ...state,
         asns: payload,
         asnUploadDate: payload.data.data[0].asnUploadDate,
-        asnUploadDate: payload.data.data[0].manual,
+        manual: payload.data.data[0].manual,
         loading: false,
       };
     case types.ADD_ASN:
