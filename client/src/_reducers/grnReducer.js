@@ -48,7 +48,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         ddTransit: payload,
-        transDateForDirect: payload.data.data[0].transDate.toString(),
+        transDateForDirect: payload.data.data[0].transDate,
 
         loading: false,
       };
