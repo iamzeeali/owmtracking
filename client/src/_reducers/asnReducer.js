@@ -24,7 +24,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         asns: payload,
-        asnUploadDate: payload.data.data[0].asnUploadDate.toString(),
+        asnUploadDate: payload.data.data[0].asnUploadDate,
         asnUploadDate: payload.data.data[0].manual,
         loading: false,
       };
