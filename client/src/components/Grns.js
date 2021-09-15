@@ -59,7 +59,7 @@ const Grns = ({ getLimitedGrns, grns, filtered, loading }) => {
                     <td>{grn.vendorCode && grn.vendorCode}</td>
                     <td>{grn.vendorName && grn.vendorName}</td>
                     <td>
-                      <Moment format='DD-MMM-YYYY hh:mm:ss a'>
+                      <Moment format='DD-MMM-YYYY hh:mm:ss'>
                         {grn.date && grn.date}
                       </Moment>
                     </td>
@@ -86,7 +86,7 @@ const Grns = ({ getLimitedGrns, grns, filtered, loading }) => {
                     <td>{grn.vendorCode && grn.vendorCode}</td>
                     <td>{grn.vendorName && grn.vendorName}</td>
                     <td>
-                      <Moment format='DD-MMM-YYYY hh:mm a  '>
+                      <Moment format='DD-MMM-YYYY hh:mm:ss'>
                         {grn.date && grn.date}
                       </Moment>
                     </td>
