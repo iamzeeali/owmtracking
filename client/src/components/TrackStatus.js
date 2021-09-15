@@ -266,7 +266,9 @@ const TrackStatus = ({
 
                     <h6 style={{ color: "#045E84" }}>
                       <span style={{ fontWeight: "600" }}>
-                        {ddTransit.results > 0 || ddDo.results > 0
+                        {ddTransit.results > 0
+                          ? ddTransit.data.data[0].modeOfDelivery
+                          : ddDo.results > 0
                           ? ddTransit.data.data[0].modeOfDelivery
                           : ""}
                       </span>
