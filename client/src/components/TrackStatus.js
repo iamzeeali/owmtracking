@@ -269,7 +269,7 @@ const TrackStatus = ({
                         {ddTransit.results > 0
                           ? ddTransit.data.data[0].modeOfDelivery
                           : ddDo.results > 0
-                          ? ddTransit.data.data[0].modeOfDelivery
+                          ? ddDo.data.data[0].modeOfDelivery
                           : ""}
                       </span>
                     </h6>
