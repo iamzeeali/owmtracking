@@ -38,6 +38,7 @@ export const GET_ASNS = "GET_ASNS";
 export const GET_FOR_RECEIVE = "GET_FOR_RECEIVE";
 export const GET_FOR_MR_TRANSIT = "GET_FOR_MR_TRANSIT";
 export const GET_FOR_DD_TRANSIT = "GET_FOR_DD_TRANSIT";
+export const GET_FOR_DD_DO = "GET_FOR_DD_DO";
 export const ADD_ASN = "ADD_ASN";
 export const UPDATE_ASN = "UPDATE_ASN";
 export const SET_CURRENT_ASN = "SET_CURRENT_ASN";

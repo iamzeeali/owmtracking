@@ -6,6 +6,7 @@ import {
   getForReceived,
   getForDdTransit,
   getForMrTransit,
+  getForDdDo,
 } from "../_actions/grnAction";
 import { getAsns } from "../_actions/asnAction";
 import Moment from "react-moment";
@@ -25,7 +26,9 @@ const TrackStatus = ({
   transDate,
   transDateForDirect,
   transDateForReceive,
+  transDateForDoDirect,
   manual,
+  ddDo,
 }) => {
   var newDate = new Date();
 
@@ -155,12 +158,15 @@ const TrackStatus = ({
     getForReceived(match.params.id);
     getForDdTransit(match.params.id);
     getForMrTransit(match.params.id);
+    getForDdDo(match.params.id);
 
     var transDateFromReport;
     if (transDate) {
       transDateFromReport = transDate;
     } else if (transDateForReceive) {
       transDateFromReport = transDateForReceive;
+    } else if (transDateForDoDirect) {
+      transDateFromReport = transDateForDoDirect;
     } else {
       transDateFromReport = transDateForDirect;
     }
@@ -197,7 +203,13 @@ const TrackStatus = ({
     }
 
     //
-  }, [asnUploadDate, transDate, transDateForDirect, transDateForReceive]);
+  }, [
+    asnUploadDate,
+    transDate,
+    transDateForDirect,
+    transDateForReceive,
+    transDateForDoDirect,
+  ]);
 
   const vendor = () => {
     if (asns.results > 0) {
@@ -208,6 +220,8 @@ const TrackStatus = ({
       return mrTransit.data.data[0].vendorName;
     } else if (ddTransit.results > 0) {
       return ddTransit.data.data[0].vendorName;
+    } else if (ddDo.results > 0) {
+      return ddDo.data.data[0].vendorName;
     } else {
       return null;
     }
@@ -251,8 +265,9 @@ const TrackStatus = ({
 
                     <h6 style={{ color: "#045E84" }}>
                       <span style={{ fontWeight: "600" }}>
-                        {ddTransit.results > 0 &&
-                          ddTransit.data.data[0].modeOfDelivery}
+                        {ddTransit.results > 0 || ddDo.results > 0
+                          ? ddTransit.data.data[0].modeOfDelivery
+                          : ""}
                       </span>
                     </h6>
                   </div>
@@ -286,6 +301,8 @@ const TrackStatus = ({
                         ? "text-primary"
                         : ddTransit.results > 0
                         ? "text-primary"
+                        : ddDo.results > 0
+                        ? "text-primary"
                         : "text-danger"
                     } mr-3 border p-1 `}
                   ></i>
@@ -293,7 +310,8 @@ const TrackStatus = ({
                   <br />
                   {mrTransit.results > 0 ||
                   received.results > 0 ||
-                  ddTransit.results > 0 ? (
+                  ddTransit.results > 0 ||
+                  ddDo.results > 0 ? (
                     <small style={{ paddingLeft: "43px" }}>
                       <Moment format='DD-MMM-YYYY'>
                         {mrTransit.results > 0
@@ -302,6 +320,8 @@ const TrackStatus = ({
                           ? received.data.data[0].inDate
                           : ddTransit.results > 0
                           ? ddTransit.data.data[0].inDate
+                          : ddDo.results > 0
+                          ? ddDo.data.data[0].inDate
                           : ""}
                       </Moment>
                       {/* {received.results > 0 && received.data.data[0].inDate} */}
@@ -311,7 +331,7 @@ const TrackStatus = ({
                   )}
                 </div>
 
-                {ddTransit.results > 0 ? null : (
+                {ddTransit.results > 0 || ddDo.results > 0 ? null : (
                   <div className='step step1 pb-4 pt-1'>
                     <i
                       className={`fa fa-cube ${
@@ -340,7 +360,7 @@ const TrackStatus = ({
                   </div>
                 )}
 
-                {ddTransit.results > 0 ? null : (
+                {ddTransit.results > 0 || ddDo.results > 0 ? null : (
                   <div className='step step2 pb-4 pt-1'>
                     <i
                       className={`fa fa-truck ${
@@ -409,6 +429,7 @@ TrackStatus.propTypes = {
   getAsns: PropTypes.func.isRequired,
   getForDdTransit: PropTypes.func.isRequired,
   getForMrTransit: PropTypes.func.isRequired,
+  getForDdDo: PropTypes.func.isRequired,
 };
 const mapStateToProps = (state) => ({
   received: state.grn.received,
@@ -419,12 +440,15 @@ const mapStateToProps = (state) => ({
   transDate: state.grn.transDate,
   transDateForReceive: state.grn.transDateForReceive,
   transDateForDirect: state.grn.transDateForDirect,
+  transDateForDoDirect: state.grn.transDateForDoDirect,
   mrTransit: state.grn.mrTransit,
   ddTransit: state.grn.ddTransit,
+  ddDo: state.grn.ddDo,
 });
 export default connect(mapStateToProps, {
   getForReceived,
   getAsns,
   getForDdTransit,
   getForMrTransit,
+  getForDdDo,
 })(TrackStatus);

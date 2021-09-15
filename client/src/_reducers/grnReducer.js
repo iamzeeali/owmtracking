@@ -6,9 +6,11 @@ const initialState = {
   received: [],
   mrTransit: [],
   ddTransit: [],
+  ddDo: [],
   transDate: "",
   transDateForDirect: "",
   transDateForReceive: "",
+  transDateForDoDirect: "",
   error: {},
   filtered: null,
   loading: true,
@@ -49,6 +51,15 @@ export default function (state = initialState, action) {
         ...state,
         ddTransit: payload,
         transDateForDirect: payload.data.data[0].transDate,
+
+        loading: false,
+      };
+
+    case types.GET_FOR_DD_DO:
+      return {
+        ...state,
+        ddDo: payload,
+        transDateForDoDirect: payload.data.data[0].transDate,
 
         loading: false,
       };

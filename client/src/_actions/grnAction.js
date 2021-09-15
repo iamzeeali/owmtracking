@@ -103,6 +103,23 @@ export const getForDdTransit = (ecciNumber) => async (dispatch) => {
   }
 };
 
+export const getForDdDo = (ecciNumber) => async (dispatch) => {
+  try {
+    const res = await axios.get(
+      `/api/grn?ecciNumber=${ecciNumber}&transactionType=DO&modeOfDelivery=DIRECT+DELIVERY`
+    );
+    dispatch({
+      type: types.GET_FOR_DD_DO,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: types.GRN_ERROR,
+      payload: { status: err.response },
+    });
+  }
+};
+
 // Add Grn
 export const addGrn = (formData, history) => async (dispatch) => {
   console.log(formData);
