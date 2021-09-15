@@ -17,6 +17,7 @@ const TrackStatus = ({
   getForReceived,
   getForDdTransit,
   getForMrTransit,
+  getForDdDo,
   mrTransit,
   ddTransit,
   received,
