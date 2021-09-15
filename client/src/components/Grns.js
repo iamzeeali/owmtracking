@@ -34,6 +34,7 @@ const Grns = ({ getLimitedGrns, grns, filtered, loading }) => {
               <th scope='col'>Trans Date</th>
               <th scope='col'>Vendor Code</th>
               <th scope='col'>Vendor Name</th>
+              <th scope='col'>Uploaded at</th>
             </tr>
           </thead>
           <tbody>
@@ -57,6 +58,11 @@ const Grns = ({ getLimitedGrns, grns, filtered, loading }) => {
                     </td>
                     <td>{grn.vendorCode && grn.vendorCode}</td>
                     <td>{grn.vendorName && grn.vendorName}</td>
+                    <td>
+                      <Moment format='DD-MMM-YYYY hh:mm:ss a'>
+                        {grn.date && grn.date}
+                      </Moment>
+                    </td>
                   </tr>
                 ))
               : grns.data &&
@@ -79,6 +85,11 @@ const Grns = ({ getLimitedGrns, grns, filtered, loading }) => {
                     </td>
                     <td>{grn.vendorCode && grn.vendorCode}</td>
                     <td>{grn.vendorName && grn.vendorName}</td>
+                    <td>
+                      <Moment format='DD-MMM-YYYY hh:mm a  '>
+                        {grn.date && grn.date}
+                      </Moment>
+                    </td>
                   </tr>
                 ))}
           </tbody>

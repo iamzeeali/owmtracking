@@ -1,12 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AddAsn from "./AddAsn";
 import AddGrn from "./AddGrn";
 import { Link } from "react-router-dom";
+import { getLimitedGrns } from "../_actions/grnAction";
+import { getLimitedAsns } from "../_actions/asnAction";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import Moment from "react-moment";
 
-const UploadEcci = () => {
+const UploadEcci = ({ getLimitedAsns, getLimitedGrns, asns, grns }) => {
   const [ecciFile, setEcciFile] = useState();
   const [grnFile, setGrnFile] = useState();
+
+  useEffect(() => {
+    getLimitedAsns();
+    getLimitedGrns();
+
+    //eslint-diable-next-line
+  }, []);
 
   const onFileChangeOne = (e) => {
     setEcciFile(e.target.files[0]);
@@ -23,22 +35,22 @@ const UploadEcci = () => {
 
     let formData = new FormData();
     formData.append("ecciFile", ecciFile);
-    axios
-      .post("/api/asn", formData, {
-        header: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
-
-      .then((response) => {
-        console.log("Status: ", response.status);
-        alert("Uploaded Sucessfully");
-        window.location.reload();
-      })
-      .catch((error) => {
-        alert("Incorrect Document!");
-      });
-
+    if (window.confirm("Confirm Upload?")) {
+      axios
+        .post("/api/asn", formData, {
+          header: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((response) => {
+          console.log("Status: ", response.status);
+          alert("Uploaded Sucessfully");
+          window.location.reload();
+        })
+        .catch((error) => {
+          alert("Incorrect Document!");
+        });
+    }
     setEcciFile();
   };
 
@@ -47,22 +59,25 @@ const UploadEcci = () => {
 
     let formData = new FormData();
     formData.append("grnFile", grnFile);
-    axios
-      .post("/api/grn", formData, {
-        header: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
 
-      .then((response) => {
-        console.log("Status: ", response.status);
-        alert("Uploaded Sucessfully");
-        window.location.reload();
-      })
-      .catch((error) => {
-        console.error("Something went wrong!", error);
-        alert("Incorrect Document!");
-      });
+    if (window.confirm("Confirm Upload?")) {
+      axios
+        .post("/api/grn", formData, {
+          header: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+
+        .then((response) => {
+          console.log("Status: ", response.status);
+          alert("Uploaded Sucessfully");
+          window.location.reload();
+        })
+        .catch((error) => {
+          console.error("Something went wrong!", error);
+          alert("Incorrect Document!");
+        });
+    }
 
     setGrnFile();
   };
@@ -112,7 +127,19 @@ const UploadEcci = () => {
                     </label>
                   </div>
                 </div>
-                <small>*Upload xls/xlsx file</small>
+                {asns.result > 0 ? (
+                  <small>
+                    *Last uploaded at{" "}
+                    <Moment
+                      className='text-danger'
+                      format='DD-MMM-YYYY hh:mm:ss a'
+                    >
+                      {asns.data.data[0].date}
+                    </Moment>{" "}
+                  </small>
+                ) : (
+                  ""
+                )}
                 <button
                   type='submit'
                   className='btn btn-block btn-primary mt-4'
@@ -166,7 +193,19 @@ const UploadEcci = () => {
                     </label>
                   </div>
                 </div>
-                <small>*Upload xls/xlsx file</small>
+                {grns.result > 0 ? (
+                  <small>
+                    *Last uploaded at{" "}
+                    <Moment
+                      className='text-danger'
+                      format='DD-MMM-YYYY hh:mm:ss a'
+                    >
+                      {grns.data.data[0].date}
+                    </Moment>{" "}
+                  </small>
+                ) : (
+                  ""
+                )}
                 <button
                   type='submit'
                   className='btn btn-block btn-primary mt-4'
@@ -186,4 +225,17 @@ const UploadEcci = () => {
   );
 };
 
-export default UploadEcci;
+UploadEcci.propTypes = {
+  getLimitedAsns: PropTypes.func.isRequired,
+  getLimitedGrns: PropTypes.func.isRequired,
+};
+
+const mapStatetoProps = (state) => ({
+  asns: state.asn.asns,
+  grns: state.grn.grns,
+});
+
+export default connect(mapStatetoProps, {
+  getLimitedAsns,
+  getLimitedGrns,
+})(UploadEcci);
