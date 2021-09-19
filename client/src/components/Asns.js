@@ -74,7 +74,8 @@ const Asns = ({ getLimitedAsns, asns, filtered, loading, asnUploadDate }) => {
               <th scope='col'>ASN Upload Date</th>
               <th scope='col'>Vendor Code</th>
               <th scope='col'>Vendor Name</th>
-              <th scope='col'>Uploaded at</th>
+              <th scope='col'>Uploaded At</th>
+              <th scope='col'>Uploaded By</th>
             </tr>
           </thead>
           <tbody>
@@ -86,10 +87,9 @@ const Asns = ({ getLimitedAsns, asns, filtered, loading, asnUploadDate }) => {
                     <td>{asn.vendorCode && asn.vendorCode}</td>
                     <td>{asn.vendorName && asn.vendorName}</td>
                     <td>
-                      <Moment format='DD-MMM-YYYY HH:mm:ss'>
-                        {asn.date && asn.date}
-                      </Moment>
+                      <Moment>{asn.date && asn.date}</Moment>
                     </td>
+                    <td>{asn.user.name && asn.user.name}</td>
                   </tr>
                 ))
               : asns.data &&
@@ -101,11 +101,11 @@ const Asns = ({ getLimitedAsns, asns, filtered, loading, asnUploadDate }) => {
                     </td>
                     <td>{asn.vendorCode && asn.vendorCode}</td>
                     <td>{asn.vendorName && asn.vendorName}</td>
+
                     <td>
-                      <Moment format='DD-MMM-YYYY HH:mm:ss'>
-                        {asn.date && asn.date}
-                      </Moment>
+                      <Moment>{asn.date && asn.date}</Moment>
                     </td>
+                    <td>{asn.user.name && asn.user.name}</td>
                   </tr>
                 ))}
           </tbody>

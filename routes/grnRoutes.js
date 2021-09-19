@@ -3,7 +3,11 @@ const express = require("express");
 const GRN = require("../models/grnModel");
 const grnController = require("../controllers/grnController");
 const excelToJson = require("convert-excel-to-json");
+const authController = require("../controllers/authController");
+
 const router = express.Router();
+//Protect all routes after this middleware
+router.use(authController.protect);
 
 global.__basedir = __dirname;
 
@@ -22,7 +26,10 @@ const upload = multer({ storage: storage });
 // -> Express Upload RestAPIs
 router.route("/").post(upload.single("grnFile"), (req, res) => {
   if (req.file && req.file.originalname === "grn_rep22248.xlsx") {
-    convertGrnExcelToJson(__basedir + "/uploads/" + req.file.filename);
+    convertGrnExcelToJson(
+      __basedir + "/uploads/" + req.file.filename,
+      req.user
+    );
     res.json({
       msg: "File uploaded/import successfully!",
       file: req.file,
@@ -33,7 +40,7 @@ router.route("/").post(upload.single("grnFile"), (req, res) => {
 });
 
 // -> Import Excel File to MongoDB database
-function convertGrnExcelToJson(filePath) {
+function convertGrnExcelToJson(filePath, user) {
   // -> Read Excel File to Json Data
   const excelData = excelToJson({
     sourceFile: filePath,
@@ -62,8 +69,14 @@ function convertGrnExcelToJson(filePath) {
     ],
   });
 
-  console.log(excelData);
-  GRN.insertMany(excelData.Sheet1, function (err, docs) {
+  // -> Add user details
+  var grnData = excelData.Sheet1.map(function (el) {
+    var o = Object.assign({}, el);
+    o.user = user._id;
+    return o;
+  });
+
+  GRN.insertMany(grnData, function (err, docs) {
     if (err) {
       return console.error(err);
     } else {

@@ -2,9 +2,13 @@ const multer = require("multer");
 const express = require("express");
 const ASN = require("../models/asnModel");
 const asnController = require("../controllers/asnController");
+const authController = require("../controllers/authController");
 
 const excelToJson = require("convert-excel-to-json");
 const router = express.Router();
+
+//Protect all routes after this middleware
+router.use(authController.protect);
 
 global.__basedir = __dirname;
 
@@ -22,9 +26,11 @@ const upload = multer({ storage: storage });
 
 // -> Express Upload RestAPIs
 router.route("/").post(upload.single("ecciFile"), (req, res) => {
-  console.log(req.file.originalname);
   if (req.file && req.file.originalname === "asn_rep22246.xlsx") {
-    convertEcciExcelToJson(__basedir + "/uploads/" + req.file.filename);
+    convertEcciExcelToJson(
+      __basedir + "/uploads/" + req.file.filename,
+      req.user
+    );
     res.json({
       msg: "File uploaded/import successfully!",
       file: req.file,
@@ -35,7 +41,8 @@ router.route("/").post(upload.single("ecciFile"), (req, res) => {
 });
 
 // -> Import Excel File to MongoDB database
-function convertEcciExcelToJson(filePath) {
+function convertEcciExcelToJson(filePath, user) {
+  // console.log(user);
   // -> Read Excel File to Json Data
   const excelData = excelToJson({
     sourceFile: filePath,
@@ -60,9 +67,14 @@ function convertEcciExcelToJson(filePath) {
     ],
   });
 
-  // -> Log Excel Data to Console
+  // -> Add user details
+  var asnData = excelData.Sheet1.map(function (el) {
+    var o = Object.assign({}, el);
+    o.user = user._id;
+    return o;
+  });
 
-  ASN.insertMany(excelData.Sheet1, function (err, docs) {
+  ASN.insertMany(asnData, function (err, docs) {
     if (err) {
       return console.error(err);
     } else {

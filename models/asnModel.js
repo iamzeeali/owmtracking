@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const asnSchema = new mongoose.Schema({
+  user: {
+    type: mongoose.Schema.ObjectId,
+    ref: "User",
+  },
   ecciNumber: {
     type: String,
   },
@@ -23,6 +27,15 @@ const asnSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+});
+
+asnSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: "user",
+    select: "name",
+  });
+
+  next();
 });
 
 asnSchema.pre(/^find/, function (next) {

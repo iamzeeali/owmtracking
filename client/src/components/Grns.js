@@ -32,10 +32,10 @@ const Grns = ({ getLimitedGrns, grns, filtered, loading }) => {
               <th scope='col'>Mode Of Delivery</th>
               <th scope='col'>In Date</th>
               <th scope='col'>Trans Date</th>
-              <th scope='col'>GI Number</th>
               <th scope='col'>Vendor Code</th>
               <th scope='col'>Vendor Name</th>
-              <th scope='col'>Uploaded at</th>
+              <th scope='col'>Uploaded At</th>
+              <th scope='col'>Uploaded By</th>
             </tr>
           </thead>
           <tbody>
@@ -47,19 +47,23 @@ const Grns = ({ getLimitedGrns, grns, filtered, loading }) => {
                     <td>{grn.modeOfDelivery && grn.modeOfDelivery}</td>
                     <td>
                       {" "}
-                      <Moment>{grn.inDate && grn.inDate}</Moment>{" "}
+                      <Moment format='DD-MMM-YYYY'>
+                        {grn.inDate && grn.inDate}
+                      </Moment>{" "}
                     </td>
                     <td>
                       {" "}
-                      <Moment>{grn.transDate && grn.transDate}</Moment>{" "}
+                      <Moment format='DD-MMM-YYYY'>
+                        {grn.transDate && grn.transDate}
+                      </Moment>{" "}
                     </td>
-                    <td>{grn.giNumber && grn.giNumber}</td>
 
                     <td>{grn.vendorCode && grn.vendorCode}</td>
                     <td>{grn.vendorName && grn.vendorName}</td>
                     <td>
                       <Moment>{grn.date && grn.date}</Moment>
                     </td>
+                    <td>{grn.user.name && grn.user.name}</td>
                   </tr>
                 ))
               : grns.data &&
@@ -70,19 +74,23 @@ const Grns = ({ getLimitedGrns, grns, filtered, loading }) => {
                     <td>{grn.modeOfDelivery && grn.modeOfDelivery}</td>
                     <td>
                       {" "}
-                      <Moment>{grn.inDate && grn.inDate}</Moment>{" "}
+                      <Moment format='DD-MMM-YYYY'>
+                        {grn.inDate && grn.inDate}
+                      </Moment>{" "}
                     </td>
                     <td>
                       {" "}
-                      <Moment>{grn.transDate && grn.transDate}</Moment>{" "}
+                      <Moment format='DD-MMM-YYYY'>
+                        {grn.transDate && grn.transDate}
+                      </Moment>{" "}
                     </td>
-                    <td>{grn.giNumber && grn.giNumber}</td>
 
                     <td>{grn.vendorCode && grn.vendorCode}</td>
                     <td>{grn.vendorName && grn.vendorName}</td>
                     <td>
                       <Moment>{grn.date && grn.date}</Moment>
                     </td>
+                    <td>{grn.user.name && grn.user.name}</td>
                   </tr>
                 ))}
           </tbody>

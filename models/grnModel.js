@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const grnSchema = new mongoose.Schema({
+  user: {
+    type: mongoose.Schema.ObjectId,
+    ref: "User",
+  },
   ecciNumber: {
     type: String,
   },
@@ -32,6 +36,15 @@ const grnSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+});
+
+grnSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: "user",
+    select: "name",
+  });
+
+  next();
 });
 
 grnSchema.pre(/^find/, function (next) {
