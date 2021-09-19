@@ -7,16 +7,19 @@ import PropTypes from "prop-types";
 const AddGrn = ({ addManualGrn }) => {
   const [formData, setFormData] = useState({
     ecciNumber: "",
-    transactionType: "",
-    modeOfDelivery: "",
+    giNumber: "",
+    transactionType: "GRN",
+    modeOfDelivery: "MILK RUN",
     vendorCode: "",
     vendorName: "",
     inDate: "",
     transDate: "",
+    manual: true,
   });
 
   const {
     ecciNumber,
+    giNumber,
     transactionType,
     modeOfDelivery,
     vendorCode,
@@ -31,10 +34,9 @@ const AddGrn = ({ addManualGrn }) => {
   };
 
   const onSubmitHandler = (e) => {
-    console.log("submit");
     e.preventDefault();
     addManualGrn(formData);
-    document.getElementById("closeModal").click();
+    document.getElementById("closeGrnModal").click();
   };
   return (
     <div>
@@ -84,24 +86,39 @@ const AddGrn = ({ addManualGrn }) => {
                 />
                 <br />
                 <Input
+                  placeholder='GI Number'
+                  className='form-control'
+                  type='number'
+                  name='giNumber'
+                  value={giNumber}
+                  required={true}
+                  autoFocus={true}
+                  onChange={(e) => onChangeHandler(e)}
+                />
+                <br />
+                <select
                   placeholder='Transaction Type'
                   className='form-control'
-                  type='text'
                   name='transactionType'
                   value={transactionType}
                   required={true}
                   onChange={(e) => onChangeHandler(e)}
-                />
+                >
+                  <option value='GRN'> GRN</option>
+                  <option value='DO'> DO</option>
+                </select>
                 <br />
-                <Input
+                <select
                   placeholder='Mode Of Delivery'
                   className='form-control'
-                  type='text'
                   name='modeOfDelivery'
                   value={modeOfDelivery}
                   required={true}
                   onChange={(e) => onChangeHandler(e)}
-                />
+                >
+                  <option value='MILK RUN'>MILK RUN</option>
+                  <option value='DIRECT DELIVERY'>DIRECT DELIVERY</option>
+                </select>
                 <br />
                 <Input
                   placeholder='Vendor Code'
@@ -151,7 +168,7 @@ const AddGrn = ({ addManualGrn }) => {
                     className='btn btn-secondary'
                     data-dismiss='modal'
                     aria-label='Close'
-                    id='closeModal'
+                    id='closeGrnModal'
                   >
                     Close
                   </button>

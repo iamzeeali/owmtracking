@@ -5,12 +5,25 @@ import PropTypes from "prop-types";
 import FilterGrns from "./FilterGrns";
 import Spinner from "./ui/Spinner";
 import Moment from "react-moment";
+import moment from "moment";
 
 const Grns = ({ getLimitedGrns, grns, filtered, loading }) => {
   useEffect(() => {
     getLimitedGrns();
     //eslint-diable-next-line
   }, []);
+
+  function increaseDateBy1(s, manual) {
+    console.log(s, manual);
+    if (!manual) {
+      var d = moment(s).toDate();
+      var increasePlanDate = new Date(d.setDate(d.getDate() + 1));
+
+      return increasePlanDate;
+    } else {
+      return s;
+    }
+  }
 
   return (
     <div className='container-fluid' style={{ paddingTop: "130px" }}>
@@ -46,13 +59,13 @@ const Grns = ({ getLimitedGrns, grns, filtered, loading }) => {
                       <td>
                         {" "}
                         <Moment format='DD-MMM-YYYY'>
-                          {grn.inDate && grn.inDate}
+                          {increaseDateBy1(grn.inDate, grn.manual)}
                         </Moment>{" "}
                       </td>
                       <td>
                         {" "}
                         <Moment format='DD-MMM-YYYY'>
-                          {grn.transDate && grn.transDate}
+                          {increaseDateBy1(grn.transDate, grn.manual)}
                         </Moment>{" "}
                       </td>
 
@@ -75,16 +88,15 @@ const Grns = ({ getLimitedGrns, grns, filtered, loading }) => {
                       <td>
                         {" "}
                         <Moment format='DD-MMM-YYYY'>
-                          {grn.inDate && grn.inDate}
+                          {increaseDateBy1(grn.inDate, grn.manual)}
                         </Moment>{" "}
                       </td>
                       <td>
                         {" "}
                         <Moment format='DD-MMM-YYYY'>
-                          {grn.transDate && grn.transDate}
+                          {increaseDateBy1(grn.transDate, grn.manual)}
                         </Moment>{" "}
                       </td>
-
                       <td>{grn.vendorCode && grn.vendorCode}</td>
                       <td>{grn.vendorName && grn.vendorName}</td>
                       <td>

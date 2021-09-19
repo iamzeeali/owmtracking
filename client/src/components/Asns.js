@@ -47,11 +47,9 @@ const Asns = ({ getLimitedAsns, asns, filtered, loading, asnUploadDate }) => {
       var d = moment(s).toDate();
       var increasePlanDate = new Date(d.setDate(d.getDate() + 1));
 
-      return (
-        <Moment format='DD-MMM-YYYY'>
-          {increasePlanDate && increasePlanDate}
-        </Moment>
-      );
+      return increasePlanDate;
+    } else {
+      return s;
     }
   }
 
@@ -82,7 +80,11 @@ const Asns = ({ getLimitedAsns, asns, filtered, loading, asnUploadDate }) => {
                 ? filtered.map((asn) => (
                     <tr key={asn._id}>
                       <td>{asn.ecciNumber && asn.ecciNumber}</td>
-                      <td> {increasePlanDateBy1(asn.asnUploadDate)}</td>
+                      <td>
+                        <Moment format='DD-MMM-YYYY'>
+                          {increasePlanDateBy1(asn.asnUploadDate, asn.manual)}
+                        </Moment>
+                      </td>
                       <td>{asn.vendorCode && asn.vendorCode}</td>
                       <td>{asn.vendorName && asn.vendorName}</td>
                       <td>
@@ -98,7 +100,9 @@ const Asns = ({ getLimitedAsns, asns, filtered, loading, asnUploadDate }) => {
                     <tr key={asn._id}>
                       <td>{asn.ecciNumber && asn.ecciNumber}</td>
                       <td>
-                        {increasePlanDateBy1(asn.asnUploadDate, asn.manual)}
+                        <Moment format='DD-MMM-YYYY'>
+                          {increasePlanDateBy1(asn.asnUploadDate, asn.manual)}
+                        </Moment>
                       </td>
                       <td>{asn.vendorCode && asn.vendorCode}</td>
                       <td>{asn.vendorName && asn.vendorName}</td>

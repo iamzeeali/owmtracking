@@ -130,7 +130,7 @@ export const addGrn = (formData, history) => async (dispatch) => {
       payload: res.data,
     });
 
-    dispatch(setAlert("Grn Added", "success"));
+    dispatch(setAlert("Stock Movement Report Added", "success"));
 
     // history.push("/Grn");
   } catch (err) {
@@ -148,7 +148,7 @@ export const addGrn = (formData, history) => async (dispatch) => {
 };
 
 // Add CGrn
-export const addManualGrn = (formData, history) => async (dispatch) => {
+export const addManualGrn = (formData) => async (dispatch) => {
   console.log(formData);
   try {
     const res = await axios.post("/api/grn/create", formData);
@@ -158,8 +158,6 @@ export const addManualGrn = (formData, history) => async (dispatch) => {
     });
 
     dispatch(setAlert("Added Sucessfully", "success"));
-
-    // history.push("/Grn");
   } catch (err) {
     const errors = err.response.data.errors;
 

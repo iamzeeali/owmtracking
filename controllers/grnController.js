@@ -4,7 +4,27 @@ const catchAsync = require("../utils/catchAsync");
 const APIFeatures = require("../utils/apiFeatures");
 
 exports.getAllGrns = factory.getAll(Grn);
-exports.createGrn = factory.createOne(Grn);
+exports.createGrn = catchAsync(async (req, res, next) => {
+  const newGrn = new Grn({
+    ecciNumber: req.body.ecciNumber,
+    giNumber: req.body.giNumber,
+    transactionType: req.body.transactionType,
+    modeOfDelivery: req.body.modeOfDelivery,
+    inDate: req.body.inDate,
+    transDate: req.body.transDate,
+    vendorCode: req.body.vendorCode,
+    vendorName: req.body.vendorName,
+    manual: req.body.manual,
+    user: req.user.id,
+  });
+
+  const doc = await newGrn.save();
+
+  res.status(201).json({
+    status: "success",
+    data: doc,
+  });
+});
 
 exports.getLimitedGrns = catchAsync(async (req, res, next) => {
   const numberOfDaysToLookBack = 7;

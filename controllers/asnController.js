@@ -4,7 +4,23 @@ const catchAsync = require("../utils/catchAsync");
 const APIFeatures = require("../utils/apiFeatures");
 
 exports.getAllAsns = factory.getAll(Asn);
-exports.createAsn = factory.createOne(Asn);
+exports.createAsn = exports.createGrn = catchAsync(async (req, res, next) => {
+  const newAsn = new Asn({
+    ecciNumber: req.body.ecciNumber,
+    asnUploadDate: req.body.asnUploadDate,
+    vendorCode: req.body.vendorCode,
+    vendorName: req.body.vendorName,
+    manual: req.body.manual,
+    user: req.user.id,
+  });
+
+  const doc = await newAsn.save();
+
+  res.status(201).json({
+    status: "success",
+    data: doc,
+  });
+});
 exports.getLimitedAsns = catchAsync(async (req, res, next) => {
   const numberOfDaysToLookBack = 7;
 

@@ -27,6 +27,8 @@ const grnSchema = new mongoose.Schema({
   transDate: {
     type: Date,
   },
+  manual: Boolean,
+
   active: {
     type: Boolean,
     default: true,
