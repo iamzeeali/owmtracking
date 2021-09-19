@@ -37,12 +37,9 @@ const App = () => {
           <Route exact path='/login' component={Login} />
           <Route exact path='/add-feedback' component={AddFeedback} />
           <Route exact path='/' component={Track} />
-          <PrivateRoute
-            exact
-            path={`/trackStatus/:id`}
-            component={TrackStatus}
-          />
+
           <PrivateRoute exact path='/upload' component={UploadEcci} />
+          <Route exact path={`/trackStatus/:id`} component={TrackStatus} />
           <Route exact path='/asns' component={Asns} />
           <PrivateRoute exact path='/grns' component={Grns} />
           <PrivateRoute exact path='/feedback' component={Feedback} />

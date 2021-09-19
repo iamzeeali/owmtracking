@@ -6,6 +6,9 @@ const excelToJson = require("convert-excel-to-json");
 const authController = require("../controllers/authController");
 
 const router = express.Router();
+
+router.route("/").get(grnController.getAllGrns);
+
 //Protect all routes after this middleware
 router.use(authController.protect);
 
@@ -85,7 +88,6 @@ function convertGrnExcelToJson(filePath, user) {
   });
 }
 
-router.route("/").get(grnController.getAllGrns);
 router.route("/limited").get(grnController.getLimitedGrns);
 router.route("/create").post(grnController.createGrn);
 

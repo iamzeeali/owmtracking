@@ -6,6 +6,7 @@ const authController = require("../controllers/authController");
 
 const excelToJson = require("convert-excel-to-json");
 const router = express.Router();
+router.route("/").get(asnController.getAllAsns);
 
 //Protect all routes after this middleware
 router.use(authController.protect);
@@ -82,7 +83,6 @@ function convertEcciExcelToJson(filePath, user) {
     }
   });
 }
-router.route("/").get(asnController.getAllAsns);
 router.route("/create").post(asnController.createAsn);
 router.route("/limited").get(asnController.getLimitedAsns);
 
