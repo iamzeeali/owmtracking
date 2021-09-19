@@ -10,14 +10,8 @@ import PrivateRoute from "./utils/PrivateRoute";
 import Login from "./components/auth/Login";
 import Navbar from "./components/ui/Navbar";
 import Alert from "./components/ui/Alert";
-import Dashboard from "./components/Dashboard";
-import Customer from "./components/Customer";
-import AddUser from "./components/AddUser";
 import Track from "./components/Track";
 import TrackStatus from "./components/TrackStatus";
-import Inventory from "./components/Inventory";
-import SubCustomer from "./components/SubCustomer";
-import Profile from "./components/Profile";
 import UploadEcci from "./components/UploadEcci";
 import Asns from "./components/Asns";
 import Grns from "./components/Grns";
@@ -42,14 +36,12 @@ const App = () => {
         <div className='App'>
           <Route exact path='/login' component={Login} />
           <Route exact path='/add-feedback' component={AddFeedback} />
-          <Route exact path='/dashboard' component={Dashboard} />
-          <PrivateRoute exact path='/customer' component={Customer} />
-          <PrivateRoute exact path='/add-user' component={AddUser} />
           <Route exact path='/' component={Track} />
-          <Route exact path={`/trackStatus/:id`} component={TrackStatus} />
-          <PrivateRoute exact path='/inventory' component={Inventory} />
-          <PrivateRoute exact path='/sub-customer' component={SubCustomer} />
-          <PrivateRoute exact path='/profile' component={Profile} />
+          <PrivateRoute
+            exact
+            path={`/trackStatus/:id`}
+            component={TrackStatus}
+          />
           <PrivateRoute exact path='/upload' component={UploadEcci} />
           <Route exact path='/asns' component={Asns} />
           <PrivateRoute exact path='/grns' component={Grns} />

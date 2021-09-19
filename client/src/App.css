@@ -223,7 +223,7 @@ input.transparent-input::placeholder {
 
 .btn-primary {
   background-color: #045e84 !important;
-  border: none;
+  border: none !important;
 }
 
 .bg-primary {

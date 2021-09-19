@@ -89,16 +89,16 @@ const UploadEcci = ({ getLimitedAsns, getLimitedGrns, asns, grns }) => {
           Upload or Create ASNS & Stock Movement Report
         </h5>
         <div className='row pt-4'>
-          <div className='col-sm-4 p-3 card shadow-sm col-md-offset-6'>
+          <div className='col-sm-5 p-3 card shadow-sm col-md-offset-6'>
             <form
               onSubmit={(e) => onSubmitHandlerOne(e)}
               encType='multipart/form-data'
               className='text-center'
             >
               <div className='form-group'>
-                <b>ASN REPORT - TO BE RECEIVED </b> <br />
+                <b>ASN REPORT - TO BE RECEIVED (REP22246) </b> <br />
                 <Link to='/asns' className='btn btn-warning mt-3'>
-                  VIEW REP22246
+                  View Report
                 </Link>
                 <br />
                 <br />
@@ -127,10 +127,13 @@ const UploadEcci = ({ getLimitedAsns, getLimitedGrns, asns, grns }) => {
                     </label>
                   </div>
                 </div>
-                {asns.result > 0 ? (
-                  <small className='text-danger'>
-                    *Last uploaded at <Moment>{asns.data.data[0].date}</Moment>{" "}
-                    by {asns.data.data[0].user && asns.data.data[0].user.name}
+                {asns && asns.result > 0 ? (
+                  <small className='text-primary font-weight-bold'>
+                    *Last Uploaded At: <br />
+                    <Moment format='DD-MMM-YYYY, HH:mm:ss'>
+                      {asns.data && asns.data.data[0].date}
+                    </Moment>{" "}
+                    | By, {asns.data.data[0].user.name}
                   </small>
                 ) : (
                   ""
@@ -143,23 +146,27 @@ const UploadEcci = ({ getLimitedAsns, getLimitedGrns, asns, grns }) => {
                 </button>
               </div>
             </form>
-            <p className='text-center'>Or</p>
+            <p className='text-center'>Or, </p>
             <AddAsn />
           </div>
-          <div className='col-sm-4 text-center'>
-            <img src='/track.png' alt=' ' width='70%' className='pt-5' />
+          <div className='col-sm-2 text-center'>
+            {/* <img src='/track.png' alt=' ' width='70%' className='pt-5' /> */}
           </div>
 
-          <div className='col-sm-4 p-3 card shadow-sm col-md-offset-6'>
+          <div className='col-sm-5 p-3 card shadow-sm col-md-offset-6'>
             <form
               onSubmit={(e) => onSubmitHandlerTwo(e)}
               encType='multipart/form-data'
               className='text-center'
             >
               <div className='form-group'>
-                <b>Stock Movement Report </b> <br />
+                <b>
+                  Stock Movement Report <br />
+                  (REP22248){" "}
+                </b>{" "}
+                <br />
                 <Link to='/grns' className='btn btn-warning mt-3'>
-                  VIEW GRN-REP22248
+                  View Report
                 </Link>
                 <br />
                 <br />
@@ -188,10 +195,14 @@ const UploadEcci = ({ getLimitedAsns, getLimitedGrns, asns, grns }) => {
                     </label>
                   </div>
                 </div>
-                {grns.result > 0 ? (
-                  <small className='text-danger'>
-                    *Last uploaded at <Moment>{grns.data.data[0].date}</Moment>{" "}
-                    by {grns.data.data[0].user && grns.data.data[0].user.name}
+                {grns && grns.result > 0 ? (
+                  <small className='text-primary font-weight-bold'>
+                    *Last Uploaded At: <br />
+                    <Moment format='DD-MMM-YYYY, HH:mm:ss'>
+                      {grns.data.data[0].date}
+                    </Moment>{" "}
+                    | By,{" "}
+                    {grns.data.data[0].user && grns.data.data[0].user.name}
                   </small>
                 ) : (
                   ""
@@ -204,7 +215,7 @@ const UploadEcci = ({ getLimitedAsns, getLimitedGrns, asns, grns }) => {
                 </button>
               </div>
             </form>
-            <p className='text-center'>Or</p>
+            <p className='text-center'>Or, </p>
 
             <AddGrn />
           </div>
