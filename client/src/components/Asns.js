@@ -89,7 +89,7 @@ const Asns = ({ getLimitedAsns, asns, filtered, loading, asnUploadDate }) => {
                     <td>
                       <Moment>{asn.date && asn.date}</Moment>
                     </td>
-                    <td>{asn.user.name && asn.user.name}</td>
+                    <td>{asn.user && asn.user.name}</td>
                   </tr>
                 ))
               : asns.data &&
@@ -105,7 +105,7 @@ const Asns = ({ getLimitedAsns, asns, filtered, loading, asnUploadDate }) => {
                     <td>
                       <Moment>{asn.date && asn.date}</Moment>
                     </td>
-                    <td>{asn.user.name && asn.user.name}</td>
+                    <td>{asn.user && asn.user.name}</td>
                   </tr>
                 ))}
           </tbody>

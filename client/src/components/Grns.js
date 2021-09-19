@@ -63,7 +63,7 @@ const Grns = ({ getLimitedGrns, grns, filtered, loading }) => {
                     <td>
                       <Moment>{grn.date && grn.date}</Moment>
                     </td>
-                    <td>{grn.user.name && grn.user.name}</td>
+                    <td>{grn.user && grn.user.name}</td>
                   </tr>
                 ))
               : grns.data &&
@@ -90,7 +90,7 @@ const Grns = ({ getLimitedGrns, grns, filtered, loading }) => {
                     <td>
                       <Moment>{grn.date && grn.date}</Moment>
                     </td>
-                    <td>{grn.user.name && grn.user.name}</td>
+                    <td>{grn.user && grn.user.name}</td>
                   </tr>
                 ))}
           </tbody>

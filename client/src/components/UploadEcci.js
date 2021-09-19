@@ -130,7 +130,7 @@ const UploadEcci = ({ getLimitedAsns, getLimitedGrns, asns, grns }) => {
                 {asns.result > 0 ? (
                   <small className='text-danger'>
                     *Last uploaded at <Moment>{asns.data.data[0].date}</Moment>{" "}
-                    by {asns.data.data[0].user.name}
+                    by {asns.data.data[0].user && asns.data.data[0].user.name}
                   </small>
                 ) : (
                   ""
@@ -191,7 +191,7 @@ const UploadEcci = ({ getLimitedAsns, getLimitedGrns, asns, grns }) => {
                 {grns.result > 0 ? (
                   <small className='text-danger'>
                     *Last uploaded at <Moment>{grns.data.data[0].date}</Moment>{" "}
-                    by {grns.data.data[0].user.name}
+                    by {grns.data.data[0].user && grns.data.data[0].user.name}
                   </small>
                 ) : (
                   ""
