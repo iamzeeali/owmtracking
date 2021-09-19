@@ -29,6 +29,10 @@ const TrackStatus = ({
   transDateForReceive,
   transDateForDoDirect,
   manual,
+  giNoForGRN,
+  giNoForDD,
+  giNoForDO,
+  giNoForDODD,
   ddDo,
 }) => {
   var newDate = new Date();
@@ -363,7 +367,7 @@ const TrackStatus = ({
                   </div>
                 )}
 
-                {ddTransit.results > 0 || ddDo.results > 0 ? null : (
+                {giNoForGRN || giNoForDD || giNoForDO || giNoForDODD ? (
                   <div className='step step2 pb-4 pt-1'>
                     <i
                       className={`fa fa-truck ${
@@ -374,13 +378,7 @@ const TrackStatus = ({
                           : "text-danger"
                       } mr-3 border p-1 `}
                     ></i>
-                    Dispatched{" "}
-                    {/* {mrTransit.results > 0
-                    ? mrTransit.data.data[0].modeOfDelivery
-                    : ddTransit.results > 0
-                    ? ddTransit.data.data[0].modeOfDelivery
-                    : ""} */}
-                    <br />
+                    Dispatched <br />
                     {mrTransit.results > 0 || received.results > 0 ? (
                       <small style={{ paddingLeft: "43px" }}>
                         <Moment format='DD-MMM-YYYY'>
@@ -395,25 +393,42 @@ const TrackStatus = ({
                       ""
                     )}
                   </div>
+                ) : (
+                  <div className='step step2 pb-4 pt-1'>
+                    <i
+                      className={`fa fa-truck text-danger mr-3 border p-1 `}
+                    ></i>
+                    Dispatched <br />
+                  </div>
                 )}
 
-                <div className='step step1 pb-4 pt-1'>
-                  <i
-                    className={`fa fa-dropbox ${
-                      deliveryDate > state.currentDate
-                        ? "text-danger"
-                        : "text-primary"
-                    } mr-3 border p-1 `}
-                  ></i>
-                  {deliveryDate > state.currentDate
-                    ? "Expected Delivery"
-                    : "Delivered"}
-                  <br />
+                {giNoForGRN || giNoForDD || giNoForDO || giNoForDODD ? (
+                  <div className='step step1 pb-4 pt-1'>
+                    <i
+                      className={`fa fa-dropbox ${
+                        Date.parse(deliveryDate) > Date.parse(state.currentDate)
+                          ? "text-danger"
+                          : "text-primary"
+                      } mr-3 border p-1 `}
+                    ></i>
+                    {Date.parse(deliveryDate) > Date.parse(state.currentDate)
+                      ? "Expected Delivery"
+                      : "Delivered"}
+                    <br />
 
-                  <small style={{ paddingLeft: "43px" }}>
-                    {deliveryDate !== "NaN-undefined-NaN" ? deliveryDate : ""}
-                  </small>
-                </div>
+                    <small style={{ paddingLeft: "43px" }}>
+                      {deliveryDate !== "NaN-undefined-NaN" ? deliveryDate : ""}
+                    </small>
+                  </div>
+                ) : (
+                  <div className='step step1 pb-4 pt-1'>
+                    <i
+                      className={`fa fa-dropbox text-danger mr-3 border p-1 `}
+                    ></i>
+                    Delivered
+                    <br />
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -444,6 +459,10 @@ const mapStateToProps = (state) => ({
   transDateForReceive: state.grn.transDateForReceive,
   transDateForDirect: state.grn.transDateForDirect,
   transDateForDoDirect: state.grn.transDateForDoDirect,
+  giNoForGRN: state.grn.giNoForGRN,
+  giNoForDO: state.grn.giNoForDO,
+  giNoForDD: state.grn.giNoForDD,
+  giNoForDODD: state.grn.giNoForDODD,
   mrTransit: state.grn.mrTransit,
   ddTransit: state.grn.ddTransit,
   ddDo: state.grn.ddDo,

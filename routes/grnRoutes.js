@@ -55,6 +55,7 @@ function convertGrnExcelToJson(filePath) {
           P: "vendorCode",
           Q: "vendorName",
           S: "inDate",
+          T: "giNumber",
           AJ: "transDate",
         },
       },

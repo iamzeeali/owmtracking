@@ -19,6 +19,7 @@ const grnSchema = new mongoose.Schema({
   inDate: {
     type: Date,
   },
+  giNumber: { type: String },
   transDate: {
     type: Date,
   },

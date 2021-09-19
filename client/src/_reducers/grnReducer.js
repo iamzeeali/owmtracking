@@ -11,6 +11,10 @@ const initialState = {
   transDateForDirect: "",
   transDateForReceive: "",
   transDateForDoDirect: "",
+  giNoForGRN: "",
+  giNoForDO: "",
+  giNoForDD: "",
+  giNoForDODD: "",
   error: {},
   filtered: null,
   loading: true,
@@ -38,12 +42,14 @@ export default function (state = initialState, action) {
         received: payload,
         loading: false,
         transDateForReceive: payload.data.data[0].transDate,
+        giNoForGRN: payload.data.data[0].giNumber,
       };
     case types.GET_FOR_MR_TRANSIT:
       return {
         ...state,
         mrTransit: payload,
         transDate: payload.data.data[0].transDate,
+        giNoForDO: payload.data.data[0].giNumber,
         loading: false,
       };
     case types.GET_FOR_DD_TRANSIT:
@@ -51,7 +57,7 @@ export default function (state = initialState, action) {
         ...state,
         ddTransit: payload,
         transDateForDirect: payload.data.data[0].transDate,
-
+        giNoForDD: payload.data.data[0].giNumber,
         loading: false,
       };
 
@@ -60,6 +66,7 @@ export default function (state = initialState, action) {
         ...state,
         ddDo: payload,
         transDateForDoDirect: payload.data.data[0].transDate,
+        giNoForDODD: payload.data.data[0].giNumber,
 
         loading: false,
       };
@@ -91,9 +98,7 @@ export default function (state = initialState, action) {
             grn.vendorCode.match(regex) ||
             grn.vendorName.match(regex) ||
             grn.transactionType.match(regex) ||
-            grn.modeOfDelivery.match(regex) ||
-            grn.inDate.match(regex) ||
-            grn.transDate.match(regex)
+            grn.modeOfDelivery.match(regex)
           );
         }),
       };

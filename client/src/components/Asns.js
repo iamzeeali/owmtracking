@@ -86,7 +86,7 @@ const Asns = ({ getLimitedAsns, asns, filtered, loading, asnUploadDate }) => {
                     <td>{asn.vendorCode && asn.vendorCode}</td>
                     <td>{asn.vendorName && asn.vendorName}</td>
                     <td>
-                      <Moment format='DD-MMM-YYYY hh:mm:ss'>
+                      <Moment format='DD-MMM-YYYY HH:mm:ss'>
                         {asn.date && asn.date}
                       </Moment>
                     </td>
@@ -102,7 +102,7 @@ const Asns = ({ getLimitedAsns, asns, filtered, loading, asnUploadDate }) => {
                     <td>{asn.vendorCode && asn.vendorCode}</td>
                     <td>{asn.vendorName && asn.vendorName}</td>
                     <td>
-                      <Moment format='DD-MMM-YYYY hh:mm:ss'>
+                      <Moment format='DD-MMM-YYYY HH:mm:ss'>
                         {asn.date && asn.date}
                       </Moment>
                     </td>

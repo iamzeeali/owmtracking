@@ -24,7 +24,7 @@ const Grns = ({ getLimitedGrns, grns, filtered, loading }) => {
       <FilterGrns />
 
       <div className='tableFixHead'>
-        <table className='table table-hover table-responsive-md table-striped my-2'>
+        <table className='table table-hover  table-striped my-2'>
           <thead style={{ backgroundColor: "#045E84", color: "#fff" }}>
             <tr>
               <th scope='col'>ECCI</th>
@@ -32,6 +32,7 @@ const Grns = ({ getLimitedGrns, grns, filtered, loading }) => {
               <th scope='col'>Mode Of Delivery</th>
               <th scope='col'>In Date</th>
               <th scope='col'>Trans Date</th>
+              <th scope='col'>GI Number</th>
               <th scope='col'>Vendor Code</th>
               <th scope='col'>Vendor Name</th>
               <th scope='col'>Uploaded at</th>
@@ -46,22 +47,18 @@ const Grns = ({ getLimitedGrns, grns, filtered, loading }) => {
                     <td>{grn.modeOfDelivery && grn.modeOfDelivery}</td>
                     <td>
                       {" "}
-                      <Moment format='DD-MMM-YYYY'>
-                        {grn.inDate && grn.inDate}
-                      </Moment>{" "}
+                      <Moment>{grn.inDate && grn.inDate}</Moment>{" "}
                     </td>
                     <td>
                       {" "}
-                      <Moment format='DD-MMM-YYYY'>
-                        {grn.transDate && grn.transDate}
-                      </Moment>{" "}
+                      <Moment>{grn.transDate && grn.transDate}</Moment>{" "}
                     </td>
+                    <td>{grn.giNumber && grn.giNumber}</td>
+
                     <td>{grn.vendorCode && grn.vendorCode}</td>
                     <td>{grn.vendorName && grn.vendorName}</td>
                     <td>
-                      <Moment format='DD-MMM-YYYY hh:mm:ss'>
-                        {grn.date && grn.date}
-                      </Moment>
+                      <Moment>{grn.date && grn.date}</Moment>
                     </td>
                   </tr>
                 ))
@@ -73,22 +70,18 @@ const Grns = ({ getLimitedGrns, grns, filtered, loading }) => {
                     <td>{grn.modeOfDelivery && grn.modeOfDelivery}</td>
                     <td>
                       {" "}
-                      <Moment format='DD-MMM-YYYY'>
-                        {grn.inDate && grn.inDate}
-                      </Moment>{" "}
+                      <Moment>{grn.inDate && grn.inDate}</Moment>{" "}
                     </td>
                     <td>
                       {" "}
-                      <Moment format='DD-MMM-YYYY'>
-                        {grn.transDate && grn.transDate}
-                      </Moment>{" "}
+                      <Moment>{grn.transDate && grn.transDate}</Moment>{" "}
                     </td>
+                    <td>{grn.giNumber && grn.giNumber}</td>
+
                     <td>{grn.vendorCode && grn.vendorCode}</td>
                     <td>{grn.vendorName && grn.vendorName}</td>
                     <td>
-                      <Moment format='DD-MMM-YYYY hh:mm:ss'>
-                        {grn.date && grn.date}
-                      </Moment>
+                      <Moment>{grn.date && grn.date}</Moment>
                     </td>
                   </tr>
                 ))}
