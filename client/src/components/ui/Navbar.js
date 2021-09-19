@@ -92,9 +92,9 @@ const Navbar = ({
       className='navbar navbar-expand-lg fixed-top navbar-dark'
       style={{ backgroundColor: "#045E84" }}
     >
-      <a className='navbar-brand' href='#'>
+      <Link className='navbar-brand' to='/'>
         <img src='/logow.png' alt='owm' width='70px' />
-      </a>
+      </Link>
       <button
         className='navbar-toggler'
         type='button'

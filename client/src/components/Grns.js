@@ -12,10 +12,6 @@ const Grns = ({ getLimitedGrns, grns, filtered, loading }) => {
     //eslint-diable-next-line
   }, []);
 
-  if (loading) {
-    return <Spinner />;
-  }
-
   return (
     <div className='container-fluid' style={{ paddingTop: "130px" }}>
       <h5 className='bg-light p-2 border-left border-primary'>
@@ -38,62 +34,71 @@ const Grns = ({ getLimitedGrns, grns, filtered, loading }) => {
               <th scope='col'>Uploaded By</th>
             </tr>
           </thead>
-          <tbody>
-            {filtered !== null
-              ? filtered.map((grn) => (
-                  <tr key={grn._id}>
-                    <td>{grn.ecciNumber && grn.ecciNumber}</td>
-                    <td>{grn.transactionType && grn.transactionType}</td>
-                    <td>{grn.modeOfDelivery && grn.modeOfDelivery}</td>
-                    <td>
-                      {" "}
-                      <Moment format='DD-MMM-YYYY'>
-                        {grn.inDate && grn.inDate}
-                      </Moment>{" "}
-                    </td>
-                    <td>
-                      {" "}
-                      <Moment format='DD-MMM-YYYY'>
-                        {grn.transDate && grn.transDate}
-                      </Moment>{" "}
-                    </td>
 
-                    <td>{grn.vendorCode && grn.vendorCode}</td>
-                    <td>{grn.vendorName && grn.vendorName}</td>
-                    <td>
-                      <Moment>{grn.date && grn.date}</Moment>
-                    </td>
-                    <td>{grn.user && grn.user.name}</td>
-                  </tr>
-                ))
-              : grns.data &&
-                grns.data.data.map((grn) => (
-                  <tr key={grn._id}>
-                    <td>{grn.ecciNumber && grn.ecciNumber}</td>
-                    <td>{grn.transactionType && grn.transactionType}</td>
-                    <td>{grn.modeOfDelivery && grn.modeOfDelivery}</td>
-                    <td>
-                      {" "}
-                      <Moment format='DD-MMM-YYYY'>
-                        {grn.inDate && grn.inDate}
-                      </Moment>{" "}
-                    </td>
-                    <td>
-                      {" "}
-                      <Moment format='DD-MMM-YYYY'>
-                        {grn.transDate && grn.transDate}
-                      </Moment>{" "}
-                    </td>
+          {!loading ? (
+            <tbody>
+              {filtered !== null
+                ? filtered.map((grn) => (
+                    <tr key={grn._id}>
+                      <td>{grn.ecciNumber && grn.ecciNumber}</td>
+                      <td>{grn.transactionType && grn.transactionType}</td>
+                      <td>{grn.modeOfDelivery && grn.modeOfDelivery}</td>
+                      <td>
+                        {" "}
+                        <Moment format='DD-MMM-YYYY'>
+                          {grn.inDate && grn.inDate}
+                        </Moment>{" "}
+                      </td>
+                      <td>
+                        {" "}
+                        <Moment format='DD-MMM-YYYY'>
+                          {grn.transDate && grn.transDate}
+                        </Moment>{" "}
+                      </td>
 
-                    <td>{grn.vendorCode && grn.vendorCode}</td>
-                    <td>{grn.vendorName && grn.vendorName}</td>
-                    <td>
-                      <Moment>{grn.date && grn.date}</Moment>
-                    </td>
-                    <td>{grn.user && grn.user.name}</td>
-                  </tr>
-                ))}
-          </tbody>
+                      <td>{grn.vendorCode && grn.vendorCode}</td>
+                      <td>{grn.vendorName && grn.vendorName}</td>
+                      <td>
+                        <Moment format='DD-MMM-YYYY, HH:mm:ss'>
+                          {grn.date && grn.date}
+                        </Moment>
+                      </td>
+                      <td>{grn.user && grn.user.name}</td>
+                    </tr>
+                  ))
+                : grns.data &&
+                  grns.data.data.map((grn) => (
+                    <tr key={grn._id}>
+                      <td>{grn.ecciNumber && grn.ecciNumber}</td>
+                      <td>{grn.transactionType && grn.transactionType}</td>
+                      <td>{grn.modeOfDelivery && grn.modeOfDelivery}</td>
+                      <td>
+                        {" "}
+                        <Moment format='DD-MMM-YYYY'>
+                          {grn.inDate && grn.inDate}
+                        </Moment>{" "}
+                      </td>
+                      <td>
+                        {" "}
+                        <Moment format='DD-MMM-YYYY'>
+                          {grn.transDate && grn.transDate}
+                        </Moment>{" "}
+                      </td>
+
+                      <td>{grn.vendorCode && grn.vendorCode}</td>
+                      <td>{grn.vendorName && grn.vendorName}</td>
+                      <td>
+                        <Moment format='DD-MMM-YYYY, HH:mm:ss'>
+                          {grn.date && grn.date}
+                        </Moment>
+                      </td>
+                      <td>{grn.user && grn.user.name}</td>
+                    </tr>
+                  ))}
+            </tbody>
+          ) : (
+            <Spinner />
+          )}
         </table>
       </div>
     </div>

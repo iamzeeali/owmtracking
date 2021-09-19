@@ -55,9 +55,6 @@ const Asns = ({ getLimitedAsns, asns, filtered, loading, asnUploadDate }) => {
     }
   }
 
-  if (loading) {
-    return <Spinner />;
-  }
   return (
     <div className='container-fluid' style={{ paddingTop: "130px" }}>
       <h5 className='bg-light p-2 border-left border-primary'>
@@ -78,37 +75,46 @@ const Asns = ({ getLimitedAsns, asns, filtered, loading, asnUploadDate }) => {
               <th scope='col'>Uploaded By</th>
             </tr>
           </thead>
-          <tbody>
-            {filtered !== null
-              ? filtered.map((asn) => (
-                  <tr key={asn._id}>
-                    <td>{asn.ecciNumber && asn.ecciNumber}</td>
-                    <td> {increasePlanDateBy1(asn.asnUploadDate)}</td>
-                    <td>{asn.vendorCode && asn.vendorCode}</td>
-                    <td>{asn.vendorName && asn.vendorName}</td>
-                    <td>
-                      <Moment>{asn.date && asn.date}</Moment>
-                    </td>
-                    <td>{asn.user && asn.user.name}</td>
-                  </tr>
-                ))
-              : asns.data &&
-                asns.data.data.map((asn) => (
-                  <tr key={asn._id}>
-                    <td>{asn.ecciNumber && asn.ecciNumber}</td>
-                    <td>
-                      {increasePlanDateBy1(asn.asnUploadDate, asn.manual)}
-                    </td>
-                    <td>{asn.vendorCode && asn.vendorCode}</td>
-                    <td>{asn.vendorName && asn.vendorName}</td>
 
-                    <td>
-                      <Moment>{asn.date && asn.date}</Moment>
-                    </td>
-                    <td>{asn.user && asn.user.name}</td>
-                  </tr>
-                ))}
-          </tbody>
+          {!loading ? (
+            <tbody>
+              {filtered !== null
+                ? filtered.map((asn) => (
+                    <tr key={asn._id}>
+                      <td>{asn.ecciNumber && asn.ecciNumber}</td>
+                      <td> {increasePlanDateBy1(asn.asnUploadDate)}</td>
+                      <td>{asn.vendorCode && asn.vendorCode}</td>
+                      <td>{asn.vendorName && asn.vendorName}</td>
+                      <td>
+                        <Moment format='DD-MMM-YYYY, HH:mm:ss'>
+                          {asn.date && asn.date}
+                        </Moment>
+                      </td>
+                      <td>{asn.user && asn.user.name}</td>
+                    </tr>
+                  ))
+                : asns.data &&
+                  asns.data.data.map((asn) => (
+                    <tr key={asn._id}>
+                      <td>{asn.ecciNumber && asn.ecciNumber}</td>
+                      <td>
+                        {increasePlanDateBy1(asn.asnUploadDate, asn.manual)}
+                      </td>
+                      <td>{asn.vendorCode && asn.vendorCode}</td>
+                      <td>{asn.vendorName && asn.vendorName}</td>
+
+                      <td>
+                        <Moment format='DD-MMM-YYYY, HH:mm:ss'>
+                          {asn.date && asn.date}
+                        </Moment>
+                      </td>
+                      <td>{asn.user && asn.user.name}</td>
+                    </tr>
+                  ))}
+            </tbody>
+          ) : (
+            <Spinner />
+          )}
         </table>
       </div>
     </div>

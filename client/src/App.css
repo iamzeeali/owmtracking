@@ -216,7 +216,13 @@ input.transparent-input::placeholder {
   background-color: rgba(0, 0, 0, 0.4) !important;
   color: #fff;
 }
+td {
+  font-size: 13px;
+}
 
+th {
+  font-size: 13px;
+}
 .text-primary {
   color: #045e84 !important;
 }

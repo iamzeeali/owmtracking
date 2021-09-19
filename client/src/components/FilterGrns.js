@@ -24,8 +24,8 @@ const FilterGrn = ({ filterGrn, clearFilter, filtered }) => {
       <input
         ref={text}
         type='text'
-        className='form-control col-sm-4 search-menu'
-        placeholder='Search'
+        className='form-control col-sm-2 search-menu'
+        placeholder='Search ECCI'
         onChange={onChangeHandler}
       />
       <div className='input-group-append'>
