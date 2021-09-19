@@ -133,7 +133,8 @@ const UploadEcci = ({ getLimitedAsns, getLimitedGrns, asns, grns }) => {
                     <Moment format='DD-MMM-YYYY, HH:mm:ss'>
                       {asns.data && asns.data.data[0].date}
                     </Moment>{" "}
-                    | By, {asns.data.data[0].user.name}
+                    | By,{" "}
+                    {asns.data.data[0].user && asns.data.data[0].user.name}
                   </small>
                 ) : (
                   ""
