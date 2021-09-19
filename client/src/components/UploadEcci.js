@@ -161,11 +161,7 @@ const UploadEcci = ({ getLimitedAsns, getLimitedGrns, asns, grns }) => {
               className='text-center'
             >
               <div className='form-group'>
-                <b>
-                  Stock Movement Report <br />
-                  (REP22248){" "}
-                </b>{" "}
-                <br />
+                <b>Stock Movement Report (REP22248) </b> <br />
                 <Link to='/grns' className='btn btn-warning mt-3'>
                   View Report
                 </Link>
