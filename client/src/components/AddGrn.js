@@ -91,8 +91,6 @@ const AddGrn = ({ addManualGrn }) => {
                   type='number'
                   name='giNumber'
                   value={giNumber}
-                  required={true}
-                  autoFocus={true}
                   onChange={(e) => onChangeHandler(e)}
                 />
                 <br />
@@ -127,6 +125,7 @@ const AddGrn = ({ addManualGrn }) => {
                   name='vendorCode'
                   value={vendorCode}
                   onChange={(e) => onChangeHandler(e)}
+                  required={true}
                 />
                 <br />
                 <Input
@@ -136,6 +135,7 @@ const AddGrn = ({ addManualGrn }) => {
                   name='vendorName'
                   value={vendorName}
                   onChange={(e) => onChangeHandler(e)}
+                  required={true}
                 />
                 <br />
                 <label for='basic-url' className='form-label'>
@@ -148,6 +148,7 @@ const AddGrn = ({ addManualGrn }) => {
                   name='inDate'
                   value={inDate}
                   onChange={(e) => onChangeHandler(e)}
+                  required={true}
                 />
                 <br />
                 <label for='basic-url' className='form-label'>
