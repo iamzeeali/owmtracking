@@ -88,7 +88,7 @@ const AddGrn = ({ addManualGrn }) => {
                 <Input
                   placeholder='GI Number'
                   className='form-control'
-                  type='number'
+                  type='text'
                   name='giNumber'
                   value={giNumber}
                   onChange={(e) => onChangeHandler(e)}
