@@ -41,7 +41,7 @@ app.use(cors());
 app.use(helmet());
 
 //development logging
-if (process.env.NODE_ENV === "development") {
+if (process.env.NODE_ENV === "development" || process.env.NODE_ENV === "production") {
   app.use(morgan("dev"));
 }
 
