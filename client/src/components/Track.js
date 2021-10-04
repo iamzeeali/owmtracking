@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import axios from "axios";
 const Track = () => {
-  const history = useHistory();
 
   const [ecci, setEcci] = useState("");
   const [notFoundInAsn, setNotFoundInAsn] = useState(false);
@@ -12,7 +10,7 @@ const Track = () => {
     e.preventDefault();
 
     axios
-      .get(`/api/asn?ecciNumber=${ecci}`)
+      .get(`http://owmtracking.globushub.com:5000/api/asn?ecciNumber=${ecci}`)
       .then((response) => {
         if (response.data.results <= 0) {
           setNotFoundInAsn(true);
@@ -26,7 +24,7 @@ const Track = () => {
       });
 
     axios
-      .get(`/api/grn/?ecciNumber=${ecci}`)
+      .get(`http://owmtracking.globushub.com:5000/api/grn/?ecciNumber=${ecci}`)
       .then((response) => {
         if (response.data.results <= 0) {
           setNotFoundInGrn(true);
