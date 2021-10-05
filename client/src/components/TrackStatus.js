@@ -260,6 +260,7 @@ const TrackStatus = ({
                       {/* <span style={{ fontWeight: "600" }}>Vendor: </span>{" "} */}
                       {vendor()}
                     </h6>
+                    <h6 style={{ color: "#045E84" }}>Location: Jamshedpur</h6>
 
                     <h6 style={{ color: "#045E84" }}>
                       <span style={{ fontWeight: "600" }}>ECCI:</span> #
@@ -317,7 +318,7 @@ const TrackStatus = ({
                         : "text-danger"
                     } mr-3 border p-1 `}
                   ></i>
-                  Picked
+                  Picked from Vendor Location
                   <br />
                   {mrTransit.results > 0 ||
                   received.results > 0 ||
@@ -364,7 +365,7 @@ const TrackStatus = ({
                           : "text-danger"
                       } mr-3 border p-1 `}
                     ></i>
-                    Received
+                    Received at OWM Cross-dock
                     <br />
                     {mrTransit.results > 0 || received.results > 0 ? (
                       <small style={{ paddingLeft: "43px" }}>
@@ -401,7 +402,7 @@ const TrackStatus = ({
                             : "text-danger"
                         } mr-3 border p-1 `}
                       ></i>
-                      Dispatched <br />
+                      Dispatched from OWM Cross-dock <br />
                       {mrTransit.results > 0 || received.results > 0 ? (
                         <small style={{ paddingLeft: "43px" }}>
                           <Moment format='DD-MMM-YYYY'>
@@ -429,7 +430,7 @@ const TrackStatus = ({
                     <i
                       className={`fa fa-truck text-danger mr-3 border p-1 `}
                     ></i>
-                    Dispatched <br />
+                    Dispatched form OWM Cross-dock <br />
                   </div>
                 )}
 
@@ -443,8 +444,8 @@ const TrackStatus = ({
                       } mr-3 border p-1 `}
                     ></i>
                     {Date.parse(deliveryDate) > Date.parse(state.currentDate)
-                      ? "Expected Delivery"
-                      : "Delivered"}
+                      ? "Expected Delivery at Tata Steel"
+                      : "Delivered at Tata Steel"}
                     <br />
 
                     <small style={{ paddingLeft: "43px" }}>
@@ -460,7 +461,7 @@ const TrackStatus = ({
                     <i
                       className={`fa fa-dropbox text-danger mr-3 border p-1 `}
                     ></i>
-                    Delivered
+                    Delivered at Tata Steel
                     <br />
                   </div>
                 )}

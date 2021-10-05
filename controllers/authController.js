@@ -10,7 +10,7 @@ exports.signupUser = catchAsync(async (req, res, next) => {
   const { name, role, message, email, password, passwordConfirm } = req.body;
   const output = `
  <h5>${message}</h5>
- <p>URL: localhost:3001</p>
+ <p>URL: owmtracking.globushub.com:3001</p>
  <p>Email: ${email}</p> 
  <p>Password: ${password}</p>
  <p>Please use the above credentials to login to OWM Inventory app</p>

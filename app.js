@@ -74,7 +74,12 @@ app.use("/api/feedback", feedbackRouter);
 // Serve static assets in production
 // Set static folder
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "client", "build")));
+  app.use(express.static(path.join(__dirname, "client", "build", {
+    index: false, 
+    immutable: true, 
+    cacheControl: true,
+    maxAge: "30d"
+  })));
 
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
